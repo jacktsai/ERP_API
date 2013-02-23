@@ -6,15 +6,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rhino.Mocks;
 using Yahoo.Business.Security.Cryptography;
 using Yahoo.DataAccess;
-using Yahoo.Business.Security;
 
-namespace YahooLibrary.Business.Security
+namespace Yahoo.Business.Security
 {
     [TestClass]
-    public class DefaultAuthorizationServiceTest
+    public class DefaultSecurityServiceTest
     {
         [TestMethod]
-        public void GetPrivilege_()
+        public void GetPrivileges()
         {
             var userId = 1;
             var expected = (new PrivilegeInfo[]
@@ -24,7 +23,10 @@ namespace YahooLibrary.Business.Security
                 new PrivilegeInfo { Id = 3 },
             }).ToList();
 
+            var userDao = MockRepository.GenerateMock<IUserDao>();
             var privilegeDao = MockRepository.GenerateMock<IPrivilegeDao>();
+            var hashProvider = MockRepository.GenerateMock<IHashProvider>();
+
             privilegeDao
                 .Expect(o => o.GetMany(userId: userId))
                 .Return(new Privilege[]
@@ -34,7 +36,7 @@ namespace YahooLibrary.Business.Security
                         new Privilege { Id = 3 },
                     });
 
-            var target = new DefaultAuthorizationService(privilegeDao) as IAuthorizationService;
+            var target = new DefaultSecurityService(userDao, privilegeDao, hashProvider) as ISecurityService;
             var actual = target.GetPrivileges(userId: userId).ToList();
 
             privilegeDao.VerifyAllExpectations();

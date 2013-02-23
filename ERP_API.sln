@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D8589EB7-3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooLibrary", "src\YahooLibrary\YahooLibrary.csproj", "{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooLibrary.Test", "test\YahooLibrary.Test\YahooLibrary.Test.csproj", "{6DF66AD0-1E35-474B-B5AC-62830BE0E803}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooLibrary.UnitTest", "test\YahooLibrary.UnitTest\YahooLibrary.UnitTest.csproj", "{6DF66AD0-1E35-474B-B5AC-62830BE0E803}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{896EBF5F-F484-4A51-9583-8C899725671D}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,6 +21,34 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AA54BD
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooLibrary.IntegrationTest", "test\YahooLibrary.IntegrationTest\YahooLibrary.IntegrationTest.csproj", "{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooApiSite.AcceptanceTest", "test\YahooApiSite.AcceptanceTest\YahooApiSite.AcceptanceTest.csproj", "{5810422C-47DA-4643-9C07-E15DA5886316}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "YahooApiSite", "src\YahooApiSite", "{AC71701C-FC8E-462C-8376-BF56FE12B985}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91}|YahooLibrary.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/YahooApiSite"
+		Debug.AspNetCompiler.PhysicalPath = "src\YahooApiSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\YahooApiSite\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/YahooApiSite"
+		Release.AspNetCompiler.PhysicalPath = "src\YahooApiSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\YahooApiSite\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "8888"
+		VWDDynamicPort = "false"
+		VWDVirtualPath = "/"
+		StartServerOnDebug = "true"
 	EndProjectSection
 EndProject
 Global
@@ -40,12 +68,27 @@ Global
 		{6DF66AD0-1E35-474B-B5AC-62830BE0E803}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DF66AD0-1E35-474B-B5AC-62830BE0E803}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DF66AD0-1E35-474B-B5AC-62830BE0E803}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5810422C-47DA-4643-9C07-E15DA5886316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5810422C-47DA-4643-9C07-E15DA5886316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5810422C-47DA-4643-9C07-E15DA5886316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5810422C-47DA-4643-9C07-E15DA5886316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC71701C-FC8E-462C-8376-BF56FE12B985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC71701C-FC8E-462C-8376-BF56FE12B985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC71701C-FC8E-462C-8376-BF56FE12B985}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC71701C-FC8E-462C-8376-BF56FE12B985}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91} = {C5FADF5D-88A2-4411-93C7-682B56D0C75B}
+		{AC71701C-FC8E-462C-8376-BF56FE12B985} = {C5FADF5D-88A2-4411-93C7-682B56D0C75B}
 		{6DF66AD0-1E35-474B-B5AC-62830BE0E803} = {D8589EB7-3548-4DE5-9622-955FA7C8EB82}
+		{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3} = {D8589EB7-3548-4DE5-9622-955FA7C8EB82}
+		{5810422C-47DA-4643-9C07-E15DA5886316} = {D8589EB7-3548-4DE5-9622-955FA7C8EB82}
 	EndGlobalSection
 EndGlobal

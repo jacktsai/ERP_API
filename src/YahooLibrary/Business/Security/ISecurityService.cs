@@ -6,9 +6,9 @@ using System.Text;
 namespace Yahoo.Business.Security
 {
     /// <summary>
-    /// 使用者認證介面。
+    /// 網站安全性管理服務介面。
     /// </summary>
-    public interface IAuthenticationService
+    public interface ISecurityService
     {
         /// <summary>
         /// 建立新的使用者資訊。
@@ -37,5 +37,26 @@ namespace Yahoo.Business.Security
         /// <param name="password">密碼。</param>
         /// <returns>如果認證成功，回傳 UserInfo；否則回傳 null。</returns>
         UserInfo Authenticate(string userName, string password);
+
+        /// <summary>
+        /// 授權。
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="privilegeId"></param>
+        void Authorize(int userId, int privilegeId);
+
+        /// <summary>
+        /// 取消授權。
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="privilegeId"></param>
+        void Unauthorize(int userId, int privilegeId);
+
+        /// <summary>
+        /// 取得已授權的資訊。
+        /// </summary>
+        /// <param name="userId">User ID。</param>
+        /// <returns>如果成功，回傳權限資訊；否則回傳 null。</returns>
+        IEnumerable<PrivilegeInfo> GetPrivileges(int userId);
     }
 }

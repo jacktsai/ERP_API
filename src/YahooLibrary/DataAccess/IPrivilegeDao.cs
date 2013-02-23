@@ -9,7 +9,7 @@ namespace Yahoo.DataAccess
     {
         IEnumerable<Privilege> GetMany(int? userId = null);
 
-        void Remove(Privilege o);
+        void Remove(int privilegeId);
         void Add(Privilege o);
         void Update(Privilege o);
     }
