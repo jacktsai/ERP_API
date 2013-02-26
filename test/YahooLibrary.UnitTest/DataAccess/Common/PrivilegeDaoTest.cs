@@ -17,7 +17,7 @@ namespace Yahoo.DataAccess.Common
             var target = new PrivilegeDao() as IPrivilegeDao;
             var actual = target.GetMany(userId: 2733);
 
-            Assert.AreEqual(308, actual.Count());
+            Assert.AreEqual(259, actual.Count());
             foreach (var o in actual)
             {
                 TestContext.WriteLine("FunctionId: {0}", o.FunctionId);
