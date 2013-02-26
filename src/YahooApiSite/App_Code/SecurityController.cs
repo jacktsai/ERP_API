@@ -9,6 +9,8 @@ using System.Net;
 using Yahoo.Business.Security;
 using System.Net.Http.Formatting;
 using Yahoo.Business.Security.Cryptography;
+using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 public class SecurityController : ApiController
 {
@@ -34,33 +36,51 @@ public class SecurityController : ApiController
         return test;
     }
 
-    [HttpPost]
-    public HttpResponseMessage AcquirePrivileges(HttpRequestMessage request)
+    [DataContract]
+    public class GetProfileRequest
     {
-        var requestContent = request.Content.ReadAsAsync<JObject>().Result;
-        var userIdToken = requestContent["userId"];
-        if (userIdToken == null)
+        [DataMember(IsRequired = true), Required]
+        public int UserId { get; set; }
+    }
+
+    public class GetProfileResponse
+    {
+        public int PriuserID;
+        public string PriuserName;
+        public string CatprivilegeCatsubids;
+        public string PriuserFullName;
+        public string PriuserDepartment;
+        public int PriuserDegree;
+        public string PriuserHomepage;
+        public string PriuserExtno;
+        public string BackyardID;
+        public bool HasSelect;
+        public bool HasInsert;
+        public bool HasUpdate;
+        public bool HasDelete;
+        public bool HasParticular;
+    }
+
+    [HttpPost]
+    public GetProfileResponse GetProfile(GetProfileRequest request)
+    {
+        var response = new GetProfileResponse
         {
-            request.CreateResponse();
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
-        }
-
-        int userId = userIdToken.Value<int>();
-
-
-        var privileges = this.securityService.GetPrivileges(userId);
-
-        //var responseContent = new JObject();
-        //responseContent["privileges"] = new JArray(privileges.ToArray());
-
-        var responseContent = new
-        {
-            userId = userId,
-            privileges = privileges,
+            PriuserID = 2733,
+            PriuserName = "jacktsai",
+            CatprivilegeCatsubids = "1,2,3,4",
+            PriuserFullName = "蔡逸華",
+            PriuserDepartment = "工程部",
+            PriuserDegree = 1,
+            PriuserHomepage = "http://",
+            PriuserExtno = "124567",
+            BackyardID = "jacktsai",
+            HasSelect = false,
+            HasInsert = true,
+            HasUpdate = false,
+            HasDelete = true,
+            HasParticular = false,
         };
-
-        var response = new HttpResponseMessage(HttpStatusCode.OK);
-        response.Content = new ObjectContent(responseContent.GetType(), responseContent, new JsonMediaTypeFormatter());
 
         return response;
     }

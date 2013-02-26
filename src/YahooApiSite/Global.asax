@@ -10,9 +10,9 @@
 
         config.DependencyResolver = new DependencyResolver();
 
-        var routes = config.Routes;
-        routes.MapHttpRoute("API Default", "api/{controller}/{action}");
-
+        config.Routes.MapHttpRoute("API Default", "api/{controller}/{action}");
+        
+        config.Filters.Add(new ModelStateActionFilter());
     }
 
     void Application_End(object sender, EventArgs e)
