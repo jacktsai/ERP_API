@@ -69,21 +69,21 @@ namespace YahooApiSite.AcceptanceTest.網站安全性.使用者權限管理
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("權限取得")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("取得使用者 2733 的權限")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "取得使用者權限")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("HttpClient")]
-        public virtual void 權限取得()
+        public virtual void 取得使用者2733的權限()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("權限取得", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("取得使用者 2733 的權限", new string[] {
                         "HttpClient"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("使用者編號為 2733", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("以使用者編號 2733 取得權限清單", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.When("獲取權限清單", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("回傳使用者編號為 2733", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.Then("清單筆數為 259", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("回傳清單筆數為 259", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
     testRunner.And("包含功能編號 148", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12

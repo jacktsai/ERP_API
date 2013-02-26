@@ -66,6 +66,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HttpClientCommonSteps.cs" />
+    <Compile Include="HttpClientStepsBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="網站安全性\使用者權限管理\取得使用者權限.feature.cs">
       <AutoGen>True</AutoGen>
@@ -73,6 +75,12 @@
       <DependentUpon>取得使用者權限.feature</DependentUpon>
     </Compile>
     <Compile Include="網站安全性\使用者權限管理\取得使用者權限Steps.cs" />
+    <Compile Include="網站安全性\使用者認證\取得使用者資料.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>取得使用者資料.feature</DependentUpon>
+    </Compile>
+    <Compile Include="網站安全性\使用者認證\取得使用者資料Steps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -81,10 +89,12 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>取得使用者權限.feature.cs</LastGenOutput>
     </None>
+    <None Include="網站安全性\使用者認證\取得使用者資料.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>取得使用者資料.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="網站安全性\使用者認證\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\src\YahooLibrary\YahooLibrary.csproj">
       <Project>{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91}</Project>
