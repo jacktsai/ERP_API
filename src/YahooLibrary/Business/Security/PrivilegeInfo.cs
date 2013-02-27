@@ -20,14 +20,14 @@ namespace Yahoo.Business.Security
         /// </summary>
         public int FunctionId { get; set; }
 
-        public override int GetHashCode()
-        {
-            return Id.GetHashCode();
-        }
+        /// <summary>
+        /// 功能目錄編號。
+        /// </summary>
+        public int CategoryId { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            return Id.Equals(((PrivilegeInfo)obj).Id);
-        }
+        /// <summary>
+        /// 功能子目錄編號。
+        /// </summary>
+        public int CategorySubId { get; set; }
     }
 }

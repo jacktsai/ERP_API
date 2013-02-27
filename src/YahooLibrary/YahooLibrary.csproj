@@ -49,20 +49,33 @@
     <Compile Include="Business\Security\DefaultSecurityService.cs" />
     <Compile Include="Business\Security\ISecurityService.cs" />
     <Compile Include="Business\Security\PrivilegeInfo.cs" />
-    <Compile Include="Business\Security\UserInfo.cs" />
+    <Compile Include="Business\Security\UserProfile.cs" />
     <Compile Include="DataAccess\Common\CommonDao.cs" />
+    <Compile Include="DataAccess\Common\FunctionDao.cs" />
+    <Compile Include="DataAccess\Common\RoleDao.cs" />
     <Compile Include="DataAccess\Common\UserDao.cs" />
+    <Compile Include="DataAccess\Function.cs" />
+    <Compile Include="DataAccess\IFunctionDao.cs" />
     <Compile Include="DataAccess\IPrivilegeDao.cs" />
+    <Compile Include="DataAccess\IRoleDao.cs" />
     <Compile Include="DataAccess\IUserDao.cs" />
     <Compile Include="DataAccess\Common\MissingConnectionStringSettingsException.cs" />
     <Compile Include="DataAccess\Common\PrivilegeDao.cs" />
     <Compile Include="DataAccess\Common\Resources\Resource.cs" />
+    <Compile Include="DataAccess\Role.cs" />
     <Compile Include="DataAccess\User.cs" />
     <Compile Include="DataAccess\Privilege.cs" />
     <Compile Include="DataAccess\UserGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetMany.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\FunctionDao.GetMany.sql" />
+    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\UserDao.GetOne.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\RoleDao.GetMany.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

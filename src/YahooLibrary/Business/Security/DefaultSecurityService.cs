@@ -13,18 +13,28 @@ namespace Yahoo.Business.Security
     public class DefaultSecurityService : ISecurityService
     {
         private readonly IUserDao userDao;
+        private readonly IRoleDao roleDao;
         private readonly IPrivilegeDao privilegeDao;
+        private readonly IFunctionDao functionDao;
         private readonly IHashProvider hashProvider;
 
-        public DefaultSecurityService(IUserDao userDao, IPrivilegeDao privilegeDao, IHashProvider hashProvider)
+        public DefaultSecurityService(IUserDao userDao, IRoleDao roleDao, IPrivilegeDao privilegeDao, IFunctionDao functionDao, IHashProvider hashProvider)
         {
             if (userDao == null)
             {
                 throw new ArgumentNullException("userDao");
             }
+            if (roleDao == null)
+            {
+                throw new ArgumentNullException("roleDao");
+            }
             if (privilegeDao == null)
             {
                 throw new ArgumentNullException("privilegeDao");
+            }
+            if (functionDao == null)
+            {
+                throw new ArgumentNullException("functionDao");
             }
             if (hashProvider == null)
             {
@@ -32,11 +42,13 @@ namespace Yahoo.Business.Security
             }
 
             this.userDao = userDao;
+            this.roleDao = roleDao;
             this.privilegeDao = privilegeDao;
+            this.functionDao = functionDao;
             this.hashProvider = hashProvider;
         }
 
-        UserInfo ISecurityService.CreateUser(string userName, string password)
+        UserProfile ISecurityService.CreateUser(string userName, string password)
         {
             throw new NotImplementedException();
         }
@@ -46,12 +58,12 @@ namespace Yahoo.Business.Security
             throw new NotImplementedException();
         }
 
-        void ISecurityService.UpdateUser(UserInfo user)
+        void ISecurityService.UpdateUser(UserProfile user)
         {
             throw new NotImplementedException();
         }
 
-        UserInfo ISecurityService.Authenticate(string userName, string password)
+        UserProfile ISecurityService.Authenticate(string userName, string password)
         {
             throw new NotImplementedException();
         }
@@ -66,13 +78,58 @@ namespace Yahoo.Business.Security
             throw new NotImplementedException();
         }
 
-        IEnumerable<PrivilegeInfo> ISecurityService.GetPrivileges(int userId)
+        UserProfile ISecurityService.GetProfile(int userId)
         {
-            return this.privilegeDao.GetMany(userId: userId)
-                .Select(o => new PrivilegeInfo
+            var user = this.userDao.GetOne(id: userId);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            var roles = this.roleDao.GetMany(userId: userId);
+
+            PrivilegeInfo[] privilegeInfos = null;
+
+            var privileges = this.privilegeDao.GetMany(userId: userId);
+            if (privileges != null)
+            {
+                var functions = this.functionDao.GetMany(privileges.Select(o => o.FunctionId));
+                if (functions != null)
                 {
-                    Id = o.Id
-                });
+                    privilegeInfos =
+                        (
+                            from p in privileges
+                            join f in functions on p.FunctionId equals f.Id
+                            select new PrivilegeInfo
+                            {
+                                Id = p.Id,
+                                FunctionId = f.Id,
+                                CategoryId = f.CategoryId,
+                                CategorySubId = f.CategorySubId
+                            }
+                        ).ToArray();
+                }
+            }
+
+            return new UserProfile
+            {
+                Id = user.Id,
+                Name = user.Name,
+                FullName = user.FullName,
+                Department = user.Department,
+                Degree = user.Degree,
+                Homepage = user.Homepage,
+                ExtensionNumber = user.ExtensionNumber,
+                BackyardId = user.BackyardId,
+                PrivilegeInfos = privilegeInfos,
+
+                HasSelect = roles != null ? roles.Any(o => o.HasSelect == true) : false,
+                HasInsert = roles != null ? roles.Any(o => o.HasInsert == true) : false,
+                HasUpdate = roles != null ? roles.Any(o => o.HasUpdate == true) : false,
+                HasDelete = roles != null ? roles.Any(o => o.HasDelete == true) : false,
+                HasParticular = roles != null ? roles.Any(o => o.HasParticular == true) : false,
+            };
         }
     }
 }
