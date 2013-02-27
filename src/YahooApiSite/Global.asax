@@ -11,8 +11,8 @@
         config.DependencyResolver = new DependencyResolver();
 
         config.Routes.MapHttpRoute("API Default", "api/{controller}/{action}");
-        
-        //config.Filters.Add(new ModelStateActionFilter());
+
+        config.Filters.Add(new ModelStateActionFilter());
     }
 
     void Application_End(object sender, EventArgs e)

@@ -19,17 +19,6 @@ public class DependencyResolver : IDependencyResolver
 
     object IDependencyScope.GetService(Type serviceType)
     {
-        if (serviceType == typeof(SecurityController))
-        {
-        }
-        else if (serviceType == typeof(ISecurityService))
-        {
-            var userDao = new Yahoo.DataAccess.Common.UserDao();
-            var privilegeDao = new Yahoo.DataAccess.Common.PrivilegeDao();
-            var hashProvider = new DefaultHashProvider();
-            return new DefaultSecurityService(userDao, privilegeDao, hashProvider);
-        }
-
         return null;
     }
 

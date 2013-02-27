@@ -7,10 +7,6 @@ namespace Yahoo.DataAccess
 {
     public interface IUserDao
     {
-        User GetOne(int? id = null, string name = null, string password = null);
-
-        void Remove(User o);
-        void Add(User o);
-        void Update(User o);
+        UserData GetOne(int userId);
     }
 }

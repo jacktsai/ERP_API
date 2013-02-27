@@ -44,17 +44,30 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\AuthorityCollection.cs" />
+    <Compile Include="Business\DefaultBusinessFactory.cs" />
+    <Compile Include="Business\Authority.cs" />
+    <Compile Include="Business\IAuthorityCollection.cs" />
+    <Compile Include="Business\IBusinessFactory.cs" />
+    <Compile Include="Business\IUser.cs" />
+    <Compile Include="Business\Security\Authorization.cs" />
     <Compile Include="Business\Security\Cryptography\DefaultHashProvider.cs" />
     <Compile Include="Business\Security\Cryptography\IHashProvider.cs" />
     <Compile Include="Business\Security\DefaultSecurityService.cs" />
     <Compile Include="Business\Security\ISecurityService.cs" />
-    <Compile Include="Business\Security\PrivilegeInfo.cs" />
-    <Compile Include="Business\Security\UserProfile.cs" />
+    <Compile Include="Business\Security\PrivilegeCollection.cs" />
+    <Compile Include="Business\Security\Privilege.cs" />
+    <Compile Include="Business\Security\User.cs" />
+    <Compile Include="Business\Security\UserInfo.cs" />
+    <Compile Include="Business\User.cs" />
+    <Compile Include="DataAccess\AuthorityData.cs" />
+    <Compile Include="DataAccess\Common\AuthorityDao.cs" />
     <Compile Include="DataAccess\Common\CommonDao.cs" />
     <Compile Include="DataAccess\Common\FunctionDao.cs" />
     <Compile Include="DataAccess\Common\RoleDao.cs" />
     <Compile Include="DataAccess\Common\UserDao.cs" />
     <Compile Include="DataAccess\Function.cs" />
+    <Compile Include="DataAccess\IAuthorityDao.cs" />
     <Compile Include="DataAccess\IFunctionDao.cs" />
     <Compile Include="DataAccess\IPrivilegeDao.cs" />
     <Compile Include="DataAccess\IRoleDao.cs" />
@@ -62,10 +75,10 @@
     <Compile Include="DataAccess\Common\MissingConnectionStringSettingsException.cs" />
     <Compile Include="DataAccess\Common\PrivilegeDao.cs" />
     <Compile Include="DataAccess\Common\Resources\Resource.cs" />
-    <Compile Include="DataAccess\Role.cs" />
-    <Compile Include="DataAccess\User.cs" />
-    <Compile Include="DataAccess\Privilege.cs" />
-    <Compile Include="DataAccess\UserGroup.cs" />
+    <Compile Include="DataAccess\RoleData.cs" />
+    <Compile Include="DataAccess\UserData.cs" />
+    <Compile Include="DataAccess\PrivilegeData.cs" />
+    <Compile Include="DataAccess\UserGroupData.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetMany.sql" />

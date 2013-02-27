@@ -69,17 +69,17 @@ namespace Yahoo.Security
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("無操作者序號取得登入資訊")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以無操作者序號取得登入資訊")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetUserProfile")]
-        public virtual void 無操作者序號取得登入資訊()
+        public virtual void 以無操作者序號取得登入資訊()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("無操作者序號取得登入資訊", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以無操作者序號取得登入資訊", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
     testRunner.Given("無操作者序號", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-    testRunner.When("取得登入資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("取得操作者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
     testRunner.Then("回傳狀態為 \"BadRequest\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -97,7 +97,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
     testRunner.Given("操作者序號為空白", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
-    testRunner.When("取得登入資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("取得操作者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
     testRunner.Then("回傳狀態為 \"BadRequest\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -115,7 +115,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 17
     testRunner.Given("操作者序號為 2733", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
- testRunner.When("取得登入資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("取得操作者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 19
     testRunner.Then("回傳成功狀態", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 20
@@ -144,15 +144,8 @@ this.ScenarioSetup(scenarioInfo);
     testRunner.And("回傳細部權限-UPDATE為 False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
     testRunner.And("回傳細部權限-DELETE為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "userId",
-                        "name"});
-            table1.AddRow(new string[] {
-                        "2733",
-                        "\"jacktsai\""});
 #line 33
-    testRunner.And("回傳細部權限-特殊權限為 False", ((string)(null)), table1, "And ");
+    testRunner.And("回傳細部權限-特殊權限為 False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -163,39 +156,41 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void 以操作者序號2121取得登入資訊()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以操作者序號 2121 取得登入資訊", ((string[])(null)));
-#line 38
+#line 35
 this.ScenarioSetup(scenarioInfo);
-#line 39
- testRunner.When("以操作者序號 2121 取得登入資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 40
+#line 36
+    testRunner.Given("操作者序號為 2121", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 37
+ testRunner.When("取得操作者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 38
     testRunner.Then("回傳成功狀態", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 41
+#line 39
     testRunner.And("回傳操作者序號為 2121", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
+#line 40
     testRunner.And("回傳操作帳號為 \"kevincheng\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
+#line 41
     testRunner.And("回傳操作者的子站為 \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
+#line 42
     testRunner.And("回傳操作者中文姓名為 \"鄭凱文\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
+#line 43
     testRunner.And("回傳操作者部門為 \"研發\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 46
+#line 44
     testRunner.And("回傳操作者等級為 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 47
+#line 45
     testRunner.And("回傳操作者首頁為 \"/privilege/homepages/ERP.asp\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 48
+#line 46
     testRunner.And("回傳操作者分機為 \"151\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 49
+#line 47
     testRunner.And("回傳操作者Backyard ID 為 \"kevin113\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 50
+#line 48
     testRunner.And("回傳細部權限-SELECT為 False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 51
+#line 49
     testRunner.And("回傳細部權限-INSERT為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 52
+#line 50
     testRunner.And("回傳細部權限-UPDATE為 False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 53
+#line 51
     testRunner.And("回傳細部權限-DELETE為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 54
+#line 52
     testRunner.And("回傳細部權限-特殊權限為 False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

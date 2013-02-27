@@ -27,29 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooLibrary.IntegrationTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooApiSite.AcceptanceTest", "test\YahooApiSite.AcceptanceTest\YahooApiSite.AcceptanceTest.csproj", "{5810422C-47DA-4643-9C07-E15DA5886316}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "YahooApiSite", "src\YahooApiSite", "{AC71701C-FC8E-462C-8376-BF56FE12B985}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91}|YahooLibrary.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/YahooApiSite"
-		Debug.AspNetCompiler.PhysicalPath = "src\YahooApiSite\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\YahooApiSite\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/YahooApiSite"
-		Release.AspNetCompiler.PhysicalPath = "src\YahooApiSite\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\YahooApiSite\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "8888"
-		VWDDynamicPort = "false"
-		VWDVirtualPath = "/"
-		StartServerOnDebug = "true"
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooApiApp", "src\YahooApiApp\YahooApiApp.csproj", "{1DE95254-58FC-4C55-A5A5-02ED44F038C5}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -76,17 +54,17 @@ Global
 		{5810422C-47DA-4643-9C07-E15DA5886316}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5810422C-47DA-4643-9C07-E15DA5886316}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5810422C-47DA-4643-9C07-E15DA5886316}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC71701C-FC8E-462C-8376-BF56FE12B985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC71701C-FC8E-462C-8376-BF56FE12B985}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC71701C-FC8E-462C-8376-BF56FE12B985}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC71701C-FC8E-462C-8376-BF56FE12B985}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{1DE95254-58FC-4C55-A5A5-02ED44F038C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE95254-58FC-4C55-A5A5-02ED44F038C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE95254-58FC-4C55-A5A5-02ED44F038C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE95254-58FC-4C55-A5A5-02ED44F038C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91} = {C5FADF5D-88A2-4411-93C7-682B56D0C75B}
-		{AC71701C-FC8E-462C-8376-BF56FE12B985} = {C5FADF5D-88A2-4411-93C7-682B56D0C75B}
+		{1DE95254-58FC-4C55-A5A5-02ED44F038C5} = {C5FADF5D-88A2-4411-93C7-682B56D0C75B}
 		{6DF66AD0-1E35-474B-B5AC-62830BE0E803} = {D8589EB7-3548-4DE5-9622-955FA7C8EB82}
 		{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3} = {D8589EB7-3548-4DE5-9622-955FA7C8EB82}
 		{5810422C-47DA-4643-9C07-E15DA5886316} = {D8589EB7-3548-4DE5-9622-955FA7C8EB82}

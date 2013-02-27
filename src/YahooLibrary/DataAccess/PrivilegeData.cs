@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Yahoo.DataAccess
 {
-    public class Privilege
+    public class PrivilegeData
     {
         public int Id { get; set; }
         public int FunctionId { get; set; }

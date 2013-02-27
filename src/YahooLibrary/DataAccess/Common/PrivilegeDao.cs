@@ -16,7 +16,7 @@ namespace Yahoo.DataAccess.Common
         {
         }
 
-        IEnumerable<Privilege> IPrivilegeDao.GetMany(int? userId)
+        IEnumerable<PrivilegeData> IPrivilegeDao.GetMany(int? userId)
         {
             using (var connection = base.CreateConnection())
             {
@@ -43,10 +43,10 @@ namespace Yahoo.DataAccess.Common
 
                     using (var reader = dbCommand.ExecuteReader())
                     {
-                        IList<Privilege> list = new List<Privilege>();
+                        IList<PrivilegeData> list = new List<PrivilegeData>();
                         while (reader.Read())
                         {
-                            var o = new Privilege
+                            var o = new PrivilegeData
                             {
                                 FunctionId = reader.GetInt32(0),
                             };
@@ -63,12 +63,12 @@ namespace Yahoo.DataAccess.Common
             throw new NotImplementedException();
         }
 
-        void IPrivilegeDao.Add(Privilege o)
+        void IPrivilegeDao.Add(PrivilegeData o)
         {
             throw new NotImplementedException();
         }
 
-        void IPrivilegeDao.Update(Privilege o)
+        void IPrivilegeDao.Update(PrivilegeData o)
         {
             throw new NotImplementedException();
         }

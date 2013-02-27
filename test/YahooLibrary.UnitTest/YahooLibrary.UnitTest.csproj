@@ -55,7 +55,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\Security\DefaultSecurityServiceTest.cs" />
+    <Compile Include="Business\UserTest.cs" />
     <Compile Include="DataAccess\Common\PrivilegeDaoTest.cs" />
     <Compile Include="DataAccess\Common\Resources\ResourceTest.cs" />
   </ItemGroup>

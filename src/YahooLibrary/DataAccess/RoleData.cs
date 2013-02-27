@@ -8,7 +8,7 @@ namespace Yahoo.DataAccess
     /// <summary>
     /// 
     /// </summary>
-    public class Role
+    public class RoleData
     {
         /// <summary>
         /// 

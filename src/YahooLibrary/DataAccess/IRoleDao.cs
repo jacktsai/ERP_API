@@ -7,6 +7,6 @@ namespace Yahoo.DataAccess
 {
     public interface IRoleDao
     {
-        IEnumerable<Role> GetMany(int? userId = null);
+        IEnumerable<RoleData> GetMany(int? userId = null);
     }
 }

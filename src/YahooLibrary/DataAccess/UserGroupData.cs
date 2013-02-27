@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Yahoo.DataAccess
 {
-    public class UserGroup
+    public class UserGroupData
     {
         public int Id { get; set; }
         public int GroupId { get; set; }

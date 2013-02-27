@@ -12,15 +12,15 @@ namespace Yahoo.DataAccess.Common
         {
         }
 
-        IEnumerable<Role> IRoleDao.GetMany(int? userId)
+        IEnumerable<RoleData> IRoleDao.GetMany(int? userId)
         {
-            return new Role[]
+            return new RoleData[]
             {
-                new Role { Id = 1, HasSelect = true },
-                new Role { Id = 2, HasInsert = true },
-                new Role { Id = 3, HasUpdate = true },
-                new Role { Id = 4, HasDelete = false },
-                new Role { Id = 5, HasParticular = null },
+                new RoleData { Id = 1, HasSelect = true },
+                new RoleData { Id = 2, HasInsert = true },
+                new RoleData { Id = 3, HasUpdate = true },
+                new RoleData { Id = 4, HasDelete = false },
+                new RoleData { Id = 5, HasParticular = null },
             };
         }
     }

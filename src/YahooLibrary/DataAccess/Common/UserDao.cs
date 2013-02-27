@@ -13,19 +13,16 @@ namespace Yahoo.DataAccess.Common
         {
         }
 
-        User IUserDao.GetOne(int? id, string name, string password)
+        UserData IUserDao.GetOne(int id)
         {
             using (var connection = base.CreateConnection())
             {
                 using (var dbCommand = connection.CreateCommand())
                 {
-                    if (id != null)
-                    {
-                        var p = dbCommand.CreateParameter();
-                        p.ParameterName = "@priuser_id";
-                        p.Value = id;
-                        dbCommand.Parameters.Add(p);
-                    }
+                    var p = dbCommand.CreateParameter();
+                    p.ParameterName = "@priuser_id";
+                    p.Value = id;
+                    dbCommand.Parameters.Add(p);
 
                     dbCommand.CommandType = CommandType.Text;
                     dbCommand.CommandText = base.Resource.GetString("GetOne.sql");
@@ -34,13 +31,13 @@ namespace Yahoo.DataAccess.Common
                     {
                         if (reader.Read())
                         {
-                            return new User
+                            return new UserData
                             {
                                 Id = reader.GetInt32(0),
                                 Name = reader.GetString(1),
                                 FullName = reader.GetString(2),
                                 Department = reader.GetString(3),
-                                Degree = reader.GetByte(4),
+                                Degree = reader.GetInt32(4),
                                 Homepage = reader.GetString(5),
                                 ExtensionNumber = reader.GetString(6),
                                 BackyardId = reader.GetString(7)
@@ -51,21 +48,6 @@ namespace Yahoo.DataAccess.Common
             }
 
             return null;
-        }
-
-        void IUserDao.Remove(User o)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IUserDao.Add(User o)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IUserDao.Update(User o)
-        {
-            throw new NotImplementedException();
         }
     }
 }

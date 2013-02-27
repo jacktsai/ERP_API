@@ -8,7 +8,7 @@ namespace Yahoo.Business.Security
     /// <summary>
     /// 權限資訊。
     /// </summary>
-    public class PrivilegeInfo
+    public class Privilege
     {
         /// <summary>
         /// 權限編號。

@@ -3,19 +3,19 @@
 	As a 線上操作者
 	I want to 取得操作者的資訊
 
-Scenario: 無操作者序號取得登入資訊
+Scenario: 以無操作者序號取得登入資訊
     Given 無操作者序號
-    When 取得登入資訊
+    When 取得操作者資訊
     Then 回傳狀態為 "BadRequest"
 
 Scenario: 以空白操作者序號取得登入資訊
     Given 操作者序號為空白
-    When 取得登入資訊
+    When 取得操作者資訊
     Then 回傳狀態為 "BadRequest"
 
 Scenario: 以操作者序號 2733 取得登入資訊
     Given 操作者序號為 2733
-	When 取得登入資訊
+	When 取得操作者資訊
     Then 回傳成功狀態
     And 回傳操作者序號為 2733
     And 回傳操作帳號為 "jacktsai"
@@ -32,11 +32,9 @@ Scenario: 以操作者序號 2733 取得登入資訊
     And 回傳細部權限-DELETE為 True
     And 回傳細部權限-特殊權限為 False
     
-    | userId | name       |
-    | 2733   | "jacktsai" |
-
 Scenario: 以操作者序號 2121 取得登入資訊
-	When 以操作者序號 2121 取得登入資訊
+    Given 操作者序號為 2121
+	When 取得操作者資訊
     Then 回傳成功狀態
     And 回傳操作者序號為 2121
     And 回傳操作帳號為 "kevincheng"

@@ -7,10 +7,10 @@ namespace Yahoo.DataAccess
 {
     public interface IPrivilegeDao
     {
-        IEnumerable<Privilege> GetMany(int? userId = null);
+        IEnumerable<PrivilegeData> GetMany(int? userId = null);
 
         void Remove(int privilegeId);
-        void Add(Privilege o);
-        void Update(Privilege o);
+        void Add(PrivilegeData o);
+        void Update(PrivilegeData o);
     }
 }

@@ -42,7 +42,7 @@ public class SecurityController : ApiController
     public class GetProfileRequest
     {
         [DataMember(IsRequired = true), Required]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
     }
 
     public class GetProfileResponse
