@@ -19,10 +19,12 @@ public class SecurityController : ApiController
     public SecurityController()
     {
         var userDao = new Yahoo.DataAccess.Common.UserDao();
+        var roleDao = new Yahoo.DataAccess.Common.RoleDao();
         var privilegeDao = new Yahoo.DataAccess.Common.PrivilegeDao();
+        var functionDao = new Yahoo.DataAccess.Common.FunctionDao();
         var hashProvider = new DefaultHashProvider();
 
-        this.securityService = new DefaultSecurityService(userDao, privilegeDao, hashProvider);
+        this.securityService = new DefaultSecurityService(userDao, roleDao, privilegeDao, functionDao, hashProvider);
     }
 
     public SecurityController(ISecurityService securityService)
