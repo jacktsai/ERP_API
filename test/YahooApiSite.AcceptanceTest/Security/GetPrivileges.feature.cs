@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace YahooApiSite.AcceptanceTest.網站安全性.使用者權限管理
+namespace Yahoo.Security
 {
     using TechTalk.SpecFlow;
     
@@ -24,7 +24,7 @@ namespace YahooApiSite.AcceptanceTest.網站安全性.使用者權限管理
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "取得使用者權限.feature"
+#line 1 "GetPrivileges.feature"
 #line hidden
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
@@ -48,7 +48,7 @@ namespace YahooApiSite.AcceptanceTest.網站安全性.使用者權限管理
             if (((TechTalk.SpecFlow.FeatureContext.Current != null) 
                         && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "取得使用者權限")))
             {
-                YahooApiSite.AcceptanceTest.網站安全性.使用者權限管理.取得使用者權限Feature.FeatureSetup(null);
+                Yahoo.Security.取得使用者權限Feature.FeatureSetup(null);
             }
         }
         

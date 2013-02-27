@@ -1,109 +1,109 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5810422C-47DA-4643-9C07-E15DA5886316}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>YahooApiSite.AcceptanceTest</RootNamespace>
-    <AssemblyName>YahooApiSite.AcceptanceTest</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
-    </Reference>
-    <Reference Include="TechTalk.SpecFlow">
-      <HintPath>..\..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver">
-      <HintPath>..\..\packages\Selenium.WebDriver.2.30.0\lib\net40\WebDriver.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
-      <Visible>False</Visible>
-    </CodeAnalysisDependentAssemblyPaths>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="HttpClientCommonSteps.cs" />
-    <Compile Include="HttpClientStepsBase.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="網站安全性\使用者權限管理\取得使用者權限.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>取得使用者權限.feature</DependentUpon>
-    </Compile>
-    <Compile Include="網站安全性\使用者權限管理\取得使用者權限Steps.cs" />
-    <Compile Include="網站安全性\使用者認證\取得使用者資料.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>取得使用者資料.feature</DependentUpon>
-    </Compile>
-    <Compile Include="網站安全性\使用者認證\取得使用者資料Steps.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-    <None Include="網站安全性\使用者權限管理\取得使用者權限.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>取得使用者權限.feature.cs</LastGenOutput>
-    </None>
-    <None Include="網站安全性\使用者認證\取得使用者資料.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>取得使用者資料.feature.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\YahooLibrary\YahooLibrary.csproj">
-      <Project>{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91}</Project>
-      <Name>YahooLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProductVersion>
+        </ProductVersion>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{5810422C-47DA-4643-9C07-E15DA5886316}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>Yahoo</RootNamespace>
+        <AssemblyName>YahooApiSite.AcceptanceTest</AssemblyName>
+        <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+        <RestorePackages>true</RestorePackages>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>..\..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Core">
+            <RequiredTargetFramework>3.5</RequiredTargetFramework>
+        </Reference>
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+            <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+            <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+            <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+        </Reference>
+        <Reference Include="TechTalk.SpecFlow">
+            <HintPath>..\..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+        </Reference>
+        <Reference Include="WebDriver">
+            <HintPath>..\..\packages\Selenium.WebDriver.2.30.0\lib\net40\WebDriver.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+            <Visible>False</Visible>
+        </CodeAnalysisDependentAssemblyPaths>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="HttpHelper.cs" />
+        <Compile Include="Security\GetPrivileges.feature.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>GetPrivileges.feature</DependentUpon>
+        </Compile>
+        <Compile Include="Security\GetPrivilegesSteps.cs" />
+        <Compile Include="Security\GetUserProfile.feature.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>GetUserProfile.feature</DependentUpon>
+        </Compile>
+        <Compile Include="Security\GetUserProfileSteps.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="App.config" />
+        <None Include="packages.config" />
+        <None Include="Security\GetPrivileges.feature">
+            <Generator>SpecFlowSingleFileGenerator</Generator>
+            <LastGenOutput>GetPrivileges.feature.cs</LastGenOutput>
+        </None>
+        <None Include="Security\GetUserProfile.feature">
+            <Generator>SpecFlowSingleFileGenerator</Generator>
+            <LastGenOutput>GetUserProfile.feature.cs</LastGenOutput>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Properties\" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\YahooLibrary\YahooLibrary.csproj">
+            <Project>{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91}</Project>
+            <Name>YahooLibrary</Name>
+        </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+    <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
