@@ -58,7 +58,6 @@
     <Compile Include="Business\Security\DefaultSecurityServiceTest.cs" />
     <Compile Include="DataAccess\Common\PrivilegeDaoTest.cs" />
     <Compile Include="DataAccess\Common\Resources\ResourceTest.cs" />
-    <Compile Include="DataAccess\Common\UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
