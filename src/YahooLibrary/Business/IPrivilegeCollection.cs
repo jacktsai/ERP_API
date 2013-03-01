@@ -6,10 +6,12 @@ using System.Text;
 namespace Yahoo.Business
 {
     /// <summary>
-    /// 使用者權限集合。
+    /// 使用者功能權限集合。
     /// </summary>
-    public interface IAuthorityCollection : IEnumerable<Authority>
+    public interface IPrivilegeCollection : IEnumerable<IPrivilege>
     {
-        Authority Find(string url);
+        void Add(string url);
+
+        IPrivilege Find(string url);
     }
 }

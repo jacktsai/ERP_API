@@ -13,7 +13,12 @@ namespace Yahoo
     {
         const string BASE_ADDRESS = "http://localhost:8888";
 
-        public JObject RequestContent { get; set; }
+        public HttpContext()
+        {
+            RequestContent = new JObject();
+        }
+
+        public JObject RequestContent { get; private set; }
 
         public bool IsSuccess { get; private set; }
         public HttpStatusCode StatusCode { get; private set; }

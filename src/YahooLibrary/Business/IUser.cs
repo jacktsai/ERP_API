@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Yahoo.Business
 {
@@ -33,7 +34,7 @@ namespace Yahoo.Business
         /// <summary>
         /// 等級。
         /// </summary>
-        int Degree { get; set; }
+        byte Degree { get; set; }
 
         /// <summary>
         /// 首頁。
@@ -48,29 +49,34 @@ namespace Yahoo.Business
         /// <summary>
         /// Backyard ID。
         /// </summary>
-        string BackyardId { get; set; }
+        string BackyardId { get; }
 
         /// <summary>
-        /// 權限集合。
+        /// 取得使用者角色集合。
         /// </summary>
-        IAuthorityCollection Authorities { get; }
+        IRoleCollection Roles { get; }
 
         /// <summary>
-        /// 嚐試載入使用者資料。
+        /// 取得使用者功能權限集合。
+        /// </summary>
+        IPrivilegeCollection Privileges { get; }
+
+        /// <summary>
+        /// 取得使用者分類權限集合
+        /// </summary>
+        ICatPrivilegeCollection CatPrivileges { get; }
+
+        /// <summary>
+        /// 載入使用者資料。
         /// </summary>
         /// <param name="userId">使用者編號。</param>
         /// <returns>成功為 True；否則為 False。</returns>
-        bool TryLoad(int userId);
+        Task LoadAsync(string backyardId);
 
         /// <summary>
-        /// 初始化為新的使用者資料個體。
-        /// </summary>
-        void New();
-
-        /// <summary>
-        /// 嚐試寫入使用者資料。
+        /// 寫入使用者資料。
         /// </summary>
         /// <returns>成功為 True；否則為 False。</returns>
-        bool TrySave();
+        Task SaveAsync();
     }
 }

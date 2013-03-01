@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace Yahoo.DataAccess.Common
 {
@@ -13,41 +14,41 @@ namespace Yahoo.DataAccess.Common
         {
         }
 
-        UserData IUserDao.GetOne(int id)
+        Task<UserData> IUserDao.GetOneAsync(string backyardId)
         {
-            using (var connection = base.CreateConnection())
+            var task = Task.Factory.StartNew<UserData>(() =>
             {
-                using (var dbCommand = connection.CreateCommand())
+                using (var connection = base.CreateConnection())
                 {
-                    var p = dbCommand.CreateParameter();
-                    p.ParameterName = "@priuser_id";
-                    p.Value = id;
-                    dbCommand.Parameters.Add(p);
-
-                    dbCommand.CommandType = CommandType.Text;
-                    dbCommand.CommandText = base.Resource.GetString("GetOne.sql");
-
-                    using (var reader = dbCommand.ExecuteReader())
+                    using (var dbCommand = connection.CreateCommand())
                     {
-                        if (reader.Read())
+                        var p = dbCommand.CreateParameter();
+                        p.ParameterName = "@backyard_id";
+                        p.Value = backyardId;
+                        dbCommand.Parameters.Add(p);
+
+                        dbCommand.CommandType = CommandType.Text;
+                        dbCommand.CommandText = base.Resource.GetString("GetOneAsync_backyardId.sql");
+
+                        using (var reader = dbCommand.ExecuteReader())
                         {
-                            return new UserData
+                            return reader.ToObject(r => new UserData
                             {
                                 Id = reader.GetInt32(0),
                                 Name = reader.GetString(1),
                                 FullName = reader.GetString(2),
                                 Department = reader.GetString(3),
-                                Degree = reader.GetInt32(4),
+                                Degree = reader.GetByte(4),
                                 Homepage = reader.GetString(5),
                                 ExtensionNumber = reader.GetString(6),
                                 BackyardId = reader.GetString(7)
-                            };
+                            });
                         }
                     }
                 }
-            }
+            });
 
-            return null;
+            return task;
         }
     }
 }

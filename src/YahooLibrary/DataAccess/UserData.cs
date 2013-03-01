@@ -30,7 +30,7 @@ namespace Yahoo.DataAccess
         /// <summary>
         /// 等級。
         /// </summary>
-        public int Degree { get; set; }
+        public byte Degree { get; set; }
 
         /// <summary>
         /// 首頁。

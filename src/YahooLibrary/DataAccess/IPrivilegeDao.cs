@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Yahoo.DataAccess
 {
     public interface IPrivilegeDao
     {
-        IEnumerable<PrivilegeData> GetMany(int? userId = null);
+        Task<IEnumerable<PrivilegeData>> GetManyAsync(int userId);
 
-        void Remove(int privilegeId);
-        void Add(PrivilegeData o);
-        void Update(PrivilegeData o);
+        Task<PrivilegeData> GetOneAsync(int userId, string url);
     }
 }

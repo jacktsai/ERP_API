@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Yahoo.DataAccess
 {
     public interface IUserDao
     {
-        UserData GetOne(int userId);
+        Task<UserData> GetOneAsync(string backyardId);
     }
 }

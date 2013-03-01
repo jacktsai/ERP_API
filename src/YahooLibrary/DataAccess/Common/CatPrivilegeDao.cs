@@ -2,24 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
-using Yahoo.DataAccess.Common.Resources;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Yahoo.DataAccess.Common
 {
-    public class PrivilegeDao : CommonDao, IPrivilegeDao
+    public class CatPrivilegeDao : CommonDao, ICatPrivilegeDao
     {
-        public PrivilegeDao()
-            : base("security")
+        public CatPrivilegeDao()
+            : base("sale")
         {
         }
 
-        Task<IEnumerable<PrivilegeData>> IPrivilegeDao.GetManyAsync(int userId)
+        Task<IEnumerable<CatPrivilegeData>> ICatPrivilegeDao.GetManyAsync(int userId)
         {
-            var task = Task.Factory.StartNew<IEnumerable<PrivilegeData>>(() =>
+            var task = Task.Factory.StartNew<IEnumerable<CatPrivilegeData>>(() =>
             {
                 using (var connection = base.CreateConnection())
                 {
@@ -35,10 +32,12 @@ namespace Yahoo.DataAccess.Common
 
                         using (var reader = dbCommand.ExecuteReader())
                         {
-                            return reader.ToObjects(r => new PrivilegeData
+                            return reader.ToObjects(r => new CatPrivilegeData
                             {
-                                Url = r.GetString(0),
-                                Name = r.GetString(1),
+                                ZoneId = r.GetInt16(0),
+                                ZoneName = r.GetString(1),
+                                SubId = r.GetInt32(2),
+                                SubName = r.GetString(3),
                             });
                         }
                     }
@@ -46,11 +45,6 @@ namespace Yahoo.DataAccess.Common
             });
 
             return task;
-        }
-
-        Task<PrivilegeData> IPrivilegeDao.GetOneAsync(int userId, string url)
-        {
-            throw new NotImplementedException();
         }
     }
 }

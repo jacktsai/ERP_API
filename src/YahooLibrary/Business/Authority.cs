@@ -7,62 +7,46 @@ using Yahoo.DataAccess;
 namespace Yahoo.Business
 {
     /// <summary>
-    /// 使用者權限資料。
+    /// 使用者細部權限。
     /// </summary>
     public class Authority
     {
-        private readonly AuthorityData data;
-
-        public Authority()
+        internal Authority(IEnumerable<AuthorityData> datas)
         {
-            data = new AuthorityData();
+            if (!datas.Any(o => o.DenySelect.HasValue && o.DenySelect.Value))
+            {
+                CanSelect = datas.Any(o => o.CanSelect != null && o.CanSelect.Value);
+            }
+
+            if (!datas.Any(o => o.DenyInsert.HasValue && o.DenyInsert.Value))
+            {
+                CanInsert = datas.Any(o => o.CanInsert != null && o.CanInsert.Value);
+            }
+
+            if (!datas.Any(o => o.DenyUpdate.HasValue && o.DenyUpdate.Value))
+            {
+                CanUpdate = datas.Any(o => o.CanUpdate != null && o.CanUpdate.Value);
+            }
+
+            if (!datas.Any(o => o.DenyDelete.HasValue && o.DenyDelete.Value))
+            {
+                CanDelete = datas.Any(o => o.CanDelete != null && o.CanDelete.Value);
+            }
+
+            if (!datas.Any(o => o.DenyParticular.HasValue && o.DenyParticular.Value))
+            {
+                CanParticular = datas.Any(o => o.CanParticular != null && o.CanParticular.Value);
+            }
         }
 
-        internal Authority(AuthorityData data)
-        {
-            this.data = data;
-        }
+        public bool CanSelect { get; private set; }
 
-        public int SystemId
-        {
-            get { return this.data.SystemId; }
-            set { this.data.SystemId = value; }
-        }
+        public bool CanInsert { get; private set; }
 
-        public string SystemName
-        {
-            get { return this.data.SystemName; }
-            set { this.data.SystemName = value; }
-        }
+        public bool CanUpdate { get; private set; }
 
-        public int CategoryId
-        {
-            get { return this.data.CategoryId; }
-            set { this.data.CategoryId = value; }
-        }
+        public bool CanDelete { get; private set; }
 
-        public string CategoryName
-        {
-            get { return this.data.CategoryName; }
-            set { this.data.CategoryName = value; }
-        }
-
-        public int SubCategoryId
-        {
-            get { return this.data.SubCategoryId; }
-            set { this.data.SubCategoryId = value; }
-        }
-
-        public string SubCategoryName
-        {
-            get { return this.data.SubCategoryName; }
-            set { this.data.SubCategoryName = value; }
-        }
-
-        public string Url
-        {
-            get { return this.data.Url; }
-            set { this.data.Url = value; }
-        }
+        public bool CanParticular { get; private set; }
     }
 }

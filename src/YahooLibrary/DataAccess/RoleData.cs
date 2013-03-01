@@ -23,26 +23,26 @@ namespace Yahoo.DataAccess
         /// <summary>
         /// 
         /// </summary>
-        public bool? HasSelect { get; set; }
+        public bool? CanSelect { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public bool? HasInsert { get; set; }
+        public bool? CanInsert { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public bool? HasUpdate { get; set; }
+        public bool? CanUpdate { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public bool? HasDelete { get; set; }
+        public bool? CanDelete { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public bool? HasParticular { get; set; }
+        public bool? CanParticular { get; set; }
     }
 }

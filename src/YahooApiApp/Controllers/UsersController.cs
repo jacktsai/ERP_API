@@ -6,13 +6,17 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations;
+using Yahoo.Business;
 
 namespace Yahoo.Controllers
 {
     public class UsersController : ApiController
     {
+        private IBusinessFactory factory;
+
         public UsersController()
         {
+            this.factory = new DefaultBusinessFactory();
         }
 
         [HttpGet]
@@ -25,61 +29,102 @@ namespace Yahoo.Controllers
         public class GetProfileRequest
         {
             [DataMember(IsRequired = true), Required]
-            public string BackyardId { get; }
+            public string BackyardId { get; set; }
         }
 
         public class GetProfileResponse
         {
-            public string BackyardID;
+            public int Id;
             public string Name;
             public string FullName;
             public string Department;
             public int Degree;
             public string Homepage;
             public string ExtensionNumber;
-            public string[] CatSubIds;
+            public string BackyardID;
+            public string CatSubIds;
         }
 
         [HttpPost]
         public GetProfileResponse GetProfile(GetProfileRequest request)
         {
-            var profile = this.securityService.GetUser(request.BackyardId.Value);
+            IUser user = new DefaultUser(this.factory);
+            user.LoadAsync(request.BackyardId).Wait();
 
-            var response = new GetProfileResponse
+            return new GetProfileResponse
             {
-                PriuserID = profile.UserId,
-                PriuserName = profile.Name,
-                CatprivilegeCatsubids = "1,2,3,4",
-                PriuserFullName = profile.FullName,
-                PriuserDepartment = "研發",
-                PriuserDegree = 1,
-                PriuserHomepage = "http://",
-                PriuserExtno = "124567",
-                BackyardID = "jacktsai",
+                Id = user.Id,
+                Name = user.Name,
+                FullName = user.FullName,
+                Department = user.Department,
+                Degree = user.Degree,
+                Homepage = user.Homepage,
+                ExtensionNumber = user.ExtensionNumber,
+                BackyardID = user.BackyardId,
+                CatSubIds = string.Join(",", user.CatPrivileges.Select(o => o.SubId)),
             };
-
-            return response;
         }
 
         [DataContract]
         public class GetAuthorityRequest
         {
             [DataMember(IsRequired = true), Required]
-            public string BackyardId { get; }
+            public string BackyardId { get; set; }
+
+            [DataMember]
+            public int? UserId { get; set; }
 
             [DataMember(IsRequired = true), Required]
-            public string Url { get; }
+            public string Url { get; set; }
         }
 
         public class GetAuthorityResponse
         {
             public string BackyardId;
             public string Url;
-            public bool HasSelect;
-            public bool HasInsert;
-            public bool HasUpdate;
-            public bool HasDelete;
-            public bool HasParticular;
+            public bool CanSelect;
+            public bool CanInsert;
+            public bool CanUpdate;
+            public bool CanDelete;
+            public bool CanParticular;
+        }
+
+        public GetAuthorityResponse GetAuthority(GetAuthorityRequest request)
+        {
+            IUser user;
+            if (request.UserId != null)
+            {
+                user = new DefaultUser(this.factory, userId: request.UserId.Value); //short-cut
+            }
+            else
+            {
+                user = new DefaultUser(this.factory);
+                user.LoadAsync(request.BackyardId).Wait();
+            }
+
+            var privilege = user.Privileges.Find(request.Url);
+
+            if (privilege == null || privilege.Authority == null)
+            {
+                return new GetAuthorityResponse
+                {
+                    BackyardId = request.BackyardId,
+                    Url = request.Url,
+                };
+            }
+
+            var authority = privilege.Authority;
+
+            return new GetAuthorityResponse
+            {
+                BackyardId = request.BackyardId,
+                Url = request.Url,
+                CanSelect = authority.CanSelect,
+                CanInsert = authority.CanInsert,
+                CanUpdate = authority.CanUpdate,
+                CanDelete = authority.CanDelete,
+                CanParticular = authority.CanParticular,
+            };
         }
     }
 }

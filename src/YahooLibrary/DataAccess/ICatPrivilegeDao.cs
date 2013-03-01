@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Yahoo.DataAccess
 {
-    public interface IRoleDao
+    public interface ICatPrivilegeDao
     {
-        Task<IEnumerable<RoleData>> GetManyAsync(int userId);
+        Task<IEnumerable<CatPrivilegeData>> GetManyAsync(int userId);
     }
 }

@@ -9,6 +9,13 @@ namespace Yahoo.Business
     public interface IBusinessFactory
     {
         IUserDao GetUserDao();
+
+        IRoleDao GetRoleDao();
+
+        IPrivilegeDao GetPrivilegeDao();
+
         IAuthorityDao GetAuthorityDao();
+
+        ICatPrivilegeDao GetCatPrivilegeDao();
     }
 }

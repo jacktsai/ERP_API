@@ -8,6 +8,6 @@
 	[priuser_extno],
 	[priuser_backyardid]
 FROM
-	[dbo].[priuser]
+	[dbo].[priuser](NOLOCK)
 WHERE
-	[priuser_id] = @priuser_id
+	[priuser_backyardid] = @backyard_id

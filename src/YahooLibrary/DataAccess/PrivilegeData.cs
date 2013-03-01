@@ -7,9 +7,8 @@ namespace Yahoo.DataAccess
 {
     public class PrivilegeData
     {
-        public int Id { get; set; }
-        public int FunctionId { get; set; }
-        public int UserId { get; set; }
-        public int GroupId { get; set; }
+        public string Url { get; set; }
+
+        public string Name { get; set; }
     }
 }

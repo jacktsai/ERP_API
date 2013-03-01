@@ -52,12 +52,12 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DataAccess\Common\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\UserTest.cs" />
-    <Compile Include="DataAccess\Common\PrivilegeDaoTest.cs" />
-    <Compile Include="DataAccess\Common\Resources\ResourceTest.cs" />
+    <Compile Include="Business\DefaultPrivilegeCollectionTest.cs" />
+    <Compile Include="Business\DefaultUserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

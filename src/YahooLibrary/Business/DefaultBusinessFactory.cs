@@ -19,6 +19,28 @@ namespace Yahoo.Business
             return userDao;
         }
 
+        IRoleDao roleDao;
+
+        IRoleDao IBusinessFactory.GetRoleDao()
+        {
+            if (roleDao == null)
+            {
+                roleDao = new Yahoo.DataAccess.Common.RoleDao();
+            }
+            return roleDao;
+        }
+
+        IPrivilegeDao privilegeDao;
+
+        IPrivilegeDao IBusinessFactory.GetPrivilegeDao()
+        {
+            if (privilegeDao == null)
+            {
+                privilegeDao = new Yahoo.DataAccess.Common.PrivilegeDao();
+            }
+            return privilegeDao;
+        }
+
         IAuthorityDao authorityDao;
 
         IAuthorityDao IBusinessFactory.GetAuthorityDao()
@@ -28,6 +50,17 @@ namespace Yahoo.Business
                 authorityDao = new Yahoo.DataAccess.Common.AuthorityDao();
             }
             return authorityDao;
+        }
+
+        ICatPrivilegeDao catPrivilegeDao;
+
+        ICatPrivilegeDao IBusinessFactory.GetCatPrivilegeDao()
+        {
+            if (catPrivilegeDao == null)
+            {
+                catPrivilegeDao = new Yahoo.DataAccess.Common.CatPrivilegeDao();
+            }
+            return catPrivilegeDao;
         }
     }
 }

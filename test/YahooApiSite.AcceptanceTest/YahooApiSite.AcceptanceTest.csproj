@@ -68,29 +68,29 @@
   <ItemGroup>
     <Compile Include="HttpContext.cs" />
     <Compile Include="HttpHelper.cs" />
-    <Compile Include="Security\GetUserPrivileges.feature.cs">
+    <Compile Include="User\GetAuthority.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GetUserPrivileges.feature</DependentUpon>
+      <DependentUpon>GetAuthority.feature</DependentUpon>
     </Compile>
-    <Compile Include="Security\GetUserPrivilegesSteps.cs" />
-    <Compile Include="Security\GetUserProfile.feature.cs">
+    <Compile Include="User\GetAuthoritySteps.cs" />
+    <Compile Include="User\GetProfile.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GetUserProfile.feature</DependentUpon>
+      <DependentUpon>GetProfile.feature</DependentUpon>
     </Compile>
-    <Compile Include="Security\GetUserProfileSteps.cs" />
+    <Compile Include="User\GetProfileSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Security\GetUserPrivileges.feature">
+    <None Include="User\GetAuthority.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetUserPrivileges.feature.cs</LastGenOutput>
+      <LastGenOutput>GetAuthority.feature.cs</LastGenOutput>
     </None>
-    <None Include="Security\GetUserProfile.feature">
+    <None Include="User\GetProfile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetUserProfile.feature.cs</LastGenOutput>
+      <LastGenOutput>GetProfile.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
