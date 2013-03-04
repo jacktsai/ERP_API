@@ -44,30 +44,32 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\CatPrivilege.cs" />
-    <Compile Include="Business\DefaultBusinessFactory.cs" />
-    <Compile Include="Business\Authority.cs" />
-    <Compile Include="Business\DefaultCatPrivilegeCollection.cs" />
-    <Compile Include="Business\DefaultPrivilegeCollection.cs" />
-    <Compile Include="Business\DefaultRoleCollection.cs" />
+    <Compile Include="Business\Defaults\DefaultSubCategory.cs" />
+    <Compile Include="Business\Defaults\DefaultBusinessFactory.cs" />
+    <Compile Include="Business\Defaults\DefaultAuthority.cs" />
+    <Compile Include="Business\Defaults\DefaultSubCategoryCollection.cs" />
+    <Compile Include="Business\Defaults\DefaultPrivilegeCollection.cs" />
+    <Compile Include="Business\Defaults\DefaultRoleCollection.cs" />
+    <Compile Include="Business\IAuthority.cs" />
     <Compile Include="Business\IBusinessFactory.cs" />
-    <Compile Include="Business\ICatPrivilegeCollection.cs" />
+    <Compile Include="Business\IRole.cs" />
+    <Compile Include="Business\ISubCategory.cs" />
+    <Compile Include="Business\ISubCategoryCollection.cs" />
     <Compile Include="Business\IPrivilege.cs" />
     <Compile Include="Business\IPrivilegeCollection.cs" />
     <Compile Include="Business\IRoleCollection.cs" />
     <Compile Include="Business\IUser.cs" />
-    <Compile Include="Business\DefaultPrivilege.cs" />
-    <Compile Include="Business\Role.cs" />
-    <Compile Include="Business\Security\Cryptography\DefaultHashProvider.cs" />
-    <Compile Include="Business\Security\Cryptography\IHashProvider.cs" />
-    <Compile Include="Business\DefaultUser.cs" />
+    <Compile Include="Business\Defaults\DefaultPrivilege.cs" />
+    <Compile Include="Business\Defaults\DefaultRole.cs" />
+    <Compile Include="Business\Defaults\DefaultUser.cs" />
+    <Compile Include="Business\SubCategoryNotFoundException.cs" />
     <Compile Include="Business\UserNotFoundException.cs" />
     <Compile Include="DataAccess\AuthorityData.cs" />
-    <Compile Include="DataAccess\CatPrivilegeData.cs" />
+    <Compile Include="DataAccess\SubCategoryData.cs" />
     <Compile Include="DataAccess\Common\AuthorityDao.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataAccess\Common\CatPrivilegeDao.cs" />
+    <Compile Include="DataAccess\Common\SubCategoryDao.cs" />
     <Compile Include="DataAccess\Common\CommonDao.cs" />
     <Compile Include="DataAccess\Common\PrivilegeDao.cs">
       <SubType>Code</SubType>
@@ -77,7 +79,7 @@
     </Compile>
     <Compile Include="DataAccess\Common\UserDao.cs" />
     <Compile Include="DataAccess\IAuthorityDao.cs" />
-    <Compile Include="DataAccess\ICatPrivilegeDao.cs" />
+    <Compile Include="DataAccess\ISubCategoryDao.cs" />
     <Compile Include="DataAccess\IDataReaderExtensions.cs" />
     <Compile Include="DataAccess\IPrivilegeDao.cs" />
     <Compile Include="DataAccess\IRoleDao.cs" />
@@ -91,13 +93,15 @@
   <ItemGroup>
     <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetManyAsync_userId.sql" />
     <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\RoleDao.GetManyAsync_userId.sql" />
-    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\UserDao.GetOneAsync_backyardId.sql" />
+    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\UserDao.GetOneAsync_id_name_backyardId.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\CatPrivilegeDao.GetManyAsync_userId.sql" />
+    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetManyAsync_userId.sql" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataAccess\Common\Resources\System.Data.SqlClient\AuthorityDao.GetManyAsync_userId.sql" />
+    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetOneAsync_id.sql" />
+    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetOneAsync_userId_url.sql" />
     <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\AuthorityDao.GetManyAsync_userId_url.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

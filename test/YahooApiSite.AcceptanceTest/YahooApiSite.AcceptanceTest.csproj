@@ -66,8 +66,14 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SubCategory\GetContacts.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetContacts.feature</DependentUpon>
+    </Compile>
     <Compile Include="HttpContext.cs" />
     <Compile Include="HttpHelper.cs" />
+    <Compile Include="SubCategory\GetContactsSteps.cs" />
     <Compile Include="User\GetAuthority.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,6 +89,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="SubCategory\GetContacts.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetContacts.feature.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="User\GetAuthority.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

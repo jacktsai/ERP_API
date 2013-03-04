@@ -13,6 +13,6 @@ namespace Yahoo.Business
         /// <summary>
         /// 取得細部權限。
         /// </summary>
-        Authority Authority { get; }
+        IAuthority Authority { get; }
     }
 }

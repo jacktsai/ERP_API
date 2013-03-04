@@ -50,7 +50,10 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\DefaultUserTest.cs" />
+    <Compile Include="Business\Defaults\DefaultRoleCollectionTest.cs" />
+    <Compile Include="Business\Defaults\DefaultSubCategoryCollectionTest.cs" />
+    <Compile Include="Business\Defaults\DefaultSubCategoryTest.cs" />
+    <Compile Include="Business\Defaults\DefaultUserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\YahooLibrary\YahooLibrary.csproj">

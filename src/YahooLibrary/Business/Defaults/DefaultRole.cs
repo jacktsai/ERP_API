@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using Yahoo.DataAccess;
 
-namespace Yahoo.Business
+namespace Yahoo.Business.Defaults
 {
-    /// <summary>
-    /// 使用者角色。
-    /// </summary>
-    public class Role
+    public class DefaultRole : IRole
     {
         private readonly RoleData data;
 
-        internal Role(RoleData data)
+        internal DefaultRole(RoleData data)
         {
             this.data = data;
         }

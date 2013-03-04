@@ -16,6 +16,6 @@ namespace Yahoo.Business
 
         IAuthorityDao GetAuthorityDao();
 
-        ICatPrivilegeDao GetCatPrivilegeDao();
+        ISubCategoryDao GetSubCategoryDao();
     }
 }

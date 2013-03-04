@@ -14,7 +14,7 @@ FROM
 	JOIN dbo.prifunc(NOLOCK) ON prifunc_id = privilege_prifuncid	
 	LEFT JOIN dbo.middleur(NOLOCK) ON middleur_priuserid = privilege_priuserid
 	JOIN dbo.roles(NOLOCK) ON roles_id = middleur_rolesid
-	JOIN dbo.privs(NOLOCK) ON privs_rolesid = roles_id AND privs_url = prifunc_url
+	LEFT JOIN dbo.privs(NOLOCK) ON privs_rolesid = roles_id AND privs_url = prifunc_url
 	LEFT JOIN dbo.denyprivs(NOLOCK) ON denyprivs_priuserid = privilege_priuserid AND denyprivs_url = prifunc_url
 WHERE
 	privilege_priuserid = @user_id

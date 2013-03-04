@@ -7,7 +7,7 @@ using Rhino.Mocks;
 using Yahoo.DataAccess;
 using System.Threading.Tasks;
 
-namespace Yahoo.Business
+namespace Yahoo.Business.Defaults
 {
     [TestClass]
     public class DefaultPrivilegeCollectionTest
@@ -55,6 +55,31 @@ namespace Yahoo.Business
                 Assert.AreEqual(privilegeDatas[i].Url, privileges[i].Url);
                 Assert.AreEqual(privilegeDatas[i].Name, privileges[i].Name);
             }
+        }
+
+        [TestMethod]
+        public void FindPrivilege()
+        {
+            var userId = 1;
+            var url = "url1";
+
+            var privilegeData = new PrivilegeData { Url = url, Name = "name1" };
+            var privilegeSource = new TaskCompletionSource<PrivilegeData>();
+            privilegeSource.SetResult(privilegeData);
+            privilegeDao
+                .Stub(o => o.GetOneAsync(userId, url))
+                .Return(privilegeSource.Task);
+
+            var user = MockRepository.GenerateStub<IUser>();
+            user
+                .Stub(o => o.Id)
+                .Return(userId);
+
+            var target = new DefaultPrivilegeCollection(this.factory, user) as IPrivilegeCollection;
+            var actual = target.Find(url);
+
+            Assert.AreEqual(privilegeData.Url, actual.Url);
+            Assert.AreEqual(privilegeData.Name, actual.Name);
         }
     }
 }

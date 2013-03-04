@@ -10,8 +10,6 @@ namespace Yahoo.Business
     /// </summary>
     public interface IPrivilegeCollection : IEnumerable<IPrivilege>
     {
-        void Add(string url);
-
         IPrivilege Find(string url);
     }
 }

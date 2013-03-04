@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using Yahoo.DataAccess;
 
-namespace Yahoo.Business
+namespace Yahoo.Business.Defaults
 {
     /// <summary>
     /// 使用者細部權限。
     /// </summary>
-    public class Authority
+    public class DefaultAuthority : IAuthority
     {
-        internal Authority(IEnumerable<AuthorityData> datas)
+        public DefaultAuthority(IEnumerable<AuthorityData> datas)
         {
             if (!datas.Any(o => o.DenySelect.HasValue && o.DenySelect.Value))
             {

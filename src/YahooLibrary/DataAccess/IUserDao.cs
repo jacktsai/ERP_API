@@ -8,6 +8,6 @@ namespace Yahoo.DataAccess
 {
     public interface IUserDao
     {
-        Task<UserData> GetOneAsync(string backyardId);
+        Task<UserData> GetOneAsync(int? id = null, string name = null, string backyardId = null);
     }
 }

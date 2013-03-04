@@ -5,14 +5,14 @@ using System.Text;
 using System.Collections;
 using Yahoo.DataAccess;
 
-namespace Yahoo.Business
+namespace Yahoo.Business.Defaults
 {
-    internal class DefaultRoleCollection : IRoleCollection
+    public class DefaultRoleCollection : IRoleCollection
     {
         private readonly IBusinessFactory factory;
         private readonly IUser user;
 
-        private IEnumerable<Role> cache;
+        private IEnumerable<IRole> cache;
 
         public DefaultRoleCollection(IBusinessFactory factory, IUser user)
         {
@@ -20,7 +20,7 @@ namespace Yahoo.Business
             this.user = user;
         }
 
-        IEnumerator<Role> IEnumerable<Role>.GetEnumerator()
+        IEnumerator<IRole> IEnumerable<IRole>.GetEnumerator()
         {
             if (cache == null)
             {
@@ -32,7 +32,7 @@ namespace Yahoo.Business
                     data = new RoleData[0];
                 }
 
-                cache = data.Select(o => new Role(o));
+                cache = data.Select(o => CreateRole(o));
             }
 
             return cache.GetEnumerator();
@@ -40,7 +40,7 @@ namespace Yahoo.Business
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            var o = this as IEnumerable<Role>;
+            var o = this as IEnumerable<IRole>;
             return o.GetEnumerator();
         }
 
@@ -67,6 +67,11 @@ namespace Yahoo.Business
         bool IRoleCollection.HasParticular
         {
             get { return cache.Any(o => o.CanParticular); }
+        }
+
+        protected virtual IRole CreateRole(RoleData data)
+        {
+            return new DefaultRole(data);
         }
     }
 }

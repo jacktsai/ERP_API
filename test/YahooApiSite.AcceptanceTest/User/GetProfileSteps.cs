@@ -28,7 +28,7 @@ namespace Yahoo.User
         [Given(@"BackyardID為空白")]
         public void GivenBackyardID為空白()
         {
-            this.context.RequestContent.Add(new JProperty("BackyardId", ""));
+            this.context.RequestContent.Add(new JProperty("BackyardId", string.Empty));
         }
 
         [Given(@"BackyardID為 '(.*)'")]
@@ -40,7 +40,7 @@ namespace Yahoo.User
         [When(@"取得操作者資訊")]
         public void When取得操作者資訊()
         {
-            this.context.Send(HttpMethod.Post, "api/users/GetProfile");
+            this.context.Send(HttpMethod.Post, "api/user/GetProfile");
         }
 
         [Then(@"回傳成功狀態")]
@@ -114,7 +114,7 @@ namespace Yahoo.User
         [Then(@"回傳操作者的子站為 '(.*)'")]
         public void Then回傳操作者的子站為(string p0)
         {
-            var CatprivilegeCatsubids = this.context.ResponseContent["CatSubIds"];
+            var CatprivilegeCatsubids = this.context.ResponseContent["SubCatIds"];
             Assert.AreEqual(p0, CatprivilegeCatsubids.Value<string>());
         }
     }

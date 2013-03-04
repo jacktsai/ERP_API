@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections;
 using Yahoo.DataAccess;
 
-namespace Yahoo.Business
+namespace Yahoo.Business.Defaults
 {
     public class DefaultPrivilegeCollection : IPrivilegeCollection
     {
@@ -35,11 +35,6 @@ namespace Yahoo.Business
         {
             var o = this as IEnumerable<IPrivilege>;
             return o.GetEnumerator();
-        }
-
-        void IPrivilegeCollection.Add(string url)
-        {
-            throw new NotImplementedException();
         }
 
         IPrivilege IPrivilegeCollection.Find(string url)

@@ -37,6 +37,11 @@ namespace Yahoo.Business
         byte Degree { get; set; }
 
         /// <summary>
+        /// 電子郵件位址。
+        /// </summary>
+        string Email { get; set; }
+
+        /// <summary>
         /// 首頁。
         /// </summary>
         string Homepage { get; set; }
@@ -44,12 +49,12 @@ namespace Yahoo.Business
         /// <summary>
         /// 分機號碼。
         /// </summary>
-        string ExtensionNumber { get; set; }
+        string ExtNumber { get; set; }
 
         /// <summary>
         /// Backyard ID。
         /// </summary>
-        string BackyardId { get; }
+        string BackyardId { get; set; }
 
         /// <summary>
         /// 取得使用者角色集合。
@@ -62,21 +67,8 @@ namespace Yahoo.Business
         IPrivilegeCollection Privileges { get; }
 
         /// <summary>
-        /// 取得使用者分類權限集合
+        /// 取得使用者子站集合。
         /// </summary>
-        ICatPrivilegeCollection CatPrivileges { get; }
-
-        /// <summary>
-        /// 載入使用者資料。
-        /// </summary>
-        /// <param name="userId">使用者編號。</param>
-        /// <returns>成功為 True；否則為 False。</returns>
-        Task LoadAsync(string backyardId);
-
-        /// <summary>
-        /// 寫入使用者資料。
-        /// </summary>
-        /// <returns>成功為 True；否則為 False。</returns>
-        Task SaveAsync();
+        ISubCategoryCollection Category { get; }
     }
 }

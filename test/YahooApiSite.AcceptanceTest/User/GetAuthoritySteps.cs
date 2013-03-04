@@ -2,7 +2,6 @@
 using TechTalk.SpecFlow;
 using System.Net.Http;
 using System.Collections.Generic;
-using Yahoo.Business.Security;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Formatting;
 using System.Linq;
@@ -31,7 +30,7 @@ namespace Yahoo.User
         [Given(@"BackyardID為空白")]
         public void GivenBackyardID為空白()
         {
-            this.context.RequestContent.Add(new JProperty("BackyardId", ""));
+            this.context.RequestContent.Add(new JProperty("BackyardId", string.Empty));
         }
 
         [Given(@"BackyardID為 '(.*)'")]
@@ -61,7 +60,7 @@ namespace Yahoo.User
         [When(@"取得操作權限")]
         public void When取得操作權限()
         {
-            this.context.Send(HttpMethod.Post, "api/users/GetAuthority");
+            this.context.Send(HttpMethod.Post, "api/user/GetAuthority");
         }
 
         [Then(@"回傳成功狀態")]
@@ -93,36 +92,36 @@ namespace Yahoo.User
         [Then(@"回傳細部權限-SELECT為 (True|False)")]
         public void Then回傳細部權限_SELECT為(bool p0)
         {
-            var HasSelect = this.context.ResponseContent["HasSelect"];
-            Assert.AreEqual(p0, HasSelect.Value<bool>());
+            var CanSelect = this.context.ResponseContent["CanSelect"];
+            Assert.AreEqual(p0, CanSelect.Value<bool>());
         }
 
         [Then(@"回傳細部權限-INSERT為 (True|False)")]
         public void Then回傳細部權限_INSERT為(bool p0)
         {
-            var HasInsert = this.context.ResponseContent["HasInsert"];
-            Assert.AreEqual(p0, HasInsert.Value<bool>());
+            var CanInsert = this.context.ResponseContent["CanInsert"];
+            Assert.AreEqual(p0, CanInsert.Value<bool>());
         }
 
         [Then(@"回傳細部權限-UPDATE為 (True|False)")]
         public void Then回傳細部權限_UPDATE為(bool p0)
         {
-            var HasUpdate = this.context.ResponseContent["HasUpdate"];
-            Assert.AreEqual(p0, HasUpdate.Value<bool>());
+            var CanUpdate = this.context.ResponseContent["CanUpdate"];
+            Assert.AreEqual(p0, CanUpdate.Value<bool>());
         }
 
         [Then(@"回傳細部權限-DELETE為 (True|False)")]
         public void Then回傳細部權限_DELETE為(bool p0)
         {
-            var HasDelete = this.context.ResponseContent["HasDelete"];
-            Assert.AreEqual(p0, HasDelete.Value<bool>());
+            var CanDelete = this.context.ResponseContent["CanDelete"];
+            Assert.AreEqual(p0, CanDelete.Value<bool>());
         }
 
         [Then(@"回傳細部權限-特殊權限為 (True|False)")]
         public void Then回傳細部權限_特殊權限為(bool p0)
         {
-            var HasParticular = this.context.ResponseContent["HasParticular"];
-            Assert.AreEqual(p0, HasParticular.Value<bool>());
+            var CanParticular = this.context.ResponseContent["CanParticular"];
+            Assert.AreEqual(p0, CanParticular.Value<bool>());
         }
     }
 }

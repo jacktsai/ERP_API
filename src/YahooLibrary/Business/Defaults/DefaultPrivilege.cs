@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Yahoo.DataAccess;
 
-namespace Yahoo.Business
+namespace Yahoo.Business.Defaults
 {
     public class DefaultPrivilege : IPrivilege
     {
@@ -12,7 +12,7 @@ namespace Yahoo.Business
         private readonly IUser user;
         private readonly PrivilegeData data;
 
-        internal DefaultPrivilege(IBusinessFactory factory, IUser user, PrivilegeData data)
+        public DefaultPrivilege(IBusinessFactory factory, IUser user, PrivilegeData data)
         {
             this.factory = factory;
             this.user = user;
@@ -23,9 +23,9 @@ namespace Yahoo.Business
 
         string IPrivilege.Name { get { return this.data.Name; } }
 
-        private Authority authority;
+        private IAuthority authority;
 
-        Authority IPrivilege.Authority
+        IAuthority IPrivilege.Authority
         {
             get
             {
@@ -34,11 +34,16 @@ namespace Yahoo.Business
                     var dao = this.factory.GetAuthorityDao();
                     var data = dao.GetManyAsync(this.user.Id, this.data.Url).Result;
 
-                    authority = new Authority(data);
+                    authority = CreateAuthority(data);
                 }
 
                 return authority;
             }
+        }
+
+        protected virtual IAuthority CreateAuthority(IEnumerable<AuthorityData> data)
+        {
+            return new DefaultAuthority(data);
         }
     }
 }

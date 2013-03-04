@@ -2,24 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
-using Yahoo.DataAccess.Common.Resources;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Yahoo.DataAccess.Common
 {
-    public class PrivilegeDao : CommonDao, IPrivilegeDao
+    public class SubCategoryDao : CommonDao, ISubCategoryDao
     {
-        public PrivilegeDao()
-            : base("security")
+        public SubCategoryDao()
+            : base("sale")
         {
         }
 
-        Task<IEnumerable<PrivilegeData>> IPrivilegeDao.GetManyAsync(int userId)
+        Task<IEnumerable<SubCategoryData>> ISubCategoryDao.GetManyAsync(int userId)
         {
-            var task = Task.Factory.StartNew<IEnumerable<PrivilegeData>>(() =>
+            var task = Task.Factory.StartNew<IEnumerable<SubCategoryData>>(() =>
             {
                 using (var connection = base.CreateConnection())
                 {
@@ -29,7 +26,7 @@ namespace Yahoo.DataAccess.Common
                         dbCommand.CommandText = base.Resource.GetString("GetManyAsync_userId.sql");
 
                         var userIdParameter = dbCommand.CreateParameter();
-                        userIdParameter.ParameterName = "@user_id";
+                        userIdParameter.ParameterName = "@userId";
                         userIdParameter.Value = userId;
                         dbCommand.Parameters.Add(userIdParameter);
 
@@ -44,26 +41,21 @@ namespace Yahoo.DataAccess.Common
             return task;
         }
 
-        Task<PrivilegeData> IPrivilegeDao.GetOneAsync(int userId, string url)
+        Task<SubCategoryData> ISubCategoryDao.GetOneAsync(int id)
         {
-            var task = Task.Factory.StartNew<PrivilegeData>(() =>
+            var task = Task.Factory.StartNew<SubCategoryData>(() =>
             {
                 using (var connection = base.CreateConnection())
                 {
                     using (var dbCommand = connection.CreateCommand())
                     {
                         dbCommand.CommandType = CommandType.Text;
-                        dbCommand.CommandText = base.Resource.GetString("GetOneAsync_userId_url.sql");
+                        dbCommand.CommandText = base.Resource.GetString("GetOneAsync_id.sql");
 
-                        var userIdParameter = dbCommand.CreateParameter();
-                        userIdParameter.ParameterName = "@user_id";
-                        userIdParameter.Value = userId;
-                        dbCommand.Parameters.Add(userIdParameter);
-
-                        var urlParameter = dbCommand.CreateParameter();
-                        urlParameter.ParameterName = "@url";
-                        urlParameter.Value = url;
-                        dbCommand.Parameters.Add(urlParameter);
+                        var idParameter = dbCommand.CreateParameter();
+                        idParameter.ParameterName = "@id";
+                        idParameter.Value = id;
+                        dbCommand.Parameters.Add(idParameter);
 
                         using (var reader = dbCommand.ExecuteReader())
                         {
@@ -76,13 +68,20 @@ namespace Yahoo.DataAccess.Common
             return task;
         }
 
-        protected virtual PrivilegeData Converter(IDataReader r)
+        protected virtual SubCategoryData Converter(IDataReader r)
         {
-            return new PrivilegeData
+            var data = new SubCategoryData
             {
-                Url = r.GetString(0),
+                Id = r.GetInt32(0),
                 Name = r.GetString(1),
+                ZoneId = r.GetInt16(2),
+                UserName = r.IsDBNull(3) ? null : r.GetString(3),
+                ManagerName = r.IsDBNull(4) ? null : r.GetString(4),
+                PurchaserName = r.IsDBNull(5) ? null : r.GetString(5),
+                StaffName = r.IsDBNull(6) ? null : r.GetString(6)
             };
+
+            return data;
         }
     }
 }

@@ -7,8 +7,8 @@ namespace Yahoo.Business
 {
     public class UserNotFoundException : ApplicationException
     {
-        public UserNotFoundException(string backyardId)
-            : base(string.Format("Backyard ID '{0}' cannot be found in database.", backyardId))
+        public UserNotFoundException()
+            : base("User cannot be found in database.")
         {
         }
     }

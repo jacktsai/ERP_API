@@ -7,15 +7,17 @@ using System.Web.Http;
 using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations;
 using Yahoo.Business;
+using Yahoo.Business.Defaults;
 
 namespace Yahoo.Controllers
 {
-    public class UsersController : ApiController
+    public class UserController : ApiController
     {
         private IBusinessFactory factory;
 
-        public UsersController()
+        public UserController()
         {
+            // TODO: 有多餘的時間再將 dependency 抽出
             this.factory = new DefaultBusinessFactory();
         }
 
@@ -25,6 +27,8 @@ namespace Yahoo.Controllers
             return test;
         }
 
+        #region GetProfile
+        
         [DataContract]
         public class GetProfileRequest
         {
@@ -42,14 +46,13 @@ namespace Yahoo.Controllers
             public string Homepage;
             public string ExtensionNumber;
             public string BackyardID;
-            public string CatSubIds;
+            public string SubCatIds;
         }
 
         [HttpPost]
         public GetProfileResponse GetProfile(GetProfileRequest request)
         {
-            IUser user = new DefaultUser(this.factory);
-            user.LoadAsync(request.BackyardId).Wait();
+            IUser user = new DefaultUser(this.factory, backyardId: request.BackyardId);
 
             return new GetProfileResponse
             {
@@ -59,12 +62,16 @@ namespace Yahoo.Controllers
                 Department = user.Department,
                 Degree = user.Degree,
                 Homepage = user.Homepage,
-                ExtensionNumber = user.ExtensionNumber,
+                ExtensionNumber = user.ExtNumber,
                 BackyardID = user.BackyardId,
-                CatSubIds = string.Join(",", user.CatPrivileges.Select(o => o.SubId)),
+                SubCatIds = string.Join(",", user.Category.Select(o => o.Id)),
             };
         }
 
+        #endregion
+
+        #region GetAuthority
+        
         [DataContract]
         public class GetAuthorityRequest
         {
@@ -89,17 +96,17 @@ namespace Yahoo.Controllers
             public bool CanParticular;
         }
 
+        [HttpPost]
         public GetAuthorityResponse GetAuthority(GetAuthorityRequest request)
         {
             IUser user;
-            if (request.UserId != null)
+            if (request.UserId == null)
             {
-                user = new DefaultUser(this.factory, userId: request.UserId.Value); //short-cut
+                user = new DefaultUser(this.factory, backyardId: request.BackyardId);
             }
             else
             {
-                user = new DefaultUser(this.factory);
-                user.LoadAsync(request.BackyardId).Wait();
+                user = new DefaultUser(this.factory, id: request.UserId.Value);
             }
 
             var privilege = user.Privileges.Find(request.Url);
@@ -126,5 +133,7 @@ namespace Yahoo.Controllers
                 CanParticular = authority.CanParticular,
             };
         }
+
+        #endregion
     }
 }

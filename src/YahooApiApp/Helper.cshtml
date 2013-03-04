@@ -1,0 +1,35 @@
+﻿@{
+    var explorer = System.Web.Http.GlobalConfiguration.Configuration.Services.GetService(typeof(System.Web.Http.Description.IApiExplorer)) as System.Web.Http.Description.IApiExplorer;
+    var apis = explorer.ApiDescriptions.OrderBy(o => o.HttpMethod.Method).ToLookup(o => o.ActionDescriptor.ControllerDescriptor.ControllerName);
+}
+<div id="body" class="content-wrapper">
+    <h2>
+        API Help</h2>
+    @foreach (var group in apis)
+    {
+        <h3>@group.Key</h3>
+        <div class="accordion">
+            @foreach (var api in group)
+            {
+                <h4>
+                    <a href="#">@api.HttpMethod @api.RelativePath</a></h4>
+                <div>
+                    <p>@api.Documentation</p>
+                    <ul>
+                        @foreach (var param in api.ParameterDescriptions)
+                        {
+                            <li>
+                                <div>
+                                    [@param.Source]<em>@param.Name</em>
+                                </div>
+                                <div>
+                                    @param.Documentation
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    }
+</div>

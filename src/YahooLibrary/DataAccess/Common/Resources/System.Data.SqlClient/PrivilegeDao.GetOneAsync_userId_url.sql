@@ -42,5 +42,7 @@ FROM
 	        AND u.priuser_id IN (@user_id, @department_user_id)
     ) x
 	JOIN dbo.prifunc(NOLOCK) ON prifunc_id = privilege_prifuncid
+WHERE
+    prifunc_url = @url
 ORDER BY
     1

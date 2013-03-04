@@ -31,7 +31,7 @@ namespace Yahoo.User
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetAuthority", "In order to 權限控管\r\nAs a 線上操作者\r\nI want to 確認使用者權限", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetAuthority", "In order to 權限控管\r\nAs a 線上操作者\r\nI want to 取得操作者權限", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -109,33 +109,69 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以 Backyard ID \'jacktsai\' 取得 \'/privileges/default.aspx\' 的操作權限")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以 Backyard ID \'jacktsai\' 取得 \'/test.aspx\' 的操作權限")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetAuthority")]
-        public virtual void 以BackyardIDJacktsai取得PrivilegesDefault_Aspx的操作權限()
+        public virtual void 以BackyardIDJacktsai取得Test_Aspx的操作權限()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以 Backyard ID \'jacktsai\' 取得 \'/privileges/default.aspx\' 的操作權限", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以 Backyard ID \'jacktsai\' 取得 \'/test.aspx\' 的操作權限", ((string[])(null)));
 #line 18
 this.ScenarioSetup(scenarioInfo);
 #line 19
     testRunner.Given("BackyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 20
-    testRunner.And("目標網址為 \'/privileges/default.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("目標網址為 \'/test.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
  testRunner.When("取得操作權限", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
- testRunner.Then("回傳操作者BardyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("回傳成功狀態", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 23
-    testRunner.And("回傳目標網址為 \'/privileges/default.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("回傳操作者BardyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
-    testRunner.And("回傳細部權限-SELECT為 False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳目標網址為 \'/test.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
-    testRunner.And("回傳細部權限-INSERT為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳細部權限-SELECT為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
-    testRunner.And("回傳細部權限-UPDATE為 False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳細部權限-INSERT為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
-    testRunner.And("回傳細部權限-DELETE為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳細部權限-UPDATE為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
-    testRunner.And("回傳細部權限-特殊權限為 False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳細部權限-DELETE為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+    testRunner.And("回傳細部權限-特殊權限為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以 Backyard ID \'jacktsai\' 取得 \'/Security/Privilege/UserMgmt.aspx\' 的操作權限")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetAuthority")]
+        public virtual void 以BackyardIDJacktsai取得SecurityPrivilegeUserMgmt_Aspx的操作權限()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以 Backyard ID \'jacktsai\' 取得 \'/Security/Privilege/UserMgmt.aspx\' 的操作權限", ((string[])(null)));
+#line 31
+this.ScenarioSetup(scenarioInfo);
+#line 32
+    testRunner.Given("BackyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 33
+    testRunner.And("目標網址為 \'/Security/Privilege/UserMgmt.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 34
+ testRunner.When("取得操作權限", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 35
+    testRunner.Then("回傳成功狀態", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
+ testRunner.And("回傳操作者BardyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+    testRunner.And("回傳目標網址為 \'/Security/Privilege/UserMgmt.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+    testRunner.And("回傳細部權限-SELECT為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+    testRunner.And("回傳細部權限-INSERT為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+    testRunner.And("回傳細部權限-UPDATE為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+    testRunner.And("回傳細部權限-DELETE為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
+    testRunner.And("回傳細部權限-特殊權限為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

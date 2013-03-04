@@ -5,7 +5,7 @@ using System.Text;
 using Yahoo.DataAccess;
 using System.Threading.Tasks;
 
-namespace Yahoo.Business
+namespace Yahoo.Business.Defaults
 {
     /// <summary>
     /// 預設的 <see cref="IUser"/> 介面實作。
@@ -13,17 +13,23 @@ namespace Yahoo.Business
     public class DefaultUser : IUser
     {
         private readonly IBusinessFactory factory;
-        private readonly int? userId;
+        private readonly int? id;
+        private readonly string name;
+        private readonly string backyardId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultUser" /> class.
         /// </summary>
         /// <param name="factory">The factory.</param>
-        /// <param name="userId">The user ID.</param>
-        public DefaultUser(IBusinessFactory factory, int? userId = null)
+        /// <param name="id">The user ID.</param>
+        /// <param name="name">The user name.</param>
+        /// <param name="backyardId">The backyard ID.</param>
+        public DefaultUser(IBusinessFactory factory, int? id = null, string name = null, string backyardId = null)
         {
             this.factory = factory;
-            this.userId = userId;
+            this.id = id;
+            this.name = name;
+            this.backyardId = backyardId;
         }
 
         private UserData data;
@@ -32,9 +38,9 @@ namespace Yahoo.Business
         {
             get
             {
-                if (this.userId != null)
+                if (this.id != null)
                 {
-                    return this.userId.Value;
+                    return this.id.Value;
                 }
 
                 CheckState();
@@ -44,43 +50,68 @@ namespace Yahoo.Business
 
         string IUser.Name
         {
-            get { CheckState(); return data.Name; }
-            set { CheckState(); data.Name = value; }
+            get
+            {
+                if (this.name != null)
+                {
+                    return this.name;
+                }
+
+                CheckState();
+                return data.Name;
+            }
+            set { throw new NotImplementedException(); }
         }
 
         string IUser.FullName
         {
             get { CheckState(); return data.FullName; }
-            set { CheckState(); data.FullName = value; }
+            set { throw new NotImplementedException(); }
         }
 
         string IUser.Department
         {
             get { CheckState(); return data.Department; }
-            set { CheckState(); data.Department = value; }
+            set { throw new NotImplementedException(); }
         }
 
         byte IUser.Degree
         {
             get { CheckState(); return data.Degree; }
-            set { CheckState(); data.Degree = value; }
+            set { throw new NotImplementedException(); }
+        }
+
+        string IUser.Email
+        {
+            get { CheckState(); return data.Email; }
+            set { throw new NotImplementedException(); }
         }
 
         string IUser.Homepage
         {
             get { CheckState(); return data.Homepage; }
-            set { CheckState(); data.Homepage = value; }
+            set { throw new NotImplementedException(); }
         }
 
-        string IUser.ExtensionNumber
+        string IUser.ExtNumber
         {
-            get { CheckState(); return data.ExtensionNumber; }
-            set { CheckState(); data.ExtensionNumber = value; }
+            get { CheckState(); return data.ExtNumber; }
+            set { throw new NotImplementedException(); }
         }
 
         string IUser.BackyardId
         {
-            get { CheckState(); return data.BackyardId; }
+            get
+            {
+                if (this.backyardId != null)
+                {
+                    return this.backyardId;
+                }
+
+                CheckState();
+                return data.BackyardId;
+            }
+            set { throw new NotImplementedException(); }
         }
 
         private IRoleCollection roles;
@@ -123,9 +154,9 @@ namespace Yahoo.Business
             return new DefaultPrivilegeCollection(this.factory, this);
         }
 
-        private ICatPrivilegeCollection catPrivileges;
+        private ISubCategoryCollection catPrivileges;
 
-        ICatPrivilegeCollection IUser.CatPrivileges
+        ISubCategoryCollection IUser.Category
         {
             get
             {
@@ -138,37 +169,32 @@ namespace Yahoo.Business
             }
         }
 
-        protected virtual ICatPrivilegeCollection CreateCatPrivilegeCollection()
+        protected virtual ISubCategoryCollection CreateCatPrivilegeCollection()
         {
-            return new DefaultCatPrivilegeCollection(this.factory, this);
+            return new DefaultSubCategoryCollection(this.factory, this);
         }
 
-        Task IUser.LoadAsync(string backyardId)
+        public Task LoadAsync()
         {
-            var userDao = this.factory.GetUserDao();
-            var task = userDao.GetOneAsync(backyardId);
+            var dao = this.factory.GetUserDao();
+            var task = dao.GetOneAsync(id, name, backyardId);
 
             return task.ContinueWith(t =>
             {
                 if (t.Result == null)
                 {
-                    throw new UserNotFoundException(backyardId);
+                    throw new UserNotFoundException();
                 }
 
                 this.data = t.Result;
             });
         }
 
-        Task IUser.SaveAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         void CheckState()
         {
             if (data == null)
             {
-                throw new InvalidOperationException("User data has not been loaded!");
+                this.LoadAsync().Wait();
             }
         }
     }

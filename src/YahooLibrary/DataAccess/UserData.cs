@@ -33,6 +33,11 @@ namespace Yahoo.DataAccess
         public byte Degree { get; set; }
 
         /// <summary>
+        /// 電子郵件位址。
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
         /// 首頁。
         /// </summary>
         public string Homepage { get; set; }
@@ -40,7 +45,7 @@ namespace Yahoo.DataAccess
         /// <summary>
         /// 分機號碼。
         /// </summary>
-        public string ExtensionNumber { get; set; }
+        public string ExtNumber { get; set; }
 
         /// <summary>
         /// Backyard ID。

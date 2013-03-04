@@ -8,7 +8,7 @@ namespace Yahoo.Business
     /// <summary>
     /// 使用者角色集合。
     /// </summary>
-    public interface IRoleCollection : IEnumerable<Role>
+    public interface IRoleCollection : IEnumerable<IRole>
     {
         bool HasSelect { get; }
 

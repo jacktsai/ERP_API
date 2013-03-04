@@ -73,7 +73,7 @@ namespace Yahoo.DataAccess.Common
             return task;
         }
 
-        AuthorityData Converter(IDataReader r)
+        protected virtual AuthorityData Converter(IDataReader r)
         {
             return new AuthorityData
             {

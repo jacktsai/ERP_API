@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Yahoo.DataAccess;
 
-namespace Yahoo.Business
+namespace Yahoo.Business.Defaults
 {
     public class DefaultBusinessFactory : IBusinessFactory
     {
@@ -52,15 +52,15 @@ namespace Yahoo.Business
             return authorityDao;
         }
 
-        ICatPrivilegeDao catPrivilegeDao;
+        ISubCategoryDao subCategoryDao;
 
-        ICatPrivilegeDao IBusinessFactory.GetCatPrivilegeDao()
+        ISubCategoryDao IBusinessFactory.GetSubCategoryDao()
         {
-            if (catPrivilegeDao == null)
+            if (subCategoryDao == null)
             {
-                catPrivilegeDao = new Yahoo.DataAccess.Common.CatPrivilegeDao();
+                subCategoryDao = new Yahoo.DataAccess.Common.SubCategoryDao();
             }
-            return catPrivilegeDao;
+            return subCategoryDao;
         }
     }
 }
