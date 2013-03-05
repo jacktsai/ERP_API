@@ -44,7 +44,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\IDbCommandExtensions.cs" />
+    <Compile Include="System\Data\IDbCommandExtensions.cs" />
     <Compile Include="DefaultSubCategory.cs" />
     <Compile Include="Data\Common\CommonDaoFactory.cs" />
     <Compile Include="DefaultAuthority.cs" />
@@ -64,7 +64,7 @@
     <Compile Include="DefaultRole.cs" />
     <Compile Include="DefaultUser.cs" />
     <Compile Include="SubCategoryNotFoundException.cs" />
-    <Compile Include="TypeExtensions.cs" />
+    <Compile Include="System\TypeExtensions.cs" />
     <Compile Include="UserNotFoundException.cs" />
     <Compile Include="Data\AuthorityData.cs" />
     <Compile Include="Data\SubCategoryData.cs" />
@@ -82,7 +82,7 @@
     <Compile Include="Data\Common\UserDao.cs" />
     <Compile Include="Data\IAuthorityDao.cs" />
     <Compile Include="Data\ISubCategoryDao.cs" />
-    <Compile Include="Data\IDataReaderExtensions.cs" />
+    <Compile Include="System\Data\IDataReaderExtensions.cs" />
     <Compile Include="Data\IPrivilegeDao.cs" />
     <Compile Include="Data\IRoleDao.cs" />
     <Compile Include="Data\IUserDao.cs" />

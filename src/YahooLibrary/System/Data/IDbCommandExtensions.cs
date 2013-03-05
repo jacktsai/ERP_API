@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 
-namespace Yahoo.Data
+namespace System.Data
 {
     public static class IDbCommandExtensions
     {
