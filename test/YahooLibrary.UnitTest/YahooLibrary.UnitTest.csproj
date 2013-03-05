@@ -52,16 +52,16 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataAccess\Common\" />
+    <Folder Include="Data\Common\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\Defaults\DefaultAuthorityTest.cs" />
-    <Compile Include="Business\Defaults\DefaultPrivilegeCollectionTest.cs" />
-    <Compile Include="Business\Defaults\DefaultRoleCollectionTest.cs" />
-    <Compile Include="Business\Defaults\DefaultSubCategoryCollectionTest.cs" />
-    <Compile Include="Business\Defaults\DefaultSubCategoryTest.cs" />
-    <Compile Include="Business\Defaults\DefaultUserTest.cs" />
+    <Compile Include="Services\Defaults\DefaultAuthorityTest.cs" />
+    <Compile Include="Services\Defaults\DefaultPrivilegeCollectionTest.cs" />
+    <Compile Include="Services\Defaults\DefaultRoleCollectionTest.cs" />
+    <Compile Include="Services\Defaults\DefaultSubCategoryCollectionTest.cs" />
+    <Compile Include="Services\Defaults\DefaultSubCategoryTest.cs" />
+    <Compile Include="Services\Defaults\DefaultUserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

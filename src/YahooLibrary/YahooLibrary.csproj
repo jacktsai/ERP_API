@@ -44,65 +44,65 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\Defaults\DefaultSubCategory.cs" />
-    <Compile Include="Business\Defaults\DefaultBusinessFactory.cs" />
-    <Compile Include="Business\Defaults\DefaultAuthority.cs" />
-    <Compile Include="Business\Defaults\DefaultSubCategoryCollection.cs" />
-    <Compile Include="Business\Defaults\DefaultPrivilegeCollection.cs" />
-    <Compile Include="Business\Defaults\DefaultRoleCollection.cs" />
-    <Compile Include="Business\IAuthority.cs" />
-    <Compile Include="Business\IBusinessFactory.cs" />
-    <Compile Include="Business\IRole.cs" />
-    <Compile Include="Business\ISubCategory.cs" />
-    <Compile Include="Business\ISubCategoryCollection.cs" />
-    <Compile Include="Business\IPrivilege.cs" />
-    <Compile Include="Business\IPrivilegeCollection.cs" />
-    <Compile Include="Business\IRoleCollection.cs" />
-    <Compile Include="Business\IUser.cs" />
-    <Compile Include="Business\Defaults\DefaultPrivilege.cs" />
-    <Compile Include="Business\Defaults\DefaultRole.cs" />
-    <Compile Include="Business\Defaults\DefaultUser.cs" />
-    <Compile Include="Business\SubCategoryNotFoundException.cs" />
-    <Compile Include="Business\UserNotFoundException.cs" />
-    <Compile Include="DataAccess\AuthorityData.cs" />
-    <Compile Include="DataAccess\SubCategoryData.cs" />
-    <Compile Include="DataAccess\Common\AuthorityDao.cs">
+    <Compile Include="Services\Defaults\DefaultSubCategory.cs" />
+    <Compile Include="Data\Common\CommonDaoFactory.cs" />
+    <Compile Include="Services\Defaults\DefaultAuthority.cs" />
+    <Compile Include="Services\Defaults\DefaultSubCategoryCollection.cs" />
+    <Compile Include="Services\Defaults\DefaultPrivilegeCollection.cs" />
+    <Compile Include="Services\Defaults\DefaultRoleCollection.cs" />
+    <Compile Include="Services\IAuthority.cs" />
+    <Compile Include="Data\IDaoFactory.cs" />
+    <Compile Include="Services\IRole.cs" />
+    <Compile Include="Services\ISubCategory.cs" />
+    <Compile Include="Services\ISubCategoryCollection.cs" />
+    <Compile Include="Services\IPrivilege.cs" />
+    <Compile Include="Services\IPrivilegeCollection.cs" />
+    <Compile Include="Services\IRoleCollection.cs" />
+    <Compile Include="Services\IUser.cs" />
+    <Compile Include="Services\Defaults\DefaultPrivilege.cs" />
+    <Compile Include="Services\Defaults\DefaultRole.cs" />
+    <Compile Include="Services\Defaults\DefaultUser.cs" />
+    <Compile Include="Services\SubCategoryNotFoundException.cs" />
+    <Compile Include="Services\UserNotFoundException.cs" />
+    <Compile Include="Data\AuthorityData.cs" />
+    <Compile Include="Data\SubCategoryData.cs" />
+    <Compile Include="Data\Common\AuthorityDao.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataAccess\Common\SubCategoryDao.cs" />
-    <Compile Include="DataAccess\Common\CommonDao.cs" />
-    <Compile Include="DataAccess\Common\PrivilegeDao.cs">
+    <Compile Include="Data\Common\SubCategoryDao.cs" />
+    <Compile Include="Data\Common\CommonDao.cs" />
+    <Compile Include="Data\Common\PrivilegeDao.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataAccess\Common\RoleDao.cs">
+    <Compile Include="Data\Common\RoleDao.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataAccess\Common\UserDao.cs" />
-    <Compile Include="DataAccess\IAuthorityDao.cs" />
-    <Compile Include="DataAccess\ISubCategoryDao.cs" />
-    <Compile Include="DataAccess\IDataReaderExtensions.cs" />
-    <Compile Include="DataAccess\IPrivilegeDao.cs" />
-    <Compile Include="DataAccess\IRoleDao.cs" />
-    <Compile Include="DataAccess\IUserDao.cs" />
-    <Compile Include="DataAccess\Common\MissingConnectionStringSettingsException.cs" />
-    <Compile Include="DataAccess\Common\Resources\Resource.cs" />
-    <Compile Include="DataAccess\RoleData.cs" />
-    <Compile Include="DataAccess\UserData.cs" />
-    <Compile Include="DataAccess\PrivilegeData.cs" />
+    <Compile Include="Data\Common\UserDao.cs" />
+    <Compile Include="Data\IAuthorityDao.cs" />
+    <Compile Include="Data\ISubCategoryDao.cs" />
+    <Compile Include="Data\IDataReaderExtensions.cs" />
+    <Compile Include="Data\IPrivilegeDao.cs" />
+    <Compile Include="Data\IRoleDao.cs" />
+    <Compile Include="Data\IUserDao.cs" />
+    <Compile Include="Data\Common\MissingConnectionStringSettingsException.cs" />
+    <Compile Include="Data\Common\Resources\Resource.cs" />
+    <Compile Include="Data\RoleData.cs" />
+    <Compile Include="Data\UserData.cs" />
+    <Compile Include="Data\PrivilegeData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetManyAsync_userId.sql" />
-    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\RoleDao.GetManyAsync_userId.sql" />
-    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\UserDao.GetOneAsync_id_name_backyardId.sql" />
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetManyAsync_userId.sql" />
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\RoleDao.GetManyAsync_userId.sql" />
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\UserDao.GetOneAsync_id_name_backyardId.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetManyAsync_userId.sql" />
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetManyAsync_userId.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataAccess\Common\Resources\System.Data.SqlClient\AuthorityDao.GetManyAsync_userId.sql" />
-    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetOneAsync_id.sql" />
-    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetOneAsync_userId_url.sql" />
-    <EmbeddedResource Include="DataAccess\Common\Resources\System.Data.SqlClient\AuthorityDao.GetManyAsync_userId_url.sql" />
+    <Content Include="Data\Common\Resources\System.Data.SqlClient\AuthorityDao.GetManyAsync_userId.sql" />
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetOneAsync_id.sql" />
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetOneAsync_userId_url.sql" />
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\AuthorityDao.GetManyAsync_userId_url.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

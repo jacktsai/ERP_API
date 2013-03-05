@@ -6,19 +6,21 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations;
-using Yahoo.Business;
-using Yahoo.Business.Defaults;
+using Yahoo.Services;
+using Yahoo.Services.Defaults;
+using Yahoo.Data;
+using Yahoo.Data.Common;
 
 namespace Yahoo.Controllers
 {
     public class UserController : ApiController
     {
-        private IBusinessFactory factory;
+        private IDaoFactory factory;
 
         public UserController()
         {
             // TODO: 有多餘的時間再將 dependency 抽出
-            this.factory = new DefaultBusinessFactory();
+            this.factory = new CommonDaoFactory();
         }
 
         [HttpGet]
