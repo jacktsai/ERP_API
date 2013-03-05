@@ -5,9 +5,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C5FADF5D-88A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D8589EB7-3548-4DE5-9622-955FA7C8EB82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooLibrary", "src\YahooLibrary\YahooLibrary.csproj", "{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApiLibrary", "src\ErpApiLibrary\ErpApiLibrary.csproj", "{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooLibrary.UnitTest", "test\YahooLibrary.UnitTest\YahooLibrary.UnitTest.csproj", "{6DF66AD0-1E35-474B-B5AC-62830BE0E803}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApiLibrary.UnitTest", "test\ErpApiLibrary.UnitTest\ErpApiLibrary.UnitTest.csproj", "{6DF66AD0-1E35-474B-B5AC-62830BE0E803}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{896EBF5F-F484-4A51-9583-8C899725671D}"
 	ProjectSection(SolutionItems) = preProject
@@ -23,11 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AA54BD
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooLibrary.IntegrationTest", "test\YahooLibrary.IntegrationTest\YahooLibrary.IntegrationTest.csproj", "{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApiLibrary.IntegrationTest", "test\ErpApiLibrary.IntegrationTest\ErpApiLibrary.IntegrationTest.csproj", "{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooApiSite.AcceptanceTest", "test\YahooApiSite.AcceptanceTest\YahooApiSite.AcceptanceTest.csproj", "{5810422C-47DA-4643-9C07-E15DA5886316}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApi.AcceptanceTest", "test\ErpApi.AcceptanceTest\ErpApi.AcceptanceTest.csproj", "{5810422C-47DA-4643-9C07-E15DA5886316}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahooApiApp", "src\YahooApiApp\YahooApiApp.csproj", "{1DE95254-58FC-4C55-A5A5-02ED44F038C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApi", "src\ErpApi\ErpApi.csproj", "{1DE95254-58FC-4C55-A5A5-02ED44F038C5}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
