@@ -16,64 +16,25 @@ namespace Yahoo.Data.Common
 
         Task<UserData> IUserDao.GetOneAsync(int? id, string name, string backyardId)
         {
-            var task = Task.Factory.StartNew<UserData>(() =>
+            if (id == null && name == null && backyardId == null)
             {
-                using (var connection = base.CreateConnection())
+                throw new InvalidOperationException("At least one parameter value is required!");
+            }
+
+            return base.CreateTask(dbCommand =>
+            {
+                dbCommand.CommandType = CommandType.Text;
+                dbCommand.CommandText = base.Resource.GetString("GetOneAsync_id_name_backyardId.sql");
+
+                dbCommand.AddParameterWithValue("@id", id);
+                dbCommand.AddParameterWithValue("@name", name);
+                dbCommand.AddParameterWithValue("@backyardId", backyardId);
+
+                using (var reader = dbCommand.ExecuteReader())
                 {
-                    using (var dbCommand = connection.CreateCommand())
-                    {
-                        dbCommand.CommandType = CommandType.Text;
-                        dbCommand.CommandText = base.Resource.GetString("GetOneAsync_id_name_backyardId.sql");
-
-                        #region Parameters
-
-                        var idParameter = dbCommand.CreateParameter();
-                        idParameter.ParameterName = "@id";
-                        if (id != null)
-                        {
-                            idParameter.Value = id;
-                        }
-                        else
-                        {
-                            idParameter.Value = DBNull.Value;
-                        }
-                        dbCommand.Parameters.Add(idParameter);
-
-                        var nameParameter = dbCommand.CreateParameter();
-                        nameParameter.ParameterName = "@name";
-                        if (name != null)
-                        {
-                            nameParameter.Value = name;
-                        }
-                        else
-                        {
-                            nameParameter.Value = DBNull.Value;
-                        }
-                        dbCommand.Parameters.Add(nameParameter);
-
-                        var backyardIdParameter = dbCommand.CreateParameter();
-                        backyardIdParameter.ParameterName = "@backyardId";
-                        if (backyardId != null)
-                        {
-                            backyardIdParameter.Value = backyardId;
-                        }
-                        else
-                        {
-                            backyardIdParameter.Value = DBNull.Value;
-                        }
-                        dbCommand.Parameters.Add(backyardIdParameter);
-
-                        #endregion
-
-                        using (var reader = dbCommand.ExecuteReader())
-                        {
-                            return reader.ToObject(Converter);
-                        }
-                    }
+                    return reader.ToObject(Converter);
                 }
             });
-
-            return task;
         }
 
         protected virtual UserData Converter(IDataReader reader)
@@ -81,14 +42,14 @@ namespace Yahoo.Data.Common
             return new UserData
             {
                 Id = reader.GetInt32(0),
-                Name = reader.GetString(1),
-                FullName = reader.GetString(2),
-                Department = reader.GetString(3),
+                Name = reader.GetValue<string>(1),
+                FullName = reader.GetValue<string>(2),
+                Department = reader.GetValue<string>(3),
                 Degree = reader.GetByte(4),
-                Email = reader.GetString(5),
-                Homepage = reader.GetString(6),
-                ExtNumber = reader.GetString(7),
-                BackyardId = reader.GetString(8)
+                Email = reader.GetValue<string>(5),
+                Homepage = reader.GetValue<string>(6),
+                ExtNumber = reader.GetValue<string>(7),
+                BackyardId = reader.GetValue<string>(8)
             };
         }
     }

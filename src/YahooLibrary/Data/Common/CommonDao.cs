@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.Common;
 using System.Configuration;
 using Yahoo.Data.Common.Resources;
+using System.Threading.Tasks;
 
 namespace Yahoo.Data.Common
 {
@@ -16,6 +17,11 @@ namespace Yahoo.Data.Common
 
         protected CommonDao(string connectionStringName)
         {
+            if (connectionStringName == null)
+            {
+                throw new ArgumentNullException("connectionStringName");
+            }
+
             var settings = ConfigurationManager.ConnectionStrings[connectionStringName];
             if (settings == null)
             {
@@ -39,6 +45,22 @@ namespace Yahoo.Data.Common
             connection.ConnectionString = this.settings.ConnectionString;
             connection.Open();
             return connection;
+        }
+
+        protected Task<T> CreateTask<T>(Func<DbCommand, T> commandProcessor)
+        {
+            var task = Task.Factory.StartNew<T>(() =>
+            {
+                using (var connection = this.CreateConnection())
+                {
+                    using (var dbCommand = connection.CreateCommand())
+                    {
+                        return commandProcessor(dbCommand);
+                    }
+                }
+            });
+
+            return task;
         }
     }
 }

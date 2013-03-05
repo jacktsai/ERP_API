@@ -6,6 +6,8 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Net;
 using System.Net.Http.Formatting;
+using System.Threading;
+using System.Diagnostics;
 
 namespace Yahoo
 {
@@ -27,7 +29,12 @@ namespace Yahoo
 
         public void Send(HttpMethod method, string uri)
         {
-            using (var httpClient = new HttpClient())
+            var handler = new DumpingMessageHandler
+            {
+                InnerHandler = new HttpClientHandler()
+            };
+
+            using (var httpClient = new HttpClient(handler))
             {
                 httpClient.BaseAddress = new Uri(BASE_ADDRESS);
 
@@ -54,6 +61,21 @@ namespace Yahoo
                         ErrorMessage = response.Content.ReadAsStringAsync().Result;
                     }
                 }
+            }
+        }
+
+        private class DumpingMessageHandler : MessageProcessingHandler
+        {
+            protected override HttpRequestMessage ProcessRequest(HttpRequestMessage request, CancellationToken cancellationToken)
+            {
+                Trace.WriteLine(request.Content.ReadAsStringAsync().Result);
+                return request;
+            }
+
+            protected override HttpResponseMessage ProcessResponse(HttpResponseMessage response, CancellationToken cancellationToken)
+            {
+                Trace.WriteLine(response.Content.ReadAsStringAsync().Result);
+                return response;
             }
         }
     }

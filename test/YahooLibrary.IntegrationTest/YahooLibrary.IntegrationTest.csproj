@@ -50,10 +50,11 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\Defaults\DefaultRoleCollectionTest.cs" />
-    <Compile Include="Services\Defaults\DefaultSubCategoryCollectionTest.cs" />
-    <Compile Include="Services\Defaults\DefaultSubCategoryTest.cs" />
-    <Compile Include="Services\Defaults\DefaultUserTest.cs" />
+    <Compile Include="Data\Common\PrivilegeDaoTest.cs" />
+    <Compile Include="DefaultRoleCollectionTest.cs" />
+    <Compile Include="DefaultSubCategoryCollectionTest.cs" />
+    <Compile Include="DefaultSubCategoryTest.cs" />
+    <Compile Include="DefaultUserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\YahooLibrary\YahooLibrary.csproj">

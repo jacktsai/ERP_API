@@ -8,6 +8,26 @@ namespace Yahoo.Data
 {
     internal static class IDataReaderExtensions
     {
+        public static Nullable<T> GetNullableValue<T>(this IDataReader reader, int columnIndex) where T : struct
+        {
+            if (reader.IsDBNull(columnIndex))
+            {
+                return default(Nullable<T>);
+            }
+
+            return (T)reader.GetValue(columnIndex);
+        }
+
+        public static T GetValue<T>(this IDataReader reader, int columnIndex) where T : class
+        {
+            if (reader.IsDBNull(columnIndex))
+            {
+                return null;
+            }
+
+            return (T)reader.GetValue(columnIndex);
+        }
+
         public static IEnumerable<T> ToObjects<T>(this IDataReader reader, Func<IDataReader, T> converter) where T : class
         {
             var list = new List<T>();

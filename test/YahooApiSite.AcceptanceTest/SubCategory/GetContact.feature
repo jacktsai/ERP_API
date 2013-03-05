@@ -1,0 +1,54 @@
+﻿Feature: GetContact
+	In order to 顯示資料
+	As a 線上操作者
+	I want to 取得聯絡人資訊
+    
+Scenario: 以無子站代碼取得聯絡人資訊
+    Given 無子站代碼
+    When 取得聯絡人資訊
+    Then 回傳狀態為 'BadRequest'
+
+Scenario: 以空白子站代碼取得聯絡人資訊
+    Given 子站代碼為空白
+    When 取得聯絡人資訊
+    Then 回傳狀態為 'BadRequest'
+
+Scenario: 以子站代碼 2 取得聯絡人資訊
+    Given 子站代碼為 2
+    When 取得聯絡人資訊
+    Then 回傳成功狀態
+    And 回傳子站代碼為 2
+    And 回傳負責PM的BackyardID為 'joannali'
+    And 回傳負責PM的中文名稱為 '李瑞君'
+    And 回傳負責PM的分機為 '333'
+    And 回傳負責PM的Email為 'joannali@yahoo-inc.com'
+    
+Scenario: 以子站代碼 3 取得聯絡人資訊
+    Given 子站代碼為 3
+    When 取得聯絡人資訊
+    Then 回傳成功狀態
+    And 回傳子站代碼為 3
+    And 回傳PM主管的BackyardID為 'juliachen'
+    And 回傳PM主管的中文名稱為 '茱莉亞'
+    And 回傳PM主管的分機為 '123456'
+    And 回傳PM主管的Email為 'juliachen@yahoo-inc.com'
+    
+Scenario: 以子站代碼 4 取得聯絡人資訊
+    Given 子站代碼為 4
+    When 取得聯絡人資訊
+    Then 回傳成功狀態
+    And 回傳子站代碼為 4
+    And 回傳採購人員的BackyardID為 'coco0208'
+    And 回傳採購人員的中文名稱為 '楊雅馨'
+    And 回傳採購人員的分機為 '770'
+    And 回傳採購人員的Email為 'coco0208@yahoo-inc.com'
+    
+Scenario: 以子站代碼 5 取得聯絡人資訊
+    Given 子站代碼為 5
+    When 取得聯絡人資訊
+    Then 回傳成功狀態
+    And 回傳子站代碼為 5
+    And 回傳採購主任的BackyardID為 'cindytu'
+    And 回傳採購主任的中文名稱為 '杜欣怡'
+    And 回傳採購主任的分機為 '777'
+    And 回傳採購主任的Email為 'cindytu@yahoo-inc.com'

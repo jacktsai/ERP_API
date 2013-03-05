@@ -10,13 +10,6 @@ namespace Yahoo.Data.Common.Resources
 {
     public class Resource
     {
-        static readonly Assembly assembly;
-
-        static Resource()
-        {
-            assembly = Assembly.GetExecutingAssembly();
-        }
-
         readonly string baseNamespace;
 
         public Resource(CommonDao dao)
@@ -37,7 +30,8 @@ namespace Yahoo.Data.Common.Resources
             }
 
             string name = string.Format("{0}.{1}", baseNamespace, resourceName);
-            
+
+            var assembly = Assembly.GetCallingAssembly();
             var stream = assembly.GetManifestResourceStream(name);
             if (stream == null)
             {

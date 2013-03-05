@@ -44,26 +44,28 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\Defaults\DefaultSubCategory.cs" />
+    <Compile Include="Data\IDbCommandExtensions.cs" />
+    <Compile Include="DefaultSubCategory.cs" />
     <Compile Include="Data\Common\CommonDaoFactory.cs" />
-    <Compile Include="Services\Defaults\DefaultAuthority.cs" />
-    <Compile Include="Services\Defaults\DefaultSubCategoryCollection.cs" />
-    <Compile Include="Services\Defaults\DefaultPrivilegeCollection.cs" />
-    <Compile Include="Services\Defaults\DefaultRoleCollection.cs" />
-    <Compile Include="Services\IAuthority.cs" />
+    <Compile Include="DefaultAuthority.cs" />
+    <Compile Include="DefaultSubCategoryCollection.cs" />
+    <Compile Include="DefaultPrivilegeCollection.cs" />
+    <Compile Include="DefaultRoleCollection.cs" />
+    <Compile Include="IAuthority.cs" />
     <Compile Include="Data\IDaoFactory.cs" />
-    <Compile Include="Services\IRole.cs" />
-    <Compile Include="Services\ISubCategory.cs" />
-    <Compile Include="Services\ISubCategoryCollection.cs" />
-    <Compile Include="Services\IPrivilege.cs" />
-    <Compile Include="Services\IPrivilegeCollection.cs" />
-    <Compile Include="Services\IRoleCollection.cs" />
-    <Compile Include="Services\IUser.cs" />
-    <Compile Include="Services\Defaults\DefaultPrivilege.cs" />
-    <Compile Include="Services\Defaults\DefaultRole.cs" />
-    <Compile Include="Services\Defaults\DefaultUser.cs" />
-    <Compile Include="Services\SubCategoryNotFoundException.cs" />
-    <Compile Include="Services\UserNotFoundException.cs" />
+    <Compile Include="IRole.cs" />
+    <Compile Include="ISubCategory.cs" />
+    <Compile Include="ISubCategoryCollection.cs" />
+    <Compile Include="IPrivilege.cs" />
+    <Compile Include="IPrivilegeCollection.cs" />
+    <Compile Include="IRoleCollection.cs" />
+    <Compile Include="IUser.cs" />
+    <Compile Include="DefaultPrivilege.cs" />
+    <Compile Include="DefaultRole.cs" />
+    <Compile Include="DefaultUser.cs" />
+    <Compile Include="SubCategoryNotFoundException.cs" />
+    <Compile Include="TypeExtensions.cs" />
+    <Compile Include="UserNotFoundException.cs" />
     <Compile Include="Data\AuthorityData.cs" />
     <Compile Include="Data\SubCategoryData.cs" />
     <Compile Include="Data\Common\AuthorityDao.cs">
@@ -99,7 +101,6 @@
     <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetManyAsync_userId.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Common\Resources\System.Data.SqlClient\AuthorityDao.GetManyAsync_userId.sql" />
     <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetOneAsync_id.sql" />
     <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetOneAsync_userId_url.sql" />
     <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\AuthorityDao.GetManyAsync_userId_url.sql" />

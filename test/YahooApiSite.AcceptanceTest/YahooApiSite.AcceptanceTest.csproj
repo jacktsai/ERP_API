@@ -66,14 +66,20 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SubCategory\GetContacts.feature.cs">
+    <Compile Include="SubCategory\GetContact.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GetContacts.feature</DependentUpon>
+      <DependentUpon>GetContact.feature</DependentUpon>
     </Compile>
     <Compile Include="HttpContext.cs" />
     <Compile Include="HttpHelper.cs" />
-    <Compile Include="SubCategory\GetContactsSteps.cs" />
+    <Compile Include="SubCategory\GetContactSteps.cs" />
+    <Compile Include="SubCategory\GetManyContact.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetManyContact.feature</DependentUpon>
+    </Compile>
+    <Compile Include="SubCategory\GetManyContactSteps.cs" />
     <Compile Include="User\GetAuthority.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,11 +95,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="SubCategory\GetContacts.feature">
+    <None Include="SubCategory\GetContact.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetContacts.feature.cs</LastGenOutput>
+      <LastGenOutput>GetContact.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="SubCategory\GetManyContact.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetManyContact.feature.cs</LastGenOutput>
+    </None>
     <None Include="User\GetAuthority.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetAuthority.feature.cs</LastGenOutput>

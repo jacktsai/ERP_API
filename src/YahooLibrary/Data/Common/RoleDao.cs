@@ -16,38 +16,32 @@ namespace Yahoo.Data.Common
 
         Task<IEnumerable<RoleData>> IRoleDao.GetManyAsync(int userId)
         {
-            var task = Task.Factory.StartNew<IEnumerable<RoleData>>(() =>
+            return base.CreateTask(dbCommand =>
             {
-                using (var connection = base.CreateConnection())
+                dbCommand.CommandType = CommandType.Text;
+                dbCommand.CommandText = base.Resource.GetString("GetManyAsync_userId.sql");
+
+                dbCommand.AddParameterWithValue("@userId", userId);
+
+                using (var reader = dbCommand.ExecuteReader())
                 {
-                    using (var dbCommand = connection.CreateCommand())
-                    {
-                        var p = dbCommand.CreateParameter();
-                        p.ParameterName = "@user_id";
-                        p.Value = userId;
-                        dbCommand.Parameters.Add(p);
-
-                        dbCommand.CommandType = CommandType.Text;
-                        dbCommand.CommandText = base.Resource.GetString("GetManyAsync_userId.sql");
-
-                        using (var reader = dbCommand.ExecuteReader())
-                        {
-                            return reader.ToObjects(r => new RoleData
-                            {
-                                Id = reader.GetInt32(0),
-                                Name = reader.GetString(1),
-                                CanSelect = r.IsDBNull(2) ? null : (bool?)r.GetBoolean(2),
-                                CanInsert = r.IsDBNull(3) ? null : (bool?)r.GetBoolean(3),
-                                CanUpdate = r.IsDBNull(4) ? null : (bool?)r.GetBoolean(4),
-                                CanDelete = r.IsDBNull(5) ? null : (bool?)r.GetBoolean(5),
-                                CanParticular = r.IsDBNull(6) ? null : (bool?)r.GetBoolean(6),
-                            });
-                        }
-                    }
+                    return reader.ToObjects(Converter);
                 }
             });
+        }
 
-            return task;
+        protected virtual RoleData Converter(IDataReader r)
+        {
+            return new RoleData
+            {
+                Id = r.GetInt32(0),
+                Name = r.GetValue<string>(1),
+                CanSelect = r.GetNullableValue<bool>(2),
+                CanInsert = r.GetNullableValue<bool>(3),
+                CanUpdate = r.GetNullableValue<bool>(4),
+                CanDelete = r.GetNullableValue<bool>(5),
+                CanParticular = r.GetNullableValue<bool>(6),
+            };
         }
     }
 }

@@ -19,69 +19,43 @@ namespace Yahoo.Data.Common
 
         Task<IEnumerable<PrivilegeData>> IPrivilegeDao.GetManyAsync(int userId)
         {
-            var task = Task.Factory.StartNew<IEnumerable<PrivilegeData>>(() =>
+            return base.CreateTask(dbCommand =>
             {
-                using (var connection = base.CreateConnection())
+                dbCommand.CommandType = CommandType.Text;
+                dbCommand.CommandText = base.Resource.GetString("GetManyAsync_userId.sql");
+
+                dbCommand.AddParameterWithValue("@user_id", userId);
+
+                using (var reader = dbCommand.ExecuteReader())
                 {
-                    using (var dbCommand = connection.CreateCommand())
-                    {
-                        dbCommand.CommandType = CommandType.Text;
-                        dbCommand.CommandText = base.Resource.GetString("GetManyAsync_userId.sql");
-
-                        var userIdParameter = dbCommand.CreateParameter();
-                        userIdParameter.ParameterName = "@user_id";
-                        userIdParameter.Value = userId;
-                        dbCommand.Parameters.Add(userIdParameter);
-
-                        using (var reader = dbCommand.ExecuteReader())
-                        {
-                            return reader.ToObjects(Converter);
-                        }
-                    }
+                    return reader.ToObjects(Converter);
                 }
             });
-
-            return task;
         }
 
         Task<PrivilegeData> IPrivilegeDao.GetOneAsync(int userId, string url)
         {
-            var task = Task.Factory.StartNew<PrivilegeData>(() =>
+            return base.CreateTask(dbCommand =>
             {
-                using (var connection = base.CreateConnection())
+                dbCommand.CommandType = CommandType.Text;
+                dbCommand.CommandText = base.Resource.GetString("GetOneAsync_userId_url.sql");
+
+                dbCommand.AddParameterWithValue("@user_id", userId);
+                dbCommand.AddParameterWithValue("@url", url);
+
+                using (var reader = dbCommand.ExecuteReader())
                 {
-                    using (var dbCommand = connection.CreateCommand())
-                    {
-                        dbCommand.CommandType = CommandType.Text;
-                        dbCommand.CommandText = base.Resource.GetString("GetOneAsync_userId_url.sql");
-
-                        var userIdParameter = dbCommand.CreateParameter();
-                        userIdParameter.ParameterName = "@user_id";
-                        userIdParameter.Value = userId;
-                        dbCommand.Parameters.Add(userIdParameter);
-
-                        var urlParameter = dbCommand.CreateParameter();
-                        urlParameter.ParameterName = "@url";
-                        urlParameter.Value = url;
-                        dbCommand.Parameters.Add(urlParameter);
-
-                        using (var reader = dbCommand.ExecuteReader())
-                        {
-                            return reader.ToObject(Converter);
-                        }
-                    }
+                    return reader.ToObject(Converter);
                 }
             });
-
-            return task;
         }
 
         protected virtual PrivilegeData Converter(IDataReader r)
         {
             return new PrivilegeData
             {
-                Url = r.GetString(0),
-                Name = r.GetString(1),
+                Url = r.GetValue<string>(0),
+                Name = r.GetValue<string>(1),
             };
         }
     }

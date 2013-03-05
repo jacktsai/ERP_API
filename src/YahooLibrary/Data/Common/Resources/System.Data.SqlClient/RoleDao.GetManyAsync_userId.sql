@@ -10,4 +10,4 @@ FROM
 	dbo.middleur(NOLOCK)
 	JOIN dbo.roles(NOLOCK) ON roles_id = middleur_rolesid
 WHERE
-	middleur_priuserid = @user_id
+	middleur_priuserid = @userId

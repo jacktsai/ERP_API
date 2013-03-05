@@ -100,7 +100,7 @@ namespace Yahoo.User
         [Then(@"回傳操作者分機為 '(.*)'")]
         public void Then回傳操作者分機為(string p0)
         {
-            var PriuserExtno = this.context.ResponseContent["ExtensionNumber"];
+            var PriuserExtno = this.context.ResponseContent["ExtNumber"];
             Assert.AreEqual(p0, PriuserExtno.Value<string>());
         }
 

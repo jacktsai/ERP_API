@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Yahoo.Data
 {
+    /// <summary>
+    /// 角色資料存取介面。
+    /// </summary>
     public interface IRoleDao
     {
+        /// <summary>
+        /// 取得多筆角色資料。
+        /// </summary>
+        /// <param name="userId">User ID。</param>
+        /// <returns></returns>
         Task<IEnumerable<RoleData>> GetManyAsync(int userId);
     }
 }
