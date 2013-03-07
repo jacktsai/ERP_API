@@ -1,6 +1,10 @@
 ﻿using System.Web;
 using System.Web.Http;
 using ErpApi.Filters;
+using ApiFoundation.Services;
+using ApiFoundation.Extension.Handlers;
+using System.Net.Http;
+using ErpApi.MessageHandlers;
 
 namespace ErpApi
 {
@@ -14,9 +18,18 @@ namespace ErpApi
         /// </summary>
         protected void Application_Start()
         {
+            Bootstrapper.Initialise();
+
             var config = GlobalConfiguration.Configuration;
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{action}");
             config.Filters.Add(new ModelStateActionFilter());
+
+            //config.MessageHandlers.Add(new DumpingMessageHandler());
+
+            //var securedHandler = (DelegatingHandler)config.DependencyResolver.GetService(typeof(SecuredContentHandler));
+            //config.MessageHandlers.Add(securedHandler);
+
+            //config.MessageHandlers.Add(new DumpingMessageHandler());
         }
     }
 }

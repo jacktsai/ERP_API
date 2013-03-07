@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
-using System.Threading;
+using ApiFoundation.Cryptography;
+using ApiFoundation.Extension.Handlers;
+using ApiFoundation.Services;
 using Newtonsoft.Json.Linq;
 
 namespace ErpApi.Test
@@ -42,10 +44,19 @@ namespace ErpApi.Test
 
         public void Send(HttpMethod method, string uri)
         {
-            var handler = new DumpingMessageHandler
-            {
-                InnerHandler = new HttpClientHandler()
-            };
+            DateTime startTime = DateTime.Now;
+
+            ClientSecuredMessage clientSecuredMsg = new ClientSecuredMessage();
+            clientSecuredMsg.InitTimeStamp();
+
+            //var handler = new SecuredContentClientHandler(
+            //    new DefaultSecuredContentService<ClientSecuredMessage>(
+            //        new AesCryptoAlgorithm(),
+            //        new SHA512HashAlgorithm(),
+            //        new DefaultKeyProvider(),
+            //        clientSecuredMsg));
+
+            var handler = new HttpClientHandler();
 
             using (var httpClient = new HttpClient(handler))
             {
@@ -67,7 +78,14 @@ namespace ErpApi.Test
                 {
                     if (response.IsSuccessStatusCode)
                     {
-                        ResponseContent = response.Content.ReadAsAsync<JObject>().Result;
+                        if (response.Content.Headers.ContentType.MediaType == "application/json")
+                        {
+                            ResponseContent = response.Content.ReadAsAsync<JObject>().Result;
+                        }
+                        else
+                        {
+                            Trace.WriteLine(response.Content.ReadAsStringAsync().Result);
+                        }
                     }
                     else
                     {
@@ -75,6 +93,9 @@ namespace ErpApi.Test
                     }
                 }
             }
+
+            TimeSpan duration = DateTime.Now - startTime;
+            Trace.WriteLine(string.Format("Duration: {0}", duration));
         }
     }
 }
