@@ -6,7 +6,7 @@ using System.Net.Http.Formatting;
 using System.Threading;
 using Newtonsoft.Json.Linq;
 
-namespace ErpApi.AcceptanceTest
+namespace ErpApi.Test
 {
     /// <summary>
     /// 處理 HttpClient 收發相關事務。

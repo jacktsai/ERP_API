@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Diagnostics;
 using System.Threading;
 
-namespace ErpApi.AcceptanceTest
+namespace ErpApi.Test
 {
     internal class DumpingMessageHandler : MessageProcessingHandler
     {
