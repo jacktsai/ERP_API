@@ -56,11 +56,11 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Common\CommonDaoTest.cs" />
-    <Compile Include="Data\Common\Resources\ResourceTest.cs" />
-    <Compile Include="Services\AuthorizationServiceTest.cs" />
-    <Compile Include="Services\SubCategoryServiceTest.cs" />
-    <Compile Include="Services\UserServiceTest.cs" />
+    <Compile Include="Data\Common\CommonDaoUnitTest.cs" />
+    <Compile Include="Data\Common\Resources\ResourceUnitTest.cs" />
+    <Compile Include="Services\AuthorizationServiceUnitTest.cs" />
+    <Compile Include="Services\SubCategoryServiceUnitTest.cs" />
+    <Compile Include="Services\UserServiceUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

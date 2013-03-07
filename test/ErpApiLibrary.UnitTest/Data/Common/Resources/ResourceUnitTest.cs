@@ -9,7 +9,7 @@ using System.Resources;
 namespace ErpApi.Data.Common.Resources
 {
     [TestClass]
-    public class ResourceTest
+    public class ResourceUnitTest
     {
         private class TestingDao : CommonDao
         {

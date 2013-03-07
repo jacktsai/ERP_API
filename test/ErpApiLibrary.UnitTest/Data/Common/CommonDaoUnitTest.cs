@@ -9,7 +9,7 @@ using System.Data.Common;
 namespace ErpApi.Data.Common
 {
     [TestClass]
-    public class CommonDaoTest
+    public class CommonDaoUnitTest
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]

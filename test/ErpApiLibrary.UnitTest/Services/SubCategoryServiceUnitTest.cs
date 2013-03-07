@@ -9,7 +9,7 @@ using Rhino.Mocks;
 namespace ErpApi.Services
 {
     [TestClass]
-    public class SubCategoryServiceTest
+    public class SubCategoryServiceUnitTest
     {
         private ISubCategoryDao _subCatDao;
         private IUserDao _userDao;

@@ -9,7 +9,7 @@ using Rhino.Mocks;
 namespace ErpApi.Services
 {
     [TestClass]
-    public class AuthorizationServiceTest
+    public class AuthorizationServiceUnitTest
     {
         private IAuthorityDao authDao;
         private IDaoFactory factory;
