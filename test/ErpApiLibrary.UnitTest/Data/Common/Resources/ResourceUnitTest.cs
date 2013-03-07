@@ -11,14 +11,6 @@ namespace ErpApi.Data.Common.Resources
     [TestClass]
     public class ResourceUnitTest
     {
-        private class TestingDao : CommonDao
-        {
-            public TestingDao()
-                : base("ResourceTest")
-            {
-            }
-        }
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_dao_null()
@@ -29,7 +21,7 @@ namespace ErpApi.Data.Common.Resources
         [TestMethod]
         public void GetString()
         {
-            var dao = new TestingDao();
+            var dao = new DaoForResourceUnitTest();
             var target = new Resource(dao);
             var actual = target.GetString("TestFile.txt");
 
@@ -40,7 +32,7 @@ namespace ErpApi.Data.Common.Resources
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetString_resourceName_null()
         {
-            var dao = new TestingDao();
+            var dao = new DaoForResourceUnitTest();
             var target = new Resource(dao);
             var actual = target.GetString(null);
         }
@@ -49,7 +41,7 @@ namespace ErpApi.Data.Common.Resources
         [ExpectedException(typeof(MissingManifestResourceException))]
         public void GetString_NotExists()
         {
-            var dao = new TestingDao();
+            var dao = new DaoForResourceUnitTest();
             var target = new Resource(dao);
             var actual = target.GetString("NotExists");
         }

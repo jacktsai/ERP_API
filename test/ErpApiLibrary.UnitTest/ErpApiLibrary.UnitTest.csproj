@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Common\CommonDaoUnitTest.cs" />
+    <Compile Include="Data\Common\DaoForResourceUnitTest.cs" />
     <Compile Include="Data\Common\Resources\ResourceUnitTest.cs" />
     <Compile Include="Services\SubCategoryServiceUnitTest.cs" />
     <Compile Include="Services\UserServiceUnitTest.cs" />
@@ -73,7 +74,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\TestingDao.TestFile.txt" />
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\DaoForResourceUnitTest.TestFile.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
