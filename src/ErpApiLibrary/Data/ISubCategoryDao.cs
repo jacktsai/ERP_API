@@ -15,14 +15,14 @@ namespace ErpApi.Data
         /// 以 user ID 搜尋子站資料。
         /// </summary>
         /// <param name="userId">user ID。</param>
-        /// <returns></returns>
+        /// <returns>多筆子站資料。</returns>
         IEnumerable<SubCategoryData> GetMany(int userId);
 
         /// <summary>
         /// 以子站代碼搜尋子站資料。
         /// </summary>
         /// <param name="ids">多重子站代碼。</param>
-        /// <returns></returns>
+        /// <returns>多筆子站資料。</returns>
         IEnumerable<SubCategoryData> GetMany(IEnumerable<int> ids);
     }
 }

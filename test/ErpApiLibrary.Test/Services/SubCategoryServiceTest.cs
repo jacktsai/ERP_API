@@ -11,13 +11,7 @@ namespace ErpApi.Services
     [TestClass]
     public class SubCategoryServiceTest
     {
-        private IDaoFactory _factory;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            this._factory = new CommonDaoFactory();
-        }
+        private readonly IDaoFactory _factory = new CommonDaoFactory();
 
         [TestMethod]
         public void GetSubCategories_subCategoryIds_2_3_4_5()
@@ -48,9 +42,23 @@ namespace ErpApi.Services
             Assert.AreEqual("123456", subCat2.Manager.ExtNumber);
             Assert.AreEqual("juliachen@yahoo-inc.com", subCat2.Manager.Email);
 
+            var subCat3 = actual.ElementAt(2);
+            Assert.IsNotNull(subCat3);
+            Assert.AreEqual(4, subCat3.Id);
+            Assert.IsNotNull(subCat3.Purchaser);
+            Assert.AreEqual("coco0208", subCat3.Purchaser.BackyardId);
+            Assert.AreEqual("楊雅馨", subCat3.Purchaser.FullName);
+            Assert.AreEqual("770", subCat3.Purchaser.ExtNumber);
+            Assert.AreEqual("coco0208@yahoo-inc.com", subCat3.Purchaser.Email);
 
-
-            //TODO: complete assertions.
+            var subCat4 = actual.ElementAt(3);
+            Assert.IsNotNull(subCat4);
+            Assert.AreEqual(5, subCat4.Id);
+            Assert.IsNotNull(subCat4.Staff);
+            Assert.AreEqual("cindytu", subCat4.Staff.BackyardId);
+            Assert.AreEqual("杜欣怡", subCat4.Staff.FullName);
+            Assert.AreEqual("777", subCat4.Staff.ExtNumber);
+            Assert.AreEqual("cindytu@yahoo-inc.com", subCat4.Staff.Email);
         }
     }
 }

@@ -14,114 +14,107 @@ namespace ErpApi.Test
     [Scope(Feature = "GetUserAuthority")]
     public class GetUserAuthoritySteps
     {
-        private readonly HttpContext context;
+        private readonly HttpContext _context;
 
         public GetUserAuthoritySteps(HttpContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         [Given(@"無BackyardID")]
         public void Given無BackyardID()
         {
-            this.context.RequestContent.Add(new JProperty("BackyardId", null));
+            this._context.SetRequestValue("BackyardId", null);
         }
 
         [Given(@"BackyardID為空白")]
         public void GivenBackyardID為空白()
         {
-            this.context.RequestContent.Add(new JProperty("BackyardId", string.Empty));
+            this._context.SetRequestValue("BackyardId", string.Empty);
         }
 
         [Given(@"BackyardID為 '(.*)'")]
-        public void GivenBackyardID為(string p0)
+        public void GivenBackyardID為(string backyardId)
         {
-            this.context.RequestContent.Add(new JProperty("BackyardId", p0));
+            this._context.SetRequestValue("BackyardId", backyardId);
         }
 
         [Given(@"無目標網址")]
         public void Given無目標網址()
         {
-            this.context.RequestContent.Add(new JProperty("Url", null));
+            this._context.SetRequestValue("Url", null);
         }
 
         [Given(@"目標網址為空白")]
         public void Given目標網址為空白()
         {
-            this.context.RequestContent.Add(new JProperty("Url", ""));
+            this._context.SetRequestValue("Url", "");
         }
 
         [Given(@"目標網址為 '(.*)'")]
-        public void Given目標網址為(string p0)
+        public void Given目標網址為(string url)
         {
-            this.context.RequestContent.Add(new JProperty("Url", p0));
+            this._context.SetRequestValue("Url", url);
         }
 
         [When(@"取得操作權限")]
         public void When取得操作權限()
         {
-            this.context.Send(HttpMethod.Post, "api/Authorization/GetAuthority");
+            this._context.Send(HttpMethod.Post, "api/User/GetAuthority");
         }
 
         [Then(@"回傳成功狀態")]
         public void Then回傳成功狀態()
         {
-            Assert.IsTrue(this.context.IsSuccess, this.context.ErrorMessage);
+            Assert.IsTrue(this._context.IsSuccess, this._context.ErrorMessage);
         }
 
         [Then(@"回傳狀態為 '(.*)'")]
-        public void Then回傳狀態為(HttpStatusCode p0)
+        public void Then回傳狀態為(HttpStatusCode expected)
         {
-            Assert.AreEqual(p0, this.context.StatusCode);
+            Assert.AreEqual(expected, this._context.StatusCode);
         }
 
         [Then(@"回傳操作者BardyardID為 '(.*)'")]
-        public void Then回傳操作者BardyardID為(string p0)
+        public void Then回傳操作者BardyardID為(string expected)
         {
-            var BackyardId = this.context.ResponseContent["BackyardId"];
-            Assert.AreEqual(p0, BackyardId.Value<string>());
+            this._context.ResponseContent.AssertAreEqual("BackyardId", expected);
         }
 
         [Then(@"回傳目標網址為 '(.*)'")]
-        public void Then回傳目標網址為(string p0)
+        public void Then回傳目標網址為(string expected)
         {
-            var Url = this.context.ResponseContent["Url"];
-            Assert.AreEqual(p0, Url.Value<string>());
+            this._context.ResponseContent.AssertAreEqual("Url", expected);
         }
 
         [Then(@"回傳細部權限-SELECT為 (True|False)")]
-        public void Then回傳細部權限_SELECT為(bool p0)
+        public void Then回傳細部權限_SELECT為(bool expected)
         {
-            var CanSelect = this.context.ResponseContent["CanSelect"];
-            Assert.AreEqual(p0, CanSelect.Value<bool>());
+            this._context.ResponseContent.AssertAreEqual("CanSelect", expected);
         }
 
         [Then(@"回傳細部權限-INSERT為 (True|False)")]
-        public void Then回傳細部權限_INSERT為(bool p0)
+        public void Then回傳細部權限_INSERT為(bool expected)
         {
-            var CanInsert = this.context.ResponseContent["CanInsert"];
-            Assert.AreEqual(p0, CanInsert.Value<bool>());
+            this._context.ResponseContent.AssertAreEqual("CanInsert", expected);
         }
 
         [Then(@"回傳細部權限-UPDATE為 (True|False)")]
-        public void Then回傳細部權限_UPDATE為(bool p0)
+        public void Then回傳細部權限_UPDATE為(bool expected)
         {
-            var CanUpdate = this.context.ResponseContent["CanUpdate"];
-            Assert.AreEqual(p0, CanUpdate.Value<bool>());
+            this._context.ResponseContent.AssertAreEqual("CanUpdate", expected);
         }
 
         [Then(@"回傳細部權限-DELETE為 (True|False)")]
-        public void Then回傳細部權限_DELETE為(bool p0)
+        public void Then回傳細部權限_DELETE為(bool expected)
         {
-            var CanDelete = this.context.ResponseContent["CanDelete"];
-            Assert.AreEqual(p0, CanDelete.Value<bool>());
+            this._context.ResponseContent.AssertAreEqual("CanDelete", expected);
         }
 
         [Then(@"回傳細部權限-特殊權限為 (True|False)")]
-        public void Then回傳細部權限_特殊權限為(bool p0)
+        public void Then回傳細部權限_特殊權限為(bool expected)
         {
-            var CanParticular = this.context.ResponseContent["CanParticular"];
-            Assert.AreEqual(p0, CanParticular.Value<bool>());
+            this._context.ResponseContent.AssertAreEqual("CanParticular", expected);
         }
     }
 }

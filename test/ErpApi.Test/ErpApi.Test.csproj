@@ -86,6 +86,7 @@
       <DependentUpon>GetUserProfile.feature</DependentUpon>
     </Compile>
     <Compile Include="GetUserProfileSteps.cs" />
+    <Compile Include="JObjectExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

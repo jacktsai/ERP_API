@@ -19,7 +19,6 @@ namespace ErpApi.Services
         public void TestInitialize()
         {
             this._subCatDao = MockRepository.GenerateStub<ISubCategoryDao>();
-
             this._userDao = MockRepository.GenerateStub<IUserDao>();
 
             this._factory = MockRepository.GenerateStub<IDaoFactory>();

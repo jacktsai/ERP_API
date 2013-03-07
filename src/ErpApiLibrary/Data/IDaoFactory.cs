@@ -14,19 +14,19 @@ namespace ErpApi.Data
         /// <summary>
         /// 取得使用者資料存取介面。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>使用者資料存取介面。</returns>
         IUserDao GetUserDao();
 
         /// <summary>
         /// 取得授權資料存取介面。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>授權資料存取介面。</returns>
         IAuthorityDao GetAuthorityDao();
 
         /// <summary>
         /// 取得子站資料存取介面。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>子站資料存取介面。</returns>
         ISubCategoryDao GetSubCategoryDao();
     }
 }

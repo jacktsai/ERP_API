@@ -12,11 +12,11 @@ namespace ErpApi.Data
     public interface IAuthorityDao
     {
         /// <summary>
-        /// 取得多筆。
+        /// 取得乙筆。
         /// </summary>
-        /// <param name="backyardId">The backyard ID。</param>
-        /// <param name="url">The URL。</param>
-        /// <returns></returns>
-        IEnumerable<AuthorityData> GetMany(string backyardId, string url);
+        /// <param name="backyardId">Backyard ID。</param>
+        /// <param name="url">URL。</param>
+        /// <returns>使用者權限資料。</returns>
+        AuthorityData GetOne(string backyardId, string url);
     }
 }

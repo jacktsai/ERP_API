@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\ErpApiLibrary.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -45,9 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Services\Authority.cs" />
-    <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\User.cs" />
-    <Compile Include="Services\IAuthorizationService.cs" />
     <Compile Include="Services\ISubCategoryService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\Profile.cs" />
@@ -83,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetMany_ids.sql" />
-    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\AuthorityDao.GetMany_backyardId_url.sql" />
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\AuthorityDao.GetOne_backyardId_url.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\UserDao.GetMany_userNames.sql" />

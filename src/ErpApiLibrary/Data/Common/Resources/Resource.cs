@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Resources;
-using System.Reflection;
 using System.IO;
+using System.Reflection;
+using System.Resources;
 
 namespace ErpApi.Data.Common.Resources
 {
@@ -33,14 +30,16 @@ namespace ErpApi.Data.Common.Resources
                 throw new ArgumentNullException("dao");
             }
 
-            _baseNamespace = string.Format("{0}.{1}.{2}", typeof(Resource).Namespace, dao.Settings.ProviderName, dao.GetType().Name);
+            var daoType = dao.GetType();
+
+            this._baseNamespace = string.Format("{0}.Resources.{1}.{2}", daoType.Namespace, dao.Settings.ProviderName, daoType.Name);
         }
 
         /// <summary>
         /// 以字串型式讀取內嵌資源。
         /// </summary>
         /// <param name="resourceName">Name of the resource.</param>
-        /// <returns></returns>
+        /// <returns>資源內容。</returns>
         /// <exception cref="System.ArgumentNullException">resourceName</exception>
         /// <exception cref="System.Resources.MissingManifestResourceException">如果無指定的資源名稱。</exception>
         public string GetString(string resourceName)
@@ -50,10 +49,10 @@ namespace ErpApi.Data.Common.Resources
                 throw new ArgumentNullException("resourceName");
             }
 
-            string name = string.Format("{0}.{1}", _baseNamespace, resourceName);
-
             var assembly = Assembly.GetCallingAssembly();
+            string name = string.Format("{0}.{1}", this._baseNamespace, resourceName);
             var stream = assembly.GetManifestResourceStream(name);
+
             if (stream == null)
             {
                 throw new MissingManifestResourceException(name);

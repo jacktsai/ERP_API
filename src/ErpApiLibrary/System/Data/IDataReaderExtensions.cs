@@ -1,23 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
+﻿using System.Collections.Generic;
 
 namespace System.Data
 {
+    /// <summary>
+    /// IDataReader 的擴充方法。
+    /// </summary>
     public static class IDataReaderExtensions
     {
-        public static Nullable<T> GetNullableValue<T>(this IDataReader reader, int columnIndex) where T : struct
+        /// <summary>
+        /// Gets the nullable value.
+        /// </summary>
+        /// <typeparam name="T">值型別。</typeparam>
+        /// <param name="reader">The reader.</param>
+        /// <param name="columnIndex">Index of the column.</param>
+        /// <returns>The value.</returns>
+        public static T? GetNullableValue<T>(this IDataReader reader, int columnIndex) where T : struct
         {
+            if (reader == null)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
             if (reader.IsDBNull(columnIndex))
             {
-                return default(Nullable<T>);
+                return null;
             }
 
             return (T)reader.GetValue(columnIndex);
         }
 
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
+        /// <typeparam name="T">參考型別。</typeparam>
+        /// <param name="reader">The reader.</param>
+        /// <param name="columnIndex">Index of the column.</param>
+        /// <returns>
+        /// value.
+        /// </returns>
         public static T GetValue<T>(this IDataReader reader, int columnIndex) where T : class
         {
             if (reader.IsDBNull(columnIndex))
@@ -28,6 +48,13 @@ namespace System.Data
             return (T)reader.GetValue(columnIndex);
         }
 
+        /// <summary>
+        /// 逐筆讀取 IDataReader 並將其轉成多筆 T 的個體。
+        /// </summary>
+        /// <typeparam name="T">多筆資料的型別。</typeparam>
+        /// <param name="reader">The reader.</param>
+        /// <param name="converter">轉換方法。</param>
+        /// <returns>多筆 T 的個體。</returns>
         public static IEnumerable<T> ToObjects<T>(this IDataReader reader, Func<IDataReader, T> converter) where T : class
         {
             var list = new List<T>();
@@ -41,6 +68,13 @@ namespace System.Data
             return list;
         }
 
+        /// <summary>
+        /// 轉換第一筆 T 的個體。
+        /// </summary>
+        /// <typeparam name="T">多筆資料的型別。</typeparam>
+        /// <param name="reader">The reader.</param>
+        /// <param name="converter">轉換方法。</param>
+        /// <returns>第一筆 T 的個體。</returns>
         public static T ToObject<T>(this IDataReader reader, Func<IDataReader, T> converter) where T : class
         {
             var enumerator = reader.ToObjects<T>(converter).GetEnumerator();

@@ -16,7 +16,7 @@ namespace ErpApi.Services
         public User User { get; internal set; }
 
         /// <summary>
-        /// 取得子站代碼。
+        /// 取得操作者擁有的子站代碼。
         /// </summary>
         public IEnumerable<int> SubCatIds { get; internal set; }
     }

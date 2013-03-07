@@ -1,19 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace ErpApi.Data.Common
 {
+    /// <summary>
+    /// 以 System.Data.Common 為基礎所建立的 <see cref="IUserDao"/> 介面實作。
+    /// </summary>
     public class UserDao : CommonDao, IUserDao
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserDao" /> class.
+        /// </summary>
         public UserDao()
             : base("security")
         {
         }
 
+        /// <summary>
+        /// 取得乙筆操作者資料。
+        /// </summary>
+        /// <param name="backyardId">Backyard ID。</param>
+        /// <returns>
+        /// 操作者資料。
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">backyardId</exception>
         UserData IUserDao.GetOne(string backyardId)
         {
             if (backyardId == null)
@@ -21,10 +33,10 @@ namespace ErpApi.Data.Common
                 throw new ArgumentNullException("backyardId");
             }
 
-            return base.ExecuteCommand(dbCommand =>
+            return this.ExecuteCommand(dbCommand =>
             {
                 dbCommand.CommandType = CommandType.Text;
-                dbCommand.CommandText = base.Resource.GetString("GetOne_backyardId.sql");
+                dbCommand.CommandText = this.Resource.GetString("GetOne_backyardId.sql");
 
                 dbCommand.AddParameterWithValue("@backyardId", backyardId);
 
@@ -35,22 +47,33 @@ namespace ErpApi.Data.Common
             });
         }
 
+        /// <summary>
+        /// 取得多筆操作者資料。
+        /// </summary>
+        /// <param name="userNames">多個使用者姓名。</param>
+        /// <returns>
+        /// 多筆操作者資料。
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">userNames</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">userNames</exception>
+        /// <exception cref="System.NotImplementedException"></exception>
         IEnumerable<UserData> IUserDao.GetMany(IEnumerable<string> userNames)
         {
             if (userNames == null)
             {
                 throw new ArgumentNullException("userNames");
             }
+
             if (userNames.Count() == 0)
             {
                 throw new ArgumentOutOfRangeException("userNames");
             }
 
-            var format = base.Resource.GetString("GetMany_userNames.sql");
-            var wrappedUserNames = userNames.Select(s => string.Format("'{0}'", s)); //給每個值的前後加上單引號。
+            var format = this.Resource.GetString("GetMany_userNames.sql");
+            var wrappedUserNames = userNames.Select(s => string.Format("'{0}'", s)); // 給每個值的前後加上單引號。
             var sql = string.Format(format, string.Join(",", wrappedUserNames));
 
-            return base.ExecuteCommand(dbCommand =>
+            return this.ExecuteCommand(dbCommand =>
             {
                 dbCommand.CommandType = CommandType.Text;
                 dbCommand.CommandText = sql;
@@ -63,6 +86,13 @@ namespace ErpApi.Data.Common
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 將資料轉換成 UserData 個體。
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <returns>
+        /// UserData 個體。
+        /// </returns>
         private UserData Converter(IDataReader reader)
         {
             return new UserData

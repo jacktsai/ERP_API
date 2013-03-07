@@ -121,16 +121,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiControllers\AuthorizationController.cs" />
+    <Compile Include="ApiControllers\SubCategoryController.cs" />
+    <Compile Include="Entities\GetSubCategoryContactsRequest.cs" />
+    <Compile Include="Entities\GetSubCategoryContactsResponse.cs" />
     <Compile Include="Entities\GetUserAuthorityRequest.cs" />
     <Compile Include="Entities\GetUserAuthorityResponse.cs" />
     <Compile Include="Entities\GetUserProfileRequest.cs" />
     <Compile Include="Entities\GetUserProfileResponse.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ApiControllers\UserController.cs" />
+    <Compile Include="Entities\SubCategoryContact.cs" />
     <Compile Include="Filters\ModelStateActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -139,7 +138,6 @@
     <Compile Include="Services\IServiceAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -148,8 +146,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

@@ -11,21 +11,15 @@ namespace ErpApi.Services
     internal interface IServiceAdapter
     {
         /// <summary>
-        /// 取得 <see cref="IUserService"/> 執行個體。
+        /// 取得 <see cref="IUserService" /> 執行個體。
         /// </summary>
-        /// <returns></returns>
+        /// <returns><see cref="IUserService" /> 執行個體。</returns>
         IUserService GetUserService();
 
         /// <summary>
-        /// 取得 <see cref="IAuthorizationService"/> 執行個體。
+        /// 取得 <see cref="ISubCategoryService" /> 執行個體。
         /// </summary>
-        /// <returns></returns>
-        IAuthorizationService GetAuthorizationService();
-
-        /// <summary>
-        /// 取得 <see cref="ISubCategoryService"/> 執行個體。
-        /// </summary>
-        /// <returns></returns>
+        /// <returns><see cref="ISubCategoryService" /> 執行個體。</returns>
         ISubCategoryService GetSubCategoryService();
     }
 }

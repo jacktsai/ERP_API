@@ -4,18 +4,18 @@ using System.Runtime.Serialization;
 namespace ErpApi.Entities
 {
     /// <summary>
-    /// GetUserProfile request format.
+    /// GetSubCategoryContacts request format.
     /// </summary>
     [DataContract]
-    public class GetUserProfileRequest
+    public class GetSubCategoryContactsRequest
     {
         /// <summary>
-        /// Gets or sets the backyard id.
+        /// Gets or sets the sub category ids.
         /// </summary>
         /// <value>
-        /// The backyard id.
+        /// The sub category ids.
         /// </value>
         [DataMember(IsRequired = true), Required]
-        public string BackyardId { get; set; }
+        public int[] SubCategoryIds { get; set; }
     }
 }

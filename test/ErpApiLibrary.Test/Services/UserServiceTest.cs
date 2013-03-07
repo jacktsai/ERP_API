@@ -11,18 +11,12 @@ namespace ErpApi.Services
     [TestClass]
     public class UserServiceTest
     {
-        private IDaoFactory factory;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            this.factory = new CommonDaoFactory();
-        }
+        private readonly IDaoFactory _factory = new CommonDaoFactory();
 
         [TestMethod]
         public void GetProfile_backyardId_jacktsai()
         {
-            IUserService target = new UserService(this.factory);
+            IUserService target = new UserService(this._factory);
             var actual = target.GetProfile("jacktsai");
 
             Assert.IsNotNull(actual);
@@ -44,7 +38,7 @@ namespace ErpApi.Services
         [TestMethod]
         public void GetProfile_backyardId_kevin113()
         {
-            IUserService target = new UserService(this.factory);
+            IUserService target = new UserService(this._factory);
             var actual = target.GetProfile("kevin113");
 
             Assert.IsNotNull(actual);
@@ -59,6 +53,34 @@ namespace ErpApi.Services
             Assert.AreEqual("kevin113", actual.User.BackyardId);
             Assert.IsNotNull(actual.SubCatIds);
             Assert.AreEqual(0, actual.SubCatIds.Count());
+        }
+
+        [TestMethod]
+        public void GetAuthority_backyardId_jacktsai_url_testaspx()
+        {
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority("jacktsai", "/test.aspx");
+
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.CanSelect);
+            Assert.IsTrue(actual.CanInsert);
+            Assert.IsTrue(actual.CanUpdate);
+            Assert.IsTrue(actual.CanDelete);
+            Assert.IsTrue(actual.CanParticular);
+        }
+
+        [TestMethod]
+        public void GetAuthority_backyardId_jacktsai_url_usermgmtaspx()
+        {
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority("jacktsai", "/Security/Privilege/UserMgmt.aspx");
+
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.CanSelect);
+            Assert.IsTrue(actual.CanInsert);
+            Assert.IsTrue(actual.CanUpdate);
+            Assert.IsTrue(actual.CanDelete);
+            Assert.IsTrue(actual.CanParticular);
         }
     }
 }

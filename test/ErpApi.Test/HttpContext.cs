@@ -15,12 +15,12 @@ namespace ErpApi.Test
     {
         private readonly string _baseAddress = "http://localhost:8888";
 
+        private readonly JObject _requestContent;
+
         public HttpContext()
         {
-            RequestContent = new JObject();
+            _requestContent = new JObject();
         }
-
-        public JObject RequestContent { get; private set; }
 
         public bool IsSuccess { get; private set; }
 
@@ -29,6 +29,16 @@ namespace ErpApi.Test
         public JObject ResponseContent { get; private set; }
 
         public string ErrorMessage { get; private set; }
+
+        /// <summary>
+        /// 設定 request content 中欄位 property name 的值。
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <param name="content">The value.</param>
+        public void SetRequestValue(string propertyName, object content)
+        {
+            this._requestContent.Add(new JProperty(propertyName, content));
+        }
 
         public void Send(HttpMethod method, string uri)
         {
@@ -43,9 +53,9 @@ namespace ErpApi.Test
 
                 var request = new HttpRequestMessage(method, uri);
 
-                if (RequestContent != null)
+                if (_requestContent != null)
                 {
-                    request.Content = new ObjectContent(RequestContent.GetType(), RequestContent, new JsonMediaTypeFormatter());
+                    request.Content = new ObjectContent(_requestContent.GetType(), _requestContent, new JsonMediaTypeFormatter());
                 }
 
                 var response = httpClient.SendAsync(request).Result;

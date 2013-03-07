@@ -1,30 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Runtime.Serialization;
-using System.ComponentModel.DataAnnotations;
-using ErpApi.Data;
-using ErpApi.Data.Common;
-using ErpApi.Services;
+﻿using System.Web.Http;
 using ErpApi.Entities;
+using ErpApi.Services;
 
 namespace ErpApi.ApiControllers
 {
     /// <summary>
-    /// 使用者。
+    /// 使用者相關服務。
     /// </summary>
     public class UserController : ApiController
     {
+        /// <summary>
+        /// The _adapter
+        /// </summary>
         private readonly IServiceAdapter _adapter;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserController" /> class.
+        /// </summary>
         public UserController()
         {
             this._adapter = new ServiceAdapter();
         }
 
+        /// <summary>
+        /// Gets the profile.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response.</returns>
         [HttpPost]
         public GetUserProfileResponse GetProfile([FromBody]GetUserProfileRequest request)
         {
@@ -43,9 +45,33 @@ namespace ErpApi.ApiControllers
                 response.ExtNumber = profile.User.ExtNumber;
                 response.BackyardID = profile.User.BackyardId;
                 response.SubCatIds = string.Join(",", profile.SubCatIds);
-            };
+            }
 
             return response;
+        }
+
+        /// <summary>
+        /// Gets the authority.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response.</returns>
+        [HttpPost]
+        public GetUserAuthorityResponse GetAuthority([FromBody]GetUserAuthorityRequest request)
+        {
+            var service = this._adapter.GetUserService();
+            var authority = service.GetAuthority(request.BackyardId, request.Url);
+
+            return new GetUserAuthorityResponse
+            {
+                BackyardId = request.BackyardId,
+                Url = request.Url,
+                CanAccess = authority.CanAccess,
+                CanSelect = authority.CanSelect,
+                CanInsert = authority.CanInsert,
+                CanUpdate = authority.CanUpdate,
+                CanDelete = authority.CanDelete,
+                CanParticular = authority.CanParticular,
+            };
         }
     }
 }

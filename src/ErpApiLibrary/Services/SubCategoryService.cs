@@ -6,10 +6,21 @@ using ErpApi.Data;
 
 namespace ErpApi.Services
 {
+    /// <summary>
+    /// 介面 <see cref="ISubCategoryService"/> 的實作。
+    /// </summary>
     public class SubCategoryService : ISubCategoryService
     {
+        /// <summary>
+        /// <see cref="ErpApi.Data.IDaoFactory"/> 的執行個體。
+        /// </summary>
         private readonly IDaoFactory _factory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubCategoryService" /> class.
+        /// </summary>
+        /// <param name="factory"><see cref="ErpApi.Data.IDaoFactory"/> 的執行個體。</param>
+        /// <exception cref="System.ArgumentNullException">factory</exception>
         public SubCategoryService(IDaoFactory factory)
         {
             if (factory == null)
@@ -20,6 +31,13 @@ namespace ErpApi.Services
             this._factory = factory;
         }
 
+        /// <summary>
+        /// 取得子站維護人員資訊。
+        /// </summary>
+        /// <param name="subCategoryIds">多筆子站代碼。</param>
+        /// <returns>
+        /// 多筆子站維護人員資訊。
+        /// </returns>
         IEnumerable<SubCategoryUser> ISubCategoryService.GetSubCategoryUsers(IEnumerable<int> subCategoryIds)
         {
             var subCatDao = this._factory.GetSubCategoryDao();
@@ -30,10 +48,10 @@ namespace ErpApi.Services
                 return new SubCategoryUser[0];
             }
 
-            //將各個 SubCategoryData 的所有使用者名稱濃縮成單一序列。
+            // 將各個 SubCategoryData 的所有使用者名稱濃縮成單一序列。
             var userNames = subCatDatas
                                 .SelectMany(o => new string[] { o.PmName, o.ManagerName, o.PurchaserName, o.StaffName })
-                                .Where(s => !string.IsNullOrEmpty(s)); //去掉 null 或空白的名稱。
+                                .Where(s => !string.IsNullOrEmpty(s)); // 去掉 null 或空白的名稱。
 
             var userDao = this._factory.GetUserDao();
             var userDatas = userDao.GetMany(userNames);
@@ -47,11 +65,17 @@ namespace ErpApi.Services
             }
 
             var users = userDatas.Select(o => new User(o));
-            var userMap = users.ToDictionary(o => o.Name); //將使用者資料轉成 Dictionary 介面方便快速搜尋。
+            var userMap = users.ToDictionary(o => o.Name); // 將使用者資料轉成 Dictionary 介面方便快速搜尋。
 
-            return subCatDatas.Select(o => CreateSubCategoryUser(o, userMap));
+            return subCatDatas.Select(o => this.CreateSubCategoryUser(o, userMap));
         }
 
+        /// <summary>
+        /// 建立 SubCategoryUser 個體。
+        /// </summary>
+        /// <param name="data">SubCategoryData 個體。</param>
+        /// <param name="userMap">UserData 快查表。</param>
+        /// <returns>SubCategoryUser 個體。</returns>
         private SubCategoryUser CreateSubCategoryUser(SubCategoryData data, Dictionary<string, User> userMap)
         {
             var subCategoryUser = new SubCategoryUser
