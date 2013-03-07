@@ -84,7 +84,8 @@ namespace ErpApi.Test
                         }
                         else
                         {
-                            Trace.WriteLine(response.Content.ReadAsStringAsync().Result);
+                            var msg = response.Content.ReadAsStringAsync().Result;
+                            Assert.IsTrue(false, msg);
                         }
                     }
                     else
