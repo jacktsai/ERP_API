@@ -122,10 +122,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\AuthorizationController.cs" />
-    <Compile Include="Entities\GetAuthorityRequest.cs" />
-    <Compile Include="Entities\GetAuthorityResponse.cs" />
-    <Compile Include="Entities\GetProfileRequest.cs" />
-    <Compile Include="Entities\GetProfileResponse.cs" />
+    <Compile Include="Entities\GetUserAuthorityRequest.cs" />
+    <Compile Include="Entities\GetUserAuthorityResponse.cs" />
+    <Compile Include="Entities\GetUserProfileRequest.cs" />
+    <Compile Include="Entities\GetUserProfileResponse.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

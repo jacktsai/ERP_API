@@ -23,9 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AA54BD
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApiLibrary.IntegrationTest", "test\ErpApiLibrary.IntegrationTest\ErpApiLibrary.IntegrationTest.csproj", "{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApiLibrary.Test", "test\ErpApiLibrary.Test\ErpApiLibrary.Test.csproj", "{E2EFB065-6F5A-4DB3-957D-99D526C2D2F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApi.AcceptanceTest", "test\ErpApi.AcceptanceTest\ErpApi.AcceptanceTest.csproj", "{5810422C-47DA-4643-9C07-E15DA5886316}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApi.Test", "test\ErpApi.Test\ErpApi.Test.csproj", "{5810422C-47DA-4643-9C07-E15DA5886316}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpApi", "src\ErpApi\ErpApi.csproj", "{1DE95254-58FC-4C55-A5A5-02ED44F038C5}"
 EndProject

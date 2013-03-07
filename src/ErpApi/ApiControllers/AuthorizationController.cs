@@ -23,12 +23,12 @@ namespace ErpApi.ApiControllers
         }
 
         [HttpPost]
-        public GetAuthorityResponse GetAuthority([FromBody]GetAuthorityRequest request)
+        public GetUserAuthorityResponse GetAuthority([FromBody]GetUserAuthorityRequest request)
         {
             IAuthorizationService service = this._adapter.GetAuthorizationService();
             var authority = service.GetAuthority(request.BackyardId, request.Url);
 
-            return new GetAuthorityResponse
+            return new GetUserAuthorityResponse
             {
                 BackyardId = request.BackyardId,
                 Url = request.Url,

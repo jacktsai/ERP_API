@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace ErpApi.Entities
 {
     [DataContract]
-    public class GetAuthorityResponse
+    public class GetUserAuthorityResponse
     {
         [DataMember]
         public string BackyardId { get; set; }

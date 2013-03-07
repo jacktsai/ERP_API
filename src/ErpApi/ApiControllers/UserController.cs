@@ -26,12 +26,12 @@ namespace ErpApi.ApiControllers
         }
 
         [HttpPost]
-        public GetProfileResponse GetProfile([FromBody]GetProfileRequest request)
+        public GetUserProfileResponse GetProfile([FromBody]GetUserProfileRequest request)
         {
             var service = this._adapter.GetUserService();
             var profile = service.GetProfile(request.BackyardId);
 
-            var response = new GetProfileResponse();
+            var response = new GetUserProfileResponse();
             if (profile != null)
             {
                 response.Id = profile.User.Id;

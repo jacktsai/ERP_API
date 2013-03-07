@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace ErpApi.Entities
 {
     [DataContract]
-    public class GetProfileResponse
+    public class GetUserProfileResponse
     {
         [DataMember]
         public int Id { get; set; }

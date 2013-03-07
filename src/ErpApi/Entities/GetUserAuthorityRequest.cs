@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace ErpApi.Entities
 {
     [DataContract]
-    public class GetAuthorityRequest
+    public class GetUserAuthorityRequest
     {
         [DataMember(IsRequired = true), Required]
         public string BackyardId { get; set; }
