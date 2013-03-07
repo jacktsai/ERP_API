@@ -14,19 +14,19 @@ namespace ErpApi.Data.Common
         {
         }
 
-        Task<IEnumerable<AuthorityData>> IAuthorityDao.GetManyAsync(int userId, string url)
+        IEnumerable<AuthorityData> IAuthorityDao.GetMany(string backyardId, string url)
         {
             if (url == null)
             {
                 throw new ArgumentNullException("url");
             }
 
-            return base.CreateTask(dbCommand =>
+            return base.ExecuteCommand(dbCommand =>
             {
                 dbCommand.CommandType = CommandType.Text;
-                dbCommand.CommandText = base.Resource.GetString("GetManyAsync_userId_url.sql");
+                dbCommand.CommandText = base.Resource.GetString("GetMany_backyardId_url.sql");
 
-                dbCommand.AddParameterWithValue("@user_id", userId);
+                dbCommand.AddParameterWithValue("@backyardId", backyardId);
                 dbCommand.AddParameterWithValue("@url", url);
 
                 using (var reader = dbCommand.ExecuteReader())
@@ -36,7 +36,7 @@ namespace ErpApi.Data.Common
             });
         }
 
-        protected virtual AuthorityData Converter(IDataReader r)
+        private AuthorityData Converter(IDataReader r)
         {
             return new AuthorityData
             {

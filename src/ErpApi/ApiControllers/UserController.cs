@@ -8,6 +8,8 @@ using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations;
 using ErpApi.Data;
 using ErpApi.Data.Common;
+using ErpApi.Services;
+using ErpApi.Entities;
 
 namespace ErpApi.ApiControllers
 {
@@ -16,123 +18,34 @@ namespace ErpApi.ApiControllers
     /// </summary>
     public class UserController : ApiController
     {
-        private IDaoFactory factory;
+        private readonly IServiceAdapter _adapter;
 
         public UserController()
         {
-            // TODO: 有多餘的時間再將 dependency 抽出
-            this.factory = new CommonDaoFactory();
-        }
-
-        #region GetProfile
-
-        [DataContract]
-        public class GetProfileRequest
-        {
-            [DataMember(IsRequired = true), Required]
-            public string BackyardId { get; set; }
-        }
-
-        public class GetProfileResponse
-        {
-            public int Id;
-            public string Name;
-            public string FullName;
-            public string Department;
-            public int Degree;
-            public string Homepage;
-            public string ExtNumber;
-            public string BackyardID;
-            public string SubCatIds;
+            this._adapter = new ServiceAdapter();
         }
 
         [HttpPost]
         public GetProfileResponse GetProfile([FromBody]GetProfileRequest request)
         {
-            IUser user = new DefaultUser(this.factory, backyardId: request.BackyardId);
+            var service = this._adapter.GetUserService();
+            var profile = service.GetProfile(request.BackyardId);
 
-            return new GetProfileResponse
+            var response = new GetProfileResponse();
+            if (profile != null)
             {
-                Id = user.Id,
-                Name = user.Name,
-                FullName = user.FullName,
-                Department = user.Department,
-                Degree = user.Degree,
-                Homepage = user.Homepage,
-                ExtNumber = user.ExtNumber,
-                BackyardID = user.BackyardId,
-                SubCatIds = string.Join(",", user.SubCategories.Select(o => o.Id)),
+                response.Id = profile.User.Id;
+                response.Name = profile.User.Name;
+                response.FullName = profile.User.FullName;
+                response.Department = profile.User.Department;
+                response.Degree = profile.User.Degree;
+                response.Homepage = profile.User.Homepage;
+                response.ExtNumber = profile.User.ExtNumber;
+                response.BackyardID = profile.User.BackyardId;
+                response.SubCatIds = string.Join(",", profile.SubCatIds);
             };
-        }
-
-        #endregion
-
-        #region GetAuthority
-
-        [DataContract]
-        public class GetAuthorityRequest
-        {
-            [DataMember(IsRequired = true), Required]
-            public string BackyardId { get; set; }
-
-            [DataMember]
-            public int? UserId { get; set; }
-
-            [DataMember(IsRequired = true), Required]
-            public string Url { get; set; }
-        }
-
-        public class GetAuthorityResponse
-        {
-            public string BackyardId;
-            public string Url;
-            public bool CanAccess;
-            public bool CanSelect;
-            public bool CanInsert;
-            public bool CanUpdate;
-            public bool CanDelete;
-            public bool CanParticular;
-        }
-
-        [HttpPost]
-        public GetAuthorityResponse GetAuthority([FromBody]GetAuthorityRequest request)
-        {
-            IUser user;
-            if (request.UserId == null)
-            {
-                user = new DefaultUser(this.factory, backyardId: request.BackyardId);
-            }
-            else
-            {
-                user = new DefaultUser(this.factory, id: request.UserId.Value);
-            }
-
-            var privilege = user.Privileges.Find(request.Url);
-
-            var response = new GetAuthorityResponse
-            {
-                BackyardId = request.BackyardId,
-                Url = request.Url,
-            };
-
-            if (privilege != null)
-            {
-                response.CanAccess = true;
-            }
-
-            if (privilege.Authority != null)
-            {
-                var authority = privilege.Authority;
-                response.CanSelect = authority.CanSelect;
-                response.CanInsert = authority.CanInsert;
-                response.CanUpdate = authority.CanUpdate;
-                response.CanDelete = authority.CanDelete;
-                response.CanParticular = authority.CanParticular;
-            }
 
             return response;
         }
-
-        #endregion
     }
 }

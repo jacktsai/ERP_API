@@ -98,7 +98,7 @@ namespace ErpApi
             var source = new TaskCompletionSource<UserData>();
             source.SetResult(sample);
             userDao
-                .Stub(o => o.GetOneAsync(id: 2733))
+                .Stub(o => o.GetOne(id: 2733))
                 .Return(source.Task);
 
             var target = new DefaultUser(this.factory, id: 2733);
@@ -112,7 +112,7 @@ namespace ErpApi
             var source = new TaskCompletionSource<UserData>();
             source.SetResult(sample);
             userDao
-                .Stub(o => o.GetOneAsync(name: "jack"))
+                .Stub(o => o.GetOne(name: "jack"))
                 .Return(source.Task);
 
             var target = new DefaultUser(this.factory, name: "jack");
@@ -126,7 +126,7 @@ namespace ErpApi
             var source = new TaskCompletionSource<UserData>();
             source.SetResult(sample);
             userDao
-                .Stub(o => o.GetOneAsync(backyardId: "jacktsai"))
+                .Stub(o => o.GetOne(backyardId: "jacktsai"))
                 .Return(source.Task);
 
             var target = new DefaultUser(this.factory, backyardId: "jacktsai");
@@ -141,7 +141,7 @@ namespace ErpApi
             var source = new TaskCompletionSource<UserData>();
             source.SetResult(null);
             userDao
-                .Stub(o => o.GetOneAsync(Arg<int>.Is.Anything, Arg<string>.Is.Anything, Arg<string>.Is.Anything))
+                .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything, Arg<string>.Is.Anything))
                 .Return(source.Task);
 
             var target = new DefaultUser(this.factory, Arg<int>.Is.Anything, Arg<string>.Is.Anything, Arg<string>.Is.Anything);

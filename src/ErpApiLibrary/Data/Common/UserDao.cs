@@ -14,20 +14,18 @@ namespace ErpApi.Data.Common
         {
         }
 
-        Task<UserData> IUserDao.GetOneAsync(int? id, string name, string backyardId)
+        UserData IUserDao.GetOne(string backyardId)
         {
-            if (id == null && name == null && backyardId == null)
+            if (backyardId == null)
             {
-                throw new InvalidOperationException("At least one parameter value is required!");
+                throw new ArgumentNullException("backyardId");
             }
 
-            return base.CreateTask(dbCommand =>
+            return base.ExecuteCommand(dbCommand =>
             {
                 dbCommand.CommandType = CommandType.Text;
-                dbCommand.CommandText = base.Resource.GetString("GetOneAsync_id_name_backyardId.sql");
+                dbCommand.CommandText = base.Resource.GetString("GetOne_backyardId.sql");
 
-                dbCommand.AddParameterWithValue("@id", id);
-                dbCommand.AddParameterWithValue("@name", name);
                 dbCommand.AddParameterWithValue("@backyardId", backyardId);
 
                 using (var reader = dbCommand.ExecuteReader())
@@ -37,7 +35,35 @@ namespace ErpApi.Data.Common
             });
         }
 
-        protected virtual UserData Converter(IDataReader reader)
+        IEnumerable<UserData> IUserDao.GetMany(IEnumerable<string> userNames)
+        {
+            if (userNames == null)
+            {
+                throw new ArgumentNullException("userNames");
+            }
+            if (userNames.Count() == 0)
+            {
+                throw new ArgumentOutOfRangeException("userNames");
+            }
+
+            var format = base.Resource.GetString("GetMany_userNames.sql");
+            var wrappedUserNames = userNames.Select(s => string.Format("'{0}'", s)); //給每個值的前後加上單引號。
+            var sql = string.Format(format, string.Join(",", wrappedUserNames));
+
+            return base.ExecuteCommand(dbCommand =>
+            {
+                dbCommand.CommandType = CommandType.Text;
+                dbCommand.CommandText = sql;
+
+                using (var reader = dbCommand.ExecuteReader())
+                {
+                    return reader.ToObjects(Converter);
+                }
+            });
+            throw new NotImplementedException();
+        }
+
+        private UserData Converter(IDataReader reader)
         {
             return new UserData
             {

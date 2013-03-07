@@ -16,32 +16,22 @@ namespace ErpApi.Data
         public int Id { get; set; }
 
         /// <summary>
-        /// 子站名稱。
+        /// PM 姓名。
         /// </summary>
-        public string Name { get; set; }
+        public string PmName { get; set; }
 
         /// <summary>
-        /// 區編號。
-        /// </summary>
-        public short ZoneId { get; set; }
-
-        /// <summary>
-        /// PM 名稱。
-        /// </summary>
-        public string UserName { get; set; }
-
-        /// <summary>
-        /// PM 主管名稱。
+        /// PM 主管姓名。
         /// </summary>
         public string ManagerName { get; set; }
 
         /// <summary>
-        /// 採購人員名稱。
+        /// 採購人員姓名。
         /// </summary>
         public string PurchaserName { get; set; }
 
         /// <summary>
-        /// 採購主管名稱。
+        /// 採購主管姓名。
         /// </summary>
         public string StaffName { get; set; }
     }

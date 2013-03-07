@@ -14,9 +14,9 @@ namespace ErpApi.Data
         /// <summary>
         /// 取得多筆。
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="url"></param>
+        /// <param name="backyardId">The backyard ID。</param>
+        /// <param name="url">The URL。</param>
         /// <returns></returns>
-        Task<IEnumerable<AuthorityData>> GetManyAsync(int userId, string url);
+        IEnumerable<AuthorityData> GetMany(string backyardId, string url);
     }
 }

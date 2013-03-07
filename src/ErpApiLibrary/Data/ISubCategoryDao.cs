@@ -16,13 +16,13 @@ namespace ErpApi.Data
         /// </summary>
         /// <param name="userId">user ID。</param>
         /// <returns></returns>
-        Task<IEnumerable<SubCategoryData>> GetManyAsync(int userId);
+        IEnumerable<SubCategoryData> GetMany(int userId);
 
         /// <summary>
         /// 以子站代碼搜尋子站資料。
         /// </summary>
-        /// <param name="id">子站代碼。</param>
+        /// <param name="ids">多重子站代碼。</param>
         /// <returns></returns>
-        Task<SubCategoryData> GetOneAsync(int id);
+        IEnumerable<SubCategoryData> GetMany(IEnumerable<int> ids);
     }
 }

@@ -6,61 +6,43 @@ using ErpApi.Data;
 
 namespace ErpApi.Data.Common
 {
+    /// <summary>
+    /// 介面 <see cref="IDaoFactory"/> 的實作類別。
+    /// 此類別提供以 System.Data.Common 為基礎的資料存取架構。
+    /// </summary>
     public class CommonDaoFactory : IDaoFactory
     {
-        IUserDao userDao;
+        private IUserDao _userDao;
 
         IUserDao IDaoFactory.GetUserDao()
         {
-            if (userDao == null)
+            if (this._userDao == null)
             {
-                userDao = new ErpApi.Data.Common.UserDao();
+                this._userDao = new UserDao();
             }
-            return userDao;
+            return this._userDao;
         }
 
-        IRoleDao roleDao;
-
-        IRoleDao IDaoFactory.GetRoleDao()
-        {
-            if (roleDao == null)
-            {
-                roleDao = new ErpApi.Data.Common.RoleDao();
-            }
-            return roleDao;
-        }
-
-        IPrivilegeDao privilegeDao;
-
-        IPrivilegeDao IDaoFactory.GetPrivilegeDao()
-        {
-            if (privilegeDao == null)
-            {
-                privilegeDao = new ErpApi.Data.Common.PrivilegeDao();
-            }
-            return privilegeDao;
-        }
-
-        IAuthorityDao authorityDao;
+        private IAuthorityDao _authorityDao;
 
         IAuthorityDao IDaoFactory.GetAuthorityDao()
         {
-            if (authorityDao == null)
+            if (this._authorityDao == null)
             {
-                authorityDao = new ErpApi.Data.Common.AuthorityDao();
+                this._authorityDao = new AuthorityDao();
             }
-            return authorityDao;
+            return this._authorityDao;
         }
 
-        ISubCategoryDao subCategoryDao;
+        private ISubCategoryDao _subCategoryDao;
 
         ISubCategoryDao IDaoFactory.GetSubCategoryDao()
         {
-            if (subCategoryDao == null)
+            if (this._subCategoryDao == null)
             {
-                subCategoryDao = new ErpApi.Data.Common.SubCategoryDao();
+                this._subCategoryDao = new SubCategoryDao();
             }
-            return subCategoryDao;
+            return this._subCategoryDao;
         }
     }
 }

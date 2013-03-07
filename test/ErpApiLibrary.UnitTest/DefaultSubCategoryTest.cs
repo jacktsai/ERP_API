@@ -58,7 +58,7 @@ namespace ErpApi
             var userSource = new TaskCompletionSource<UserData>();
             userSource.SetResult(userData);
             userDao
-                .Stub(o => o.GetOneAsync(name: "user"))
+                .Stub(o => o.GetOne(name: "user"))
                 .Return(userSource.Task);
 
             ISubCategory target = new DefaultSubCategory(this.factory, 1);
@@ -87,7 +87,7 @@ namespace ErpApi
             var userSource = new TaskCompletionSource<UserData>();
             userSource.SetResult(userData);
             userDao
-                .Stub(o => o.GetOneAsync(name: "manager"))
+                .Stub(o => o.GetOne(name: "manager"))
                 .Return(userSource.Task);
 
             ISubCategory target = new DefaultSubCategory(this.factory, 1);
@@ -116,7 +116,7 @@ namespace ErpApi
             var userSource = new TaskCompletionSource<UserData>();
             userSource.SetResult(userData);
             userDao
-                .Stub(o => o.GetOneAsync(name: "purchaser"))
+                .Stub(o => o.GetOne(name: "purchaser"))
                 .Return(userSource.Task);
 
             ISubCategory target = new DefaultSubCategory(this.factory, 1);
@@ -145,7 +145,7 @@ namespace ErpApi
             var userSource = new TaskCompletionSource<UserData>();
             userSource.SetResult(userData);
             userDao
-                .Stub(o => o.GetOneAsync(name: "staff"))
+                .Stub(o => o.GetOne(name: "staff"))
                 .Return(userSource.Task);
 
             ISubCategory target = new DefaultSubCategory(this.factory, 1);

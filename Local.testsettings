@@ -25,7 +25,7 @@
           <Configuration>
             <CodeCoverage xmlns="">
               <Regular>
-                <CodeCoverageItem binaryFile="src\YahooLibrary\bin\Debug\YahooLibrary.dll" pdbFile="src\YahooLibrary\bin\Debug\YahooLibrary.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="src\ErpApiLibrary\bin\Debug\ErpApiLibrary.dll" pdbFile="src\ErpApiLibrary\bin\Debug\ErpApiLibrary.pdb" instrumentInPlace="true" />
               </Regular>
             </CodeCoverage>
           </Configuration>

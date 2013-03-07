@@ -121,16 +121,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\AuthorizationController.cs" />
+    <Compile Include="Entities\GetAuthorityRequest.cs" />
+    <Compile Include="Entities\GetAuthorityResponse.cs" />
+    <Compile Include="Entities\GetProfileRequest.cs" />
+    <Compile Include="Entities\GetProfileResponse.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="ApiControllers\SubCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ApiControllers\UserController.cs" />
     <Compile Include="Filters\ModelStateActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Services\ServiceAdapter.cs" />
+    <Compile Include="Services\IServiceAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

@@ -14,57 +14,56 @@ namespace ErpApi.Data.Common
         {
         }
 
-        Task<IEnumerable<SubCategoryData>> ISubCategoryDao.GetManyAsync(int userId)
+        IEnumerable<SubCategoryData> ISubCategoryDao.GetMany(int userId)
         {
-            return base.CreateTask(dbCommand =>
+            return base.ExecuteCommand(dbCommand =>
             {
                 dbCommand.CommandType = CommandType.Text;
-                dbCommand.CommandText = base.Resource.GetString("GetManyAsync_userId.sql");
+                dbCommand.CommandText = base.Resource.GetString("GetMany_userId.sql");
 
                 dbCommand.AddParameterWithValue("@userId", userId);
 
                 using (var reader = dbCommand.ExecuteReader())
                 {
-                    return reader.ToObjects(Converter);
+                    return reader.ToObjects(r => new SubCategoryData
+                    {
+                        Id = r.GetInt32(0),
+                    });
                 }
             });
         }
 
-        Task<SubCategoryData> ISubCategoryDao.GetOneAsync(int id)
+        IEnumerable<SubCategoryData> ISubCategoryDao.GetMany(IEnumerable<int> ids)
         {
-            return base.CreateTask(dbCommand =>
+            if (ids == null)
+            {
+                throw new ArgumentNullException("ids");
+            }
+            if (ids.Count() == 0)
+            {
+                throw new ArgumentOutOfRangeException("ids");
+            }
+
+            var format = base.Resource.GetString("GetMany_ids.sql");
+            var sql = string.Format(format, string.Join(",", ids));
+
+            return base.ExecuteCommand(dbCommand =>
             {
                 dbCommand.CommandType = CommandType.Text;
-                dbCommand.CommandText = base.Resource.GetString("GetOneAsync_id.sql");
-
-                #region Parameters
-
-                var idParameter = dbCommand.CreateParameter();
-                idParameter.ParameterName = "@id";
-                idParameter.Value = id;
-                dbCommand.Parameters.Add(idParameter);
-
-                #endregion
+                dbCommand.CommandText = sql;
 
                 using (var reader = dbCommand.ExecuteReader())
                 {
-                    return reader.ToObject(Converter);
+                    return reader.ToObjects(r => new SubCategoryData
+                    {
+                        Id = r.GetInt32(0),
+                        PmName = r.GetValue<string>(1),
+                        ManagerName = r.GetValue<string>(2),
+                        PurchaserName = r.GetValue<string>(3),
+                        StaffName = r.GetValue<string>(4),
+                    });
                 }
             });
-        }
-
-        protected virtual SubCategoryData Converter(IDataReader r)
-        {
-            return new SubCategoryData
-            {
-                Id = r.GetInt32(0),
-                Name = r.GetValue<string>(1),
-                ZoneId = r.GetInt16(2),
-                UserName = r.GetValue<string>(3),
-                ManagerName = r.GetValue<string>(4),
-                PurchaserName = r.GetValue<string>(5),
-                StaffName = r.GetValue<string>(6)
-            };
         }
     }
 }

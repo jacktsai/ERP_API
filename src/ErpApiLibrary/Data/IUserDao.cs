@@ -14,10 +14,15 @@ namespace ErpApi.Data
         /// <summary>
         /// 取得乙筆使用者資料。
         /// </summary>
-        /// <param name="id">User ID。</param>
-        /// <param name="name">User Name。</param>
         /// <param name="backyardId">Backyard ID。</param>
         /// <returns></returns>
-        Task<UserData> GetOneAsync(int? id = null, string name = null, string backyardId = null);
+        UserData GetOne(string backyardId);
+
+        /// <summary>
+        /// 取得多筆使用者資料。
+        /// </summary>
+        /// <param name="userNames"></param>
+        /// <returns></returns>
+        IEnumerable<UserData> GetMany(IEnumerable<string> userNames);
     }
 }

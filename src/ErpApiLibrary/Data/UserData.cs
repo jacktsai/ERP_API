@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ErpApi.Data
 {
+    /// <summary>
+    /// 操作者資料。
+    /// </summary>
     public class UserData
     {
         /// <summary>

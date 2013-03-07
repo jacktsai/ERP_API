@@ -50,12 +50,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Common\PrivilegeDaoTest.cs" />
-    <Compile Include="DefaultPrivilegeCollectionTest.cs" />
-    <Compile Include="DefaultRoleCollectionTest.cs" />
-    <Compile Include="DefaultSubCategoryCollectionTest.cs" />
-    <Compile Include="DefaultSubCategoryTest.cs" />
-    <Compile Include="DefaultUserTest.cs" />
+    <Compile Include="Services\AuthorizationServiceTest.cs" />
+    <Compile Include="Services\SubCategoryServiceTest.cs" />
+    <Compile Include="Services\UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\ErpApiLibrary\ErpApiLibrary.csproj">
@@ -68,6 +65,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\Common\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

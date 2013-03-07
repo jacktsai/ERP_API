@@ -40,7 +40,7 @@ namespace ErpApi.AcceptanceTest.User
         [When(@"取得操作者資訊")]
         public void When取得操作者資訊()
         {
-            this.context.Send(HttpMethod.Post, "api/user/GetProfile");
+            this.context.Send(HttpMethod.Post, "api/User/GetProfile");
         }
 
         [Then(@"回傳成功狀態")]

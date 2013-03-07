@@ -11,9 +11,9 @@ namespace ErpApi.Data.Common
 {
     public abstract class CommonDao
     {
-        readonly ConnectionStringSettings settings;
-        readonly DbProviderFactory factory;
-        readonly Resource resource;
+        private readonly ConnectionStringSettings _settings;
+        private readonly DbProviderFactory _factory;
+        private readonly Resource _resource;
 
         protected CommonDao(string connectionStringName)
         {
@@ -28,21 +28,21 @@ namespace ErpApi.Data.Common
                 throw new MissingConnectionStringSettingsException(connectionStringName);
             }
 
-            this.settings = settings;
-            this.factory = DbProviderFactories.GetFactory(settings.ProviderName);
-            this.resource = new Resource(this);
+            this._settings = settings;
+            this._factory = DbProviderFactories.GetFactory(settings.ProviderName);
+            this._resource = new Resource(this);
         }
 
-        public ConnectionStringSettings Settings { get { return this.settings; } }
+        public ConnectionStringSettings Settings { get { return this._settings; } }
 
-        public DbProviderFactory Factory { get { return this.factory; } }
+        public DbProviderFactory Factory { get { return this._factory; } }
 
-        public Resource Resource { get { return this.resource; } }
+        public Resource Resource { get { return this._resource; } }
 
         protected DbConnection CreateConnection()
         {
-            var connection = this.factory.CreateConnection();
-            connection.ConnectionString = this.settings.ConnectionString;
+            var connection = this._factory.CreateConnection();
+            connection.ConnectionString = this._settings.ConnectionString;
             connection.Open();
             return connection;
         }
@@ -61,6 +61,17 @@ namespace ErpApi.Data.Common
             });
 
             return task;
+        }
+
+        protected T ExecuteCommand<T>(Func<DbCommand, T> commandProcessor)
+        {
+            using (var connection = this.CreateConnection())
+            {
+                using (var dbCommand = connection.CreateCommand())
+                {
+                    return commandProcessor(dbCommand);
+                }
+            }
         }
     }
 }
