@@ -8,29 +8,7 @@ namespace System.Data
     public static class IDataReaderExtensions
     {
         /// <summary>
-        /// Gets the nullable value.
-        /// </summary>
-        /// <typeparam name="T">值型別。</typeparam>
-        /// <param name="reader">The reader.</param>
-        /// <param name="columnIndex">Index of the column.</param>
-        /// <returns>The value.</returns>
-        public static T? GetNullableValue<T>(this IDataReader reader, int columnIndex) where T : struct
-        {
-            if (reader == null)
-            {
-                throw new ArgumentNullException("reader");
-            }
-
-            if (reader.IsDBNull(columnIndex))
-            {
-                return null;
-            }
-
-            return (T)reader.GetValue(columnIndex);
-        }
-
-        /// <summary>
-        /// Gets the value.
+        /// Gets the value or return default.
         /// </summary>
         /// <typeparam name="T">參考型別。</typeparam>
         /// <param name="reader">The reader.</param>
@@ -38,11 +16,11 @@ namespace System.Data
         /// <returns>
         /// value.
         /// </returns>
-        public static T GetValue<T>(this IDataReader reader, int columnIndex) where T : class
+        public static T GetValueOrDefault<T>(this IDataReader reader, int columnIndex)
         {
             if (reader.IsDBNull(columnIndex))
             {
-                return null;
+                return default(T);
             }
 
             return (T)reader.GetValue(columnIndex);

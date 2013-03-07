@@ -37,8 +37,8 @@ namespace ErpApi.Test
             this._context.SetRequestValue("BackyardId", backyardId);
         }
 
-        [When(@"取得操作者資訊")]
-        public void When取得操作者資訊()
+        [When(@"取得使用者資訊")]
+        public void When取得使用者資訊()
         {
             this._context.Send(HttpMethod.Post, "api/User/GetProfile");
         }
@@ -55,8 +55,8 @@ namespace ErpApi.Test
             Assert.AreEqual(expected, this._context.StatusCode);
         }
 
-        [Then(@"回傳操作者序號為 (.*)")]
-        public void Then回傳操作者序號為(int expected)
+        [Then(@"回傳使用者序號為 (.*)")]
+        public void Then回傳使用者序號為(int expected)
         {
             this._context.ResponseContent.AssertAreEqual("Id", expected);
         }
@@ -67,44 +67,44 @@ namespace ErpApi.Test
             this._context.ResponseContent.AssertAreEqual("Name", expected);
         }
 
-        [Then(@"回傳操作者中文姓名為 '(.*)'")]
-        public void Then回傳操作者中文姓名為(string expected)
+        [Then(@"回傳使用者中文姓名為 '(.*)'")]
+        public void Then回傳使用者中文姓名為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("FullName", expected);
         }
 
-        [Then(@"回傳操作者部門為 '(.*)'")]
-        public void Then回傳操作者部門為(string expected)
+        [Then(@"回傳使用者部門為 '(.*)'")]
+        public void Then回傳使用者部門為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("Department", expected);
         }
 
-        [Then(@"回傳操作者等級為 (.*)")]
-        public void Then回傳操作者等級為(int expected)
+        [Then(@"回傳使用者等級為 (.*)")]
+        public void Then回傳使用者等級為(int expected)
         {
             this._context.ResponseContent.AssertAreEqual("Degree", expected);
         }
 
-        [Then(@"回傳操作者首頁為 '(.*)'")]
-        public void Then回傳操作者首頁為(string expected)
+        [Then(@"回傳使用者首頁為 '(.*)'")]
+        public void Then回傳使用者首頁為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("Homepage", expected);
         }
 
-        [Then(@"回傳操作者分機為 '(.*)'")]
-        public void Then回傳操作者分機為(string expected)
+        [Then(@"回傳使用者分機為 '(.*)'")]
+        public void Then回傳使用者分機為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("ExtNumber", expected);
         }
 
-        [Then(@"回傳操作者BackyardID為 '(.*)'")]
-        public void Then回傳操作者BackyardID為(string expected)
+        [Then(@"回傳使用者BackyardID為 '(.*)'")]
+        public void Then回傳使用者BackyardID為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("BackyardID", expected);
         }
 
-        [Then(@"回傳操作者的子站為 '(.*)'")]
-        public void Then回傳操作者的子站為(string expected)
+        [Then(@"回傳使用者的子站為 '(.*)'")]
+        public void Then回傳使用者的子站為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("SubCatIds", expected);
         }

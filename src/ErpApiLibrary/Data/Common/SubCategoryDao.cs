@@ -78,10 +78,10 @@ namespace ErpApi.Data.Common
                     return reader.ToObjects(r => new SubCategoryData
                     {
                         Id = r.GetInt32(0),
-                        PmName = r.GetValue<string>(1),
-                        ManagerName = r.GetValue<string>(2),
-                        PurchaserName = r.GetValue<string>(3),
-                        StaffName = r.GetValue<string>(4),
+                        PmName = r.GetValueOrDefault<string>(1),
+                        ManagerName = r.GetValueOrDefault<string>(2),
+                        PurchaserName = r.GetValueOrDefault<string>(3),
+                        StaffName = r.GetValueOrDefault<string>(4),
                     });
                 }
             });

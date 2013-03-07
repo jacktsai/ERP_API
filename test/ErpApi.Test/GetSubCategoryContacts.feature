@@ -1,6 +1,6 @@
 ﻿Feature: GetSubCategoryContacts
 	In order to 顯示資料
-	As a 線上操作者
+	As a 線上使用者
 	I want to 取得聯絡人資訊
     
 Scenario: 以無子站代碼取得聯絡人資訊

@@ -12,9 +12,19 @@
         private IUserDao _userDao;
 
         /// <summary>
-        /// 授權資料存取介面。
+        /// 角色資料存取介面。
         /// </summary>
-        private IAuthorityDao _authorityDao;
+        private IRoleDao _roleDao;
+
+        /// <summary>
+        /// 使用者功能授權資料存取介面。
+        /// </summary>
+        private IPrivilegeDao _privilegeDao;
+
+        /// <summary>
+        /// 拒絕權限資料存取介面。
+        /// </summary>
+        private IDenyPrivilegeDao _denyPrivilegeDao;
 
         /// <summary>
         /// 子站資料存取介面。
@@ -38,19 +48,51 @@
         }
 
         /// <summary>
-        /// 取得授權資料存取介面。
+        /// 取得角色資料存取介面。
         /// </summary>
         /// <returns>
-        /// 授權資料存取介面。
+        /// 角色資料存取介面。
         /// </returns>
-        IAuthorityDao IDaoFactory.GetAuthorityDao()
+        IRoleDao IDaoFactory.GetRoleDao()
         {
-            if (this._authorityDao == null)
+            if (this._roleDao == null)
             {
-                this._authorityDao = new AuthorityDao();
+                this._roleDao = new RoleDao();
             }
 
-            return this._authorityDao;
+            return this._roleDao;
+        }
+
+        /// <summary>
+        /// 取得使用者功能授權資料存取介面。
+        /// </summary>
+        /// <returns>
+        /// 使用者功能授權資料存取介面。
+        /// </returns>
+        IPrivilegeDao IDaoFactory.GetPrivilegeDao()
+        {
+            if (this._privilegeDao == null)
+            {
+                this._privilegeDao = new PrivilegeDao();
+            }
+
+            return this._privilegeDao;
+        }
+
+        /// <summary>
+        /// 取得拒絕權限資料存取介面。
+        /// </summary>
+        /// <returns>
+        /// 拒絕權限資料存取介面。
+        /// </returns>
+        IDenyPrivilegeDao IDaoFactory.GetDenyPrivilegeDao()
+        {
+            if (this._denyPrivilegeDao == null)
+            {
+                this._denyPrivilegeDao = new DenyPrivilegeDao();
+            }
+
+            return this._denyPrivilegeDao;
         }
 
         /// <summary>

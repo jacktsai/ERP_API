@@ -32,11 +32,11 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得操作者相關資訊。
+        /// 取得使用者相關資訊。
         /// </summary>
         /// <param name="backyardId">The backyard id.</param>
         /// <returns>
-        /// 操作者相關資訊。
+        /// 使用者相關資訊。
         /// </returns>
         /// <exception cref="System.ArgumentNullException">backyardId</exception>
         Profile IUserService.GetProfile(string backyardId)
@@ -65,12 +65,12 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得操作者 URL 的權限資訊。
+        /// 取得使用者 URL 的權限資訊。
         /// </summary>
         /// <param name="backyardId">The backyard id.</param>
         /// <param name="url">The URL.</param>
         /// <returns>
-        /// 操作者 URL 的權限資訊。
+        /// 使用者 URL 的權限資訊。
         /// </returns>
         /// <exception cref="System.ArgumentNullException">backyardId</exception>
         Authority IUserService.GetAuthority(string backyardId, string url)
@@ -85,23 +85,25 @@ namespace ErpApi.Services
                 throw new ArgumentNullException("url");
             }
 
-            var dao = this._factory.GetAuthorityDao();
-            var data = dao.GetOne(backyardId, url);
-
             var authority = new Authority();
 
-            if (data == null)
+            var privilegeDao = this._factory.GetPrivilegeDao();
+            var privilegeData = privilegeDao.GetOne(backyardId, url);
+            if (privilegeData != null)
             {
-                return authority;
+                authority.CanAccess = true;
+
+                var roleDao = this._factory.GetRoleDao();
+                var roleDatas = roleDao.GetMany(privilegeData.UserId, url);
+                var denyDao = this._factory.GetDenyPrivilegeDao();
+                var denyData = denyDao.GetOne(privilegeData.UserId, url);
+
+                authority.CanSelect = this.Judge(roleDatas, r => r.CanSelect, denyData, d => d.DenySelect);
+                authority.CanInsert = this.Judge(roleDatas, r => r.CanInsert, denyData, d => d.DenyInsert);
+                authority.CanUpdate = this.Judge(roleDatas, r => r.CanUpdate, denyData, d => d.DenyUpdate);
+                authority.CanDelete = this.Judge(roleDatas, r => r.CanDelete, denyData, d => d.DenyDelete);
+                authority.CanParticular = this.Judge(roleDatas, r => r.CanParticular, denyData, d => d.DenyParticular);
             }
-
-            authority.CanAccess = true;
-
-            authority.CanSelect = this.Judge(data, d => d.CanSelect, d => d.DenySelect);
-            authority.CanInsert = this.Judge(data, d => d.CanInsert, d => d.DenyInsert);
-            authority.CanUpdate = this.Judge(data, d => d.CanUpdate, d => d.DenyUpdate);
-            authority.CanDelete = this.Judge(data, d => d.CanDelete, d => d.DenyDelete);
-            authority.CanParticular = this.Judge(data, d => d.CanParticular, d => d.DenyParticular);
 
             return authority;
         }
@@ -109,22 +111,23 @@ namespace ErpApi.Services
         /// <summary>
         /// 權限判斷。
         /// </summary>
-        /// <param name="data">AuthorityData。</param>
+        /// <param name="roleDatas">多筆角色資料。</param>
         /// <param name="canGetter">取得 allow 欄位的方法。</param>
+        /// <param name="denyData">拒絕權限資料。</param>
         /// <param name="denyGetter">取得 deny 欄位的方法。</param>
         /// <returns>
         /// 如果有權限則回傳 true；否則回傳 false。
         /// </returns>
-        private bool Judge(AuthorityData data, Func<AuthorityData, bool> canGetter, Func<AuthorityData, bool> denyGetter)
+        private bool Judge(IEnumerable<RoleData> roleDatas, Func<RoleData, bool?> canGetter, DenyPrivilegeData denyData, Func<DenyPrivilegeData, bool> denyGetter)
         {
             // is denied ?
-            if (denyGetter(data))
+            if (denyData != null && denyGetter(denyData))
             {
                 return false;
             }
 
             // is granted ?
-            if (canGetter(data))
+            if (roleDatas != null && roleDatas.Any(r => canGetter(r) == true))
             {
                 return true;
             }

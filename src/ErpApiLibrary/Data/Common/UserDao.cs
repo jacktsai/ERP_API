@@ -19,11 +19,11 @@ namespace ErpApi.Data.Common
         }
 
         /// <summary>
-        /// 取得乙筆操作者資料。
+        /// 取得乙筆使用者資料。
         /// </summary>
         /// <param name="backyardId">Backyard ID。</param>
         /// <returns>
-        /// 操作者資料。
+        /// 使用者資料。
         /// </returns>
         /// <exception cref="System.ArgumentNullException">backyardId</exception>
         UserData IUserDao.GetOne(string backyardId)
@@ -48,11 +48,11 @@ namespace ErpApi.Data.Common
         }
 
         /// <summary>
-        /// 取得多筆操作者資料。
+        /// 取得多筆使用者資料。
         /// </summary>
         /// <param name="userNames">多個使用者姓名。</param>
         /// <returns>
-        /// 多筆操作者資料。
+        /// 多筆使用者資料。
         /// </returns>
         /// <exception cref="System.ArgumentNullException">userNames</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">userNames</exception>
@@ -98,14 +98,14 @@ namespace ErpApi.Data.Common
             return new UserData
             {
                 Id = reader.GetInt32(0),
-                Name = reader.GetValue<string>(1),
-                FullName = reader.GetValue<string>(2),
-                Department = reader.GetValue<string>(3),
+                Name = reader.GetValueOrDefault<string>(1),
+                FullName = reader.GetValueOrDefault<string>(2),
+                Department = reader.GetValueOrDefault<string>(3),
                 Degree = reader.GetByte(4),
-                Email = reader.GetValue<string>(5),
-                Homepage = reader.GetValue<string>(6),
-                ExtNumber = reader.GetValue<string>(7),
-                BackyardId = reader.GetValue<string>(8)
+                Email = reader.GetValueOrDefault<string>(5),
+                Homepage = reader.GetValueOrDefault<string>(6),
+                ExtNumber = reader.GetValueOrDefault<string>(7),
+                BackyardId = reader.GetValueOrDefault<string>(8)
             };
         }
     }

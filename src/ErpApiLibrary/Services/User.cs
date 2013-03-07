@@ -7,12 +7,12 @@ using ErpApi.Data;
 namespace ErpApi.Services
 {
     /// <summary>
-    /// 操作者個人資料。
+    /// 使用者個人資料。
     /// </summary>
     public class User
     {
         /// <summary>
-        /// 操作者資料。
+        /// 使用者資料。
         /// </summary>
         private readonly UserData _data;
 
@@ -26,7 +26,7 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得 ID。
+        /// 使用者序號。
         /// </summary>
         public int Id
         {

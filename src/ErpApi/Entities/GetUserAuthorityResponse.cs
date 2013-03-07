@@ -27,56 +27,38 @@ namespace ErpApi.Entities
         public string Url { get; set; }
 
         /// <summary>
-        /// 取得是否可以連到 URL 的權限。
-        /// </summary>
-        /// <value>
         /// 是否可以連到 URL 的權限。
-        /// </value>
+        /// </summary>
         [DataMember]
         public bool CanAccess { get; set; }
 
         /// <summary>
-        /// 取得是否有細部權限-SELECT。
+        /// 是否有 SELECT 權限。
         /// </summary>
-        /// <value>
-        /// 是否有細部權限-SELECT。
-        /// </value>
         [DataMember]
         public bool CanSelect { get; set; }
 
         /// <summary>
-        /// 取得是否有細部權限-INSERT。
+        /// 是否有 INSERT 權限。
         /// </summary>
-        /// <value>
-        /// 是否有細部權限-INSERT。
-        /// </value>
         [DataMember]
         public bool CanInsert { get; set; }
 
         /// <summary>
-        /// 取得是否有細部權限-UPDATE。
+        /// 是否有 UPDATE 權限。
         /// </summary>
-        /// <value>
-        /// 是否有細部權限-UPDATE。
-        /// </value>
         [DataMember]
         public bool CanUpdate { get; set; }
 
         /// <summary>
-        /// 取得是否有細部權限-DELETE。
+        /// 是否有 DELETE 權限。
         /// </summary>
-        /// <value>
-        /// 是否有細部權限-DELETE。
-        /// </value>
         [DataMember]
         public bool CanDelete { get; set; }
 
         /// <summary>
-        /// 取得是否有細部權限-PARTICULAR。
+        /// 是否有特殊權限。
         /// </summary>
-        /// <value>
-        /// 是否有細部權限-PARTICULAR。
-        /// </value>
         [DataMember]
         public bool CanParticular { get; set; }
     }

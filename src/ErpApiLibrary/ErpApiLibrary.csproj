@@ -45,6 +45,15 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Common\DenyPrivilegeDao.cs" />
+    <Compile Include="Data\Common\PrivilegeDao.cs" />
+    <Compile Include="Data\Common\RoleDao.cs" />
+    <Compile Include="Data\DenyPrivilegeData.cs" />
+    <Compile Include="Data\IDenyPrivilegeDao.cs" />
+    <Compile Include="Data\IPrivilegeDao.cs" />
+    <Compile Include="Data\IRoleDao.cs" />
+    <Compile Include="Data\PrivilegeData.cs" />
+    <Compile Include="Data\RoleData.cs" />
     <Compile Include="Services\Authority.cs" />
     <Compile Include="Services\User.cs" />
     <Compile Include="Services\ISubCategoryService.cs" />
@@ -58,15 +67,10 @@
     <Compile Include="Data\Common\CommonDaoFactory.cs" />
     <Compile Include="Data\IDaoFactory.cs" />
     <Compile Include="System\TypeExtensions.cs" />
-    <Compile Include="Data\AuthorityData.cs" />
     <Compile Include="Data\SubCategoryData.cs" />
-    <Compile Include="Data\Common\AuthorityDao.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Data\Common\SubCategoryDao.cs" />
     <Compile Include="Data\Common\CommonDao.cs" />
     <Compile Include="Data\Common\UserDao.cs" />
-    <Compile Include="Data\IAuthorityDao.cs" />
     <Compile Include="Data\ISubCategoryDao.cs" />
     <Compile Include="System\Data\IDataReaderExtensions.cs" />
     <Compile Include="Data\IUserDao.cs" />
@@ -82,10 +86,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetMany_ids.sql" />
-    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\AuthorityDao.GetOne_backyardId_url.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\UserDao.GetMany_userNames.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetOne_backyardId_url.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\RoleDao.GetMany_userId_url.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\DenyPrivilegeDao.GetOne_userId_url.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

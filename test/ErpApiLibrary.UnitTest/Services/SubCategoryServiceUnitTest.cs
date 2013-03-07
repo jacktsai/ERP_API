@@ -11,17 +11,17 @@ namespace ErpApi.Services
     [TestClass]
     public class SubCategoryServiceUnitTest
     {
+        private IDaoFactory _factory;
         private ISubCategoryDao _subCatDao;
         private IUserDao _userDao;
-        private IDaoFactory _factory;
 
         [TestInitialize]
         public void TestInitialize()
         {
+            this._factory = MockRepository.GenerateStub<IDaoFactory>();
             this._subCatDao = MockRepository.GenerateStub<ISubCategoryDao>();
             this._userDao = MockRepository.GenerateStub<IUserDao>();
 
-            this._factory = MockRepository.GenerateStub<IDaoFactory>();
             this._factory
                 .Stub(o => o.GetSubCategoryDao())
                 .Return(this._subCatDao);

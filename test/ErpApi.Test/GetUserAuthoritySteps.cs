@@ -75,8 +75,8 @@ namespace ErpApi.Test
             Assert.AreEqual(expected, this._context.StatusCode);
         }
 
-        [Then(@"回傳操作者BardyardID為 '(.*)'")]
-        public void Then回傳操作者BardyardID為(string expected)
+        [Then(@"回傳使用者BardyardID為 '(.*)'")]
+        public void Then回傳使用者BardyardID為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("BackyardId", expected);
         }
@@ -87,32 +87,38 @@ namespace ErpApi.Test
             this._context.ResponseContent.AssertAreEqual("Url", expected);
         }
 
-        [Then(@"回傳細部權限-SELECT為 (True|False)")]
-        public void Then回傳細部權限_SELECT為(bool expected)
+        [Then(@"回傳讀取權限為 (True|False)")]
+        public void Then回傳讀取權限為(bool expected)
+        {
+            this._context.ResponseContent.AssertAreEqual("CanAccess", expected);
+        }
+
+        [Then(@"回傳SELECT權限為 (True|False)")]
+        public void Then回傳SELECT權限為(bool expected)
         {
             this._context.ResponseContent.AssertAreEqual("CanSelect", expected);
         }
 
-        [Then(@"回傳細部權限-INSERT為 (True|False)")]
-        public void Then回傳細部權限_INSERT為(bool expected)
+        [Then(@"回傳INSERT權限為 (True|False)")]
+        public void Then回傳INSERT權限為(bool expected)
         {
             this._context.ResponseContent.AssertAreEqual("CanInsert", expected);
         }
 
-        [Then(@"回傳細部權限-UPDATE為 (True|False)")]
-        public void Then回傳細部權限_UPDATE為(bool expected)
+        [Then(@"回傳UPDATE權限為 (True|False)")]
+        public void Then回傳UPDATE權限為(bool expected)
         {
             this._context.ResponseContent.AssertAreEqual("CanUpdate", expected);
         }
 
-        [Then(@"回傳細部權限-DELETE為 (True|False)")]
-        public void Then回傳細部權限_DELETE為(bool expected)
+        [Then(@"回傳DELETE權限為 (True|False)")]
+        public void Then回傳DELETE權限為(bool expected)
         {
             this._context.ResponseContent.AssertAreEqual("CanDelete", expected);
         }
 
-        [Then(@"回傳細部權限-特殊權限為 (True|False)")]
-        public void Then回傳細部權限_特殊權限為(bool expected)
+        [Then(@"回傳特殊權限為 (True|False)")]
+        public void Then回傳特殊權限為(bool expected)
         {
             this._context.ResponseContent.AssertAreEqual("CanParticular", expected);
         }

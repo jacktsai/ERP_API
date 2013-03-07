@@ -50,7 +50,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Common\AuthorityDaoTest.cs" />
+    <Compile Include="Data\Common\DenyPrivilegeDaoTest.cs" />
+    <Compile Include="Data\Common\PrivilegeDaoTest.cs" />
+    <Compile Include="Data\Common\RoleDaoTest.cs" />
     <Compile Include="Services\SubCategoryServiceTest.cs" />
     <Compile Include="Services\UserServiceTest.cs" />
   </ItemGroup>

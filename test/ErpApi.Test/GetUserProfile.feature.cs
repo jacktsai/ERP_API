@@ -31,7 +31,7 @@ namespace ErpApi.Test
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetUserProfile", "In order to 顯示線上操作者的資訊\r\nAs a 線上操作者\r\nI want to 取得操作者的資訊", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetUserProfile", "In order to 顯示線上使用者的資訊\r\nAs a 線上使用者\r\nI want to 取得使用者的資訊", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -69,17 +69,17 @@ namespace ErpApi.Test
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以無 Backyard ID 取得操作者資訊")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以無 Backyard ID 取得使用者資訊")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetUserProfile")]
-        public virtual void 以無BackyardID取得操作者資訊()
+        public virtual void 以無BackyardID取得使用者資訊()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以無 Backyard ID 取得操作者資訊", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以無 Backyard ID 取得使用者資訊", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
     testRunner.Given("無BackyardID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-    testRunner.When("取得操作者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("取得使用者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
     testRunner.Then("回傳狀態為 \'BadRequest\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -87,17 +87,17 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以空白 Backyard ID 取得操作者資訊")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以空白 Backyard ID 取得使用者資訊")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetUserProfile")]
-        public virtual void 以空白BackyardID取得操作者資訊()
+        public virtual void 以空白BackyardID取得使用者資訊()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以空白 Backyard ID 取得操作者資訊", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以空白 Backyard ID 取得使用者資訊", ((string[])(null)));
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 12
     testRunner.Given("BackyardID為空白", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
-    testRunner.When("取得操作者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("取得使用者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
     testRunner.Then("回傳狀態為 \'BadRequest\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -105,37 +105,37 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以 Backyard ID \'jacktsai\' 取得操作者資訊")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以 Backyard ID \'jacktsai\' 取得使用者資訊")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetUserProfile")]
-        public virtual void 以BackyardIDJacktsai取得操作者資訊()
+        public virtual void 以BackyardIDJacktsai取得使用者資訊()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以 Backyard ID \'jacktsai\' 取得操作者資訊", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以 Backyard ID \'jacktsai\' 取得使用者資訊", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 17
     testRunner.Given("BackyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 18
- testRunner.When("取得操作者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("取得使用者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 19
     testRunner.Then("回傳成功狀態", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 20
-    testRunner.And("回傳操作者序號為 2733", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者序號為 2733", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
     testRunner.And("回傳操作帳號為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
-    testRunner.And("回傳操作者中文姓名為 \'Jack Tsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者中文姓名為 \'Jack Tsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
-    testRunner.And("回傳操作者部門為 \'研發\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者部門為 \'研發\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
-    testRunner.And("回傳操作者等級為 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者等級為 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
-    testRunner.And("回傳操作者首頁為 \'/privilege/homepages/erp.asp\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者首頁為 \'/privilege/homepages/erp.asp\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
-    testRunner.And("回傳操作者分機為 \'3628\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者分機為 \'3628\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 27
-    testRunner.And("回傳操作者BackyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者BackyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
-    testRunner.And("回傳操作者的子站為 \'25,39\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者的子站為 \'25,39\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -151,27 +151,27 @@ this.ScenarioSetup(scenarioInfo);
 #line 31
     testRunner.Given("BackyardID為 \'kevin113\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 32
- testRunner.When("取得操作者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("取得使用者資訊", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 33
     testRunner.Then("回傳成功狀態", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 34
-    testRunner.And("回傳操作者序號為 2121", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者序號為 2121", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
     testRunner.And("回傳操作帳號為 \'kevincheng\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
-    testRunner.And("回傳操作者中文姓名為 \'鄭凱文\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者中文姓名為 \'鄭凱文\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
-    testRunner.And("回傳操作者部門為 \'研發\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者部門為 \'研發\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
-    testRunner.And("回傳操作者等級為 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者等級為 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
-    testRunner.And("回傳操作者首頁為 \'/privilege/homepages/ERP.asp\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者首頁為 \'/privilege/homepages/ERP.asp\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
-    testRunner.And("回傳操作者分機為 \'151\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者分機為 \'151\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 41
-    testRunner.And("回傳操作者BackyardID為 \'kevin113\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者BackyardID為 \'kevin113\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 42
-    testRunner.And("回傳操作者的子站為 \'\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者的子站為 \'\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

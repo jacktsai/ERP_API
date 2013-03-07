@@ -11,19 +11,23 @@ namespace ErpApi.Services
     [TestClass]
     public class UserServiceUnitTest
     {
+        private IDaoFactory _factory;
         private IUserDao _userDao;
         private ISubCategoryDao _subCatDao;
-        private IAuthorityDao _authDao;
-        private IDaoFactory _factory;
+        private IRoleDao _roleDao;
+        private IPrivilegeDao _privDao;
+        private IDenyPrivilegeDao _denyDao;
 
         [TestInitialize]
         public void TestInitialize()
         {
+            this._factory = MockRepository.GenerateStub<IDaoFactory>();
             this._userDao = MockRepository.GenerateStub<IUserDao>();
             this._subCatDao = MockRepository.GenerateStub<ISubCategoryDao>();
-            this._authDao = MockRepository.GenerateStub<IAuthorityDao>();
+            this._roleDao = MockRepository.GenerateStub<IRoleDao>();
+            this._privDao = MockRepository.GenerateStub<IPrivilegeDao>();
+            this._denyDao = MockRepository.GenerateStub<IDenyPrivilegeDao>();
 
-            this._factory = MockRepository.GenerateStub<IDaoFactory>();
             this._factory
                 .Stub(o => o.GetUserDao())
                 .Return(this._userDao);
@@ -31,8 +35,14 @@ namespace ErpApi.Services
                 .Stub(o => o.GetSubCategoryDao())
                 .Return(this._subCatDao);
             this._factory
-                .Stub(o => o.GetAuthorityDao())
-                .Return(this._authDao);
+                .Stub(o => o.GetRoleDao())
+                .Return(this._roleDao);
+            this._factory
+                .Stub(o => o.GetPrivilegeDao())
+                .Return(this._privDao);
+            this._factory
+                .Stub(o => o.GetDenyPrivilegeDao())
+                .Return(this._denyDao);
         }
 
         [TestMethod]
@@ -136,7 +146,7 @@ namespace ErpApi.Services
         [TestMethod]
         public void GetAuthority_NoPrivilege()
         {
-            this._authDao
+            this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
                 .Return(null);
 
@@ -153,25 +163,33 @@ namespace ErpApi.Services
         }
 
         [TestMethod]
-        public void GetAuthority_Can_true_Deny_false()
+        public void GetAuthority_NoRoles_NoDeny()
         {
-            var data = new AuthorityData
-            {
-                CanSelect = true,
-                DenySelect = false,
-                CanInsert = true,
-                DenyInsert = false,
-                CanUpdate = true,
-                DenyUpdate = false,
-                CanDelete = true,
-                DenyDelete = false,
-                CanParticular = true,
-                DenyParticular = false,
-            };
-
-            this._authDao
+            this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(data);
+                .Return(new PrivilegeData());
+
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority(string.Empty, string.Empty);
+
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.CanAccess);
+            Assert.IsFalse(actual.CanSelect);
+            Assert.IsFalse(actual.CanInsert);
+            Assert.IsFalse(actual.CanUpdate);
+            Assert.IsFalse(actual.CanDelete);
+            Assert.IsFalse(actual.CanParticular);
+        }
+
+        [TestMethod]
+        public void GetAuthority_Can_true_NoDeny()
+        {
+            this._privDao
+                .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(new PrivilegeData());
+            this._roleDao
+                .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateRoleDatas(true));
 
             IUserService target = new UserService(this._factory);
             var actual = target.GetAuthority(string.Empty, string.Empty);
@@ -185,25 +203,14 @@ namespace ErpApi.Services
         }
 
         [TestMethod]
-        public void GetAuthority_Can_true_Deny_true()
+        public void GetAuthority_Can_false_NoDeny()
         {
-            var data = new AuthorityData
-            {
-                CanSelect = true,
-                DenySelect = true,
-                CanInsert = true,
-                DenyInsert = true,
-                CanUpdate = true,
-                DenyUpdate = true,
-                CanDelete = true,
-                DenyDelete = true,
-                CanParticular = true,
-                DenyParticular = true,
-            };
-
-            this._authDao
+            this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(data);
+                .Return(new PrivilegeData());
+            this._roleDao
+                .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateRoleDatas(false));
 
             IUserService target = new UserService(this._factory);
             var actual = target.GetAuthority(string.Empty, string.Empty);
@@ -217,25 +224,128 @@ namespace ErpApi.Services
         }
 
         [TestMethod]
+        public void GetAuthority_Can_null_NoDeny()
+        {
+            this._privDao
+                .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(new PrivilegeData());
+            this._roleDao
+                .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateRoleDatas(null));
+
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority(string.Empty, string.Empty);
+
+            Assert.IsNotNull(actual);
+            Assert.IsFalse(actual.CanSelect);
+            Assert.IsFalse(actual.CanInsert);
+            Assert.IsFalse(actual.CanUpdate);
+            Assert.IsFalse(actual.CanDelete);
+            Assert.IsFalse(actual.CanParticular);
+        }
+
+        [TestMethod]
+        public void GetAuthority_NoRoles_Deny_true()
+        {
+            this._privDao
+                .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(new PrivilegeData());
+            this._denyDao
+                 .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                 .Return(CreateDenyData(true));
+
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority(string.Empty, string.Empty);
+
+            Assert.IsNotNull(actual);
+            Assert.IsFalse(actual.CanSelect);
+            Assert.IsFalse(actual.CanInsert);
+            Assert.IsFalse(actual.CanUpdate);
+            Assert.IsFalse(actual.CanDelete);
+            Assert.IsFalse(actual.CanParticular);
+        }
+
+        [TestMethod]
+        public void GetAuthority_NoRoles_Deny_false()
+        {
+            this._privDao
+                .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(new PrivilegeData());
+            this._denyDao
+                 .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                 .Return(CreateDenyData(false));
+
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority(string.Empty, string.Empty);
+
+            Assert.IsNotNull(actual);
+            Assert.IsFalse(actual.CanSelect);
+            Assert.IsFalse(actual.CanInsert);
+            Assert.IsFalse(actual.CanUpdate);
+            Assert.IsFalse(actual.CanDelete);
+            Assert.IsFalse(actual.CanParticular);
+        }
+
+        [TestMethod]
+        public void GetAuthority_Can_true_Deny_true()
+        {
+            this._privDao
+                .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(new PrivilegeData());
+            this._roleDao
+                .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateRoleDatas(true));
+            this._denyDao
+                .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateDenyData(true));
+
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority(string.Empty, string.Empty);
+
+            Assert.IsNotNull(actual);
+            Assert.IsFalse(actual.CanSelect);
+            Assert.IsFalse(actual.CanInsert);
+            Assert.IsFalse(actual.CanUpdate);
+            Assert.IsFalse(actual.CanDelete);
+            Assert.IsFalse(actual.CanParticular);
+        }
+
+        [TestMethod]
+        public void GetAuthority_Can_true_Deny_false()
+        {
+            this._privDao
+                .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(new PrivilegeData());
+            this._roleDao
+                .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateRoleDatas(true));
+            this._denyDao
+                .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateDenyData(false));
+
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority(string.Empty, string.Empty);
+
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.CanSelect);
+            Assert.IsTrue(actual.CanInsert);
+            Assert.IsTrue(actual.CanUpdate);
+            Assert.IsTrue(actual.CanDelete);
+            Assert.IsTrue(actual.CanParticular);
+        }
+
+        [TestMethod]
         public void GetAuthority_Can_false_Deny_true()
         {
-            var data = new AuthorityData
-            {
-                CanSelect = false,
-                DenySelect = true,
-                CanInsert = false,
-                DenyInsert = true,
-                CanUpdate = false,
-                DenyUpdate = true,
-                CanDelete = false,
-                DenyDelete = true,
-                CanParticular = false,
-                DenyParticular = true,
-            };
-
-            this._authDao
+            this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(data);
+                .Return(new PrivilegeData());
+            this._roleDao
+                .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateRoleDatas(false));
+            this._denyDao
+                .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateDenyData(true));
 
             IUserService target = new UserService(this._factory);
             var actual = target.GetAuthority(string.Empty, string.Empty);
@@ -251,23 +361,15 @@ namespace ErpApi.Services
         [TestMethod]
         public void GetAuthority_Can_false_Deny_false()
         {
-            var data = new AuthorityData
-            {
-                CanSelect = false,
-                DenySelect = false,
-                CanInsert = false,
-                DenyInsert = false,
-                CanUpdate = false,
-                DenyUpdate = false,
-                CanDelete = false,
-                DenyDelete = false,
-                CanParticular = false,
-                DenyParticular = false,
-            };
-
-            this._authDao
+            this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(data);
+                .Return(new PrivilegeData());
+            this._roleDao
+                .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateRoleDatas(false));
+            this._denyDao
+                .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateDenyData(false));
 
             IUserService target = new UserService(this._factory);
             var actual = target.GetAuthority(string.Empty, string.Empty);
@@ -278,6 +380,82 @@ namespace ErpApi.Services
             Assert.IsFalse(actual.CanUpdate);
             Assert.IsFalse(actual.CanDelete);
             Assert.IsFalse(actual.CanParticular);
+        }
+
+        [TestMethod]
+        public void GetAuthority_Can_null_Deny_true()
+        {
+            this._privDao
+                .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(new PrivilegeData());
+            this._roleDao
+                .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateRoleDatas(null));
+            this._denyDao
+                .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateDenyData(true));
+
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority(string.Empty, string.Empty);
+
+            Assert.IsNotNull(actual);
+            Assert.IsFalse(actual.CanSelect);
+            Assert.IsFalse(actual.CanInsert);
+            Assert.IsFalse(actual.CanUpdate);
+            Assert.IsFalse(actual.CanDelete);
+            Assert.IsFalse(actual.CanParticular);
+        }
+
+        [TestMethod]
+        public void GetAuthority_Can_null_Deny_false()
+        {
+            this._privDao
+                .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(new PrivilegeData());
+            this._roleDao
+                .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateRoleDatas(null));
+            this._denyDao
+                .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
+                .Return(CreateDenyData(false));
+
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority(string.Empty, string.Empty);
+
+            Assert.IsNotNull(actual);
+            Assert.IsFalse(actual.CanSelect);
+            Assert.IsFalse(actual.CanInsert);
+            Assert.IsFalse(actual.CanUpdate);
+            Assert.IsFalse(actual.CanDelete);
+            Assert.IsFalse(actual.CanParticular);
+        }
+
+        private IEnumerable<RoleData> CreateRoleDatas(bool? can)
+        {
+            var roleData = new RoleData
+            {
+                CanSelect = can,
+                CanInsert = can,
+                CanUpdate = can,
+                CanDelete = can,
+                CanParticular = can,
+            };
+
+            return new RoleData[] { roleData };
+        }
+
+        private DenyPrivilegeData CreateDenyData(bool deny)
+        {
+            var denyData = new DenyPrivilegeData
+            {
+                DenySelect = deny,
+                DenyInsert = deny,
+                DenyUpdate = deny,
+                DenyDelete = deny,
+                DenyParticular = deny,
+            };
+
+            return denyData;
         }
     }
 }

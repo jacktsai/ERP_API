@@ -62,11 +62,12 @@ namespace ErpApi.Services
             var actual = target.GetAuthority("jacktsai", "/test.aspx");
 
             Assert.IsNotNull(actual);
-            Assert.IsTrue(actual.CanSelect);
-            Assert.IsTrue(actual.CanInsert);
-            Assert.IsTrue(actual.CanUpdate);
-            Assert.IsTrue(actual.CanDelete);
-            Assert.IsTrue(actual.CanParticular);
+            Assert.IsTrue(actual.CanAccess);
+            Assert.IsFalse(actual.CanSelect);
+            Assert.IsFalse(actual.CanInsert);
+            Assert.IsFalse(actual.CanUpdate);
+            Assert.IsFalse(actual.CanDelete);
+            Assert.IsFalse(actual.CanParticular);
         }
 
         [TestMethod]
@@ -76,11 +77,27 @@ namespace ErpApi.Services
             var actual = target.GetAuthority("jacktsai", "/Security/Privilege/UserMgmt.aspx");
 
             Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.CanAccess);
             Assert.IsTrue(actual.CanSelect);
             Assert.IsTrue(actual.CanInsert);
             Assert.IsTrue(actual.CanUpdate);
             Assert.IsTrue(actual.CanDelete);
             Assert.IsTrue(actual.CanParticular);
+        }
+
+        [TestMethod]
+        public void GetAuthority_backyardId_jacktsai_url_NotExists()
+        {
+            IUserService target = new UserService(this._factory);
+            var actual = target.GetAuthority("jacktsai", "not_exists.aspx");
+
+            Assert.IsNotNull(actual);
+            Assert.IsFalse(actual.CanAccess);
+            Assert.IsFalse(actual.CanSelect);
+            Assert.IsFalse(actual.CanInsert);
+            Assert.IsFalse(actual.CanUpdate);
+            Assert.IsFalse(actual.CanDelete);
+            Assert.IsFalse(actual.CanParticular);
         }
     }
 }
