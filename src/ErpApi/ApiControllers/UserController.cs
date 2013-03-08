@@ -23,7 +23,7 @@ namespace ErpApi.ApiControllers
         }
 
         /// <summary>
-        /// Gets the profile.
+        /// 取得使用者相關資訊。
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response.</returns>
@@ -51,7 +51,7 @@ namespace ErpApi.ApiControllers
         }
 
         /// <summary>
-        /// Gets the authority.
+        /// 取得使用者 URL 的權限資訊。
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response.</returns>

@@ -61,7 +61,7 @@
     <Compile Include="Data\Common\Resources\ResourceUnitTest.cs" />
     <Compile Include="Services\SubCategoryServiceUnitTest.cs" />
     <Compile Include="Services\UserServiceUnitTest.cs" />
-    <Compile Include="System\Collections\Generic\DictionaryExtensionsUnitTest.cs" />
+    <Compile Include="Extensions\DictionaryExtensionsUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
