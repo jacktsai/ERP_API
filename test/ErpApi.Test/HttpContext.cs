@@ -7,6 +7,7 @@ using ApiFoundation.Cryptography;
 using ApiFoundation.Extension.Handlers;
 using ApiFoundation.Services;
 using Newtonsoft.Json.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ErpApi.Test
 {

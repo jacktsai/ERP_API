@@ -21,15 +21,14 @@ namespace ErpApi
             Bootstrapper.Initialise();
 
             var config = GlobalConfiguration.Configuration;
-            config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{action}");
-            config.Filters.Add(new ModelStateActionFilter());
 
             //config.MessageHandlers.Add(new DumpingMessageHandler());
-
             //var securedHandler = (DelegatingHandler)config.DependencyResolver.GetService(typeof(SecuredContentHandler));
             //config.MessageHandlers.Add(securedHandler);
-
             //config.MessageHandlers.Add(new DumpingMessageHandler());
+
+            config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{action}");
+            config.Filters.Add(new ModelStateActionFilter());
         }
     }
 }

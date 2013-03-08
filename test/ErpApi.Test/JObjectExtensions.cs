@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ErpApi.Test
+namespace Newtonsoft.Json.Linq
 {
     internal static class JObjectExtensions
     {
