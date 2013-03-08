@@ -50,14 +50,12 @@ namespace ErpApi.Test
             ClientSecuredMessage clientSecuredMsg = new ClientSecuredMessage();
             clientSecuredMsg.InitTimeStamp();
 
-            //var handler = new SecuredContentClientHandler(
-            //    new DefaultSecuredContentService<ClientSecuredMessage>(
-            //        new AesCryptoAlgorithm(),
-            //        new SHA512HashAlgorithm(),
-            //        new DefaultKeyProvider(),
-            //        clientSecuredMsg));
-
-            var handler = new HttpClientHandler();
+            var handler = new SecuredContentClientHandler(
+                new DefaultSecuredContentService<ClientSecuredMessage>(
+                    new AesCryptoAlgorithm(),
+                    new SHA512HashAlgorithm(),
+                    new DefaultKeyProvider(),
+                    clientSecuredMsg));
 
             using (var httpClient = new HttpClient(handler))
             {
