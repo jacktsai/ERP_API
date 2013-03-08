@@ -8,21 +8,21 @@ using ErpApi.Data.Common;
 namespace ErpApi.Services
 {
     /// <summary>
-    /// 第一個 <see cref="IServiceAdapter" /> 介面的實作。
+    /// <see cref="IServiceAdapter" /> 介面的實作。
     /// </summary>
     internal class ServiceAdapter : IServiceAdapter
     {
         /// <summary>
-        /// The <see cref="IDaoFactory"/> instance.
+        /// The <see cref="IServiceProvider"/> instance.
         /// </summary>
-        private readonly IDaoFactory _factory;
+        private readonly IServiceProvider _provider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceAdapter" /> class.
         /// </summary>
         public ServiceAdapter()
         {
-            this._factory = new CommonDaoFactory();
+            this._provider = new CommonServiceProvider();
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace ErpApi.Services
         /// </returns>
         IUserService IServiceAdapter.GetUserService()
         {
-            return new UserService(this._factory);
+            return this._provider.GetUserService();
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace ErpApi.Services
         /// </returns>
         ISubCategoryService IServiceAdapter.GetSubCategoryService()
         {
-            return new SubCategoryService(this._factory);
+            return this._provider.GetSubCategoryService();
         }
     }
 }

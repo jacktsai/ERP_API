@@ -10,7 +10,7 @@ namespace ErpApi.ApiControllers
     public class UserController : ApiController
     {
         /// <summary>
-        /// The _adapter
+        /// The instance of <see cref="IServiceAdapter"/> interface.
         /// </summary>
         private readonly IServiceAdapter _adapter;
 

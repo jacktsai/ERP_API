@@ -55,6 +55,8 @@
     <Compile Include="Data\PrivilegeData.cs" />
     <Compile Include="Data\RoleData.cs" />
     <Compile Include="Services\Authority.cs" />
+    <Compile Include="Services\CommonServiceProvider.cs" />
+    <Compile Include="Services\IServiceProvider.cs" />
     <Compile Include="Services\User.cs" />
     <Compile Include="Services\ISubCategoryService.cs" />
     <Compile Include="Services\IUserService.cs" />
