@@ -10,11 +10,8 @@ namespace ErpApi.Entities
     public class GetUserProfileRequest
     {
         /// <summary>
-        /// Gets or sets the backyard id.
+        /// Backyard ID。
         /// </summary>
-        /// <value>
-        /// The backyard id.
-        /// </value>
         [DataMember(IsRequired = true), Required]
         public string BackyardId { get; set; }
     }

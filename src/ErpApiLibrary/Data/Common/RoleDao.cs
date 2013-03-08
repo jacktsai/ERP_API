@@ -49,10 +49,10 @@ namespace ErpApi.Data.Common
         }
 
         /// <summary>
-        /// 將資料轉換成 RoleData 個體。
+        /// 讀取 IDataReader 並傳回角色資料。
         /// </summary>
         /// <param name="r">IDataReader 個體。</param>
-        /// <returns>RoleData 個體。</returns>
+        /// <returns>角色資料。</returns>
         private RoleData Converter(IDataReader r)
         {
             return new RoleData

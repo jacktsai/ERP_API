@@ -17,14 +17,15 @@ namespace ErpApi.Data.Common
         }
 
         /// <summary>
-        /// 取得乙筆。
+        /// 取得 Privilege Data。
         /// </summary>
         /// <param name="backyardId">Backyard ID。</param>
         /// <param name="url">URL。</param>
         /// <returns>
-        /// 使用者權限資料。
+        /// Privilege Data。
         /// </returns>
-        /// <exception cref="System.ArgumentNullException">backyardId or url is null.</exception>
+        /// <exception cref="System.ArgumentNullException">backyardId</exception>
+        /// <exception cref="System.ArgumentNullException">url</exception>
         PrivilegeData IPrivilegeDao.GetOne(string backyardId, string url)
         {
             if (backyardId == null)
@@ -53,10 +54,10 @@ namespace ErpApi.Data.Common
         }
 
         /// <summary>
-        /// 將資料轉換成 PrivilegeData 個體。
+        /// 讀取 IDataReader 並傳Privilege Data。
         /// </summary>
         /// <param name="r">IDataReader 個體。</param>
-        /// <returns>PrivilegeData 個體。</returns>
+        /// <returns>Privilege Data。</returns>
         private PrivilegeData Converter(IDataReader r)
         {
             return new PrivilegeData

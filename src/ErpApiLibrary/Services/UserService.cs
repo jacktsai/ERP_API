@@ -34,7 +34,7 @@ namespace ErpApi.Services
         /// <summary>
         /// 取得使用者相關資訊。
         /// </summary>
-        /// <param name="backyardId">The backyard id.</param>
+        /// <param name="backyardId">Backyard ID。</param>
         /// <returns>
         /// 使用者相關資訊。
         /// </returns>

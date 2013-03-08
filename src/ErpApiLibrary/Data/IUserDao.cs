@@ -12,7 +12,7 @@ namespace ErpApi.Data
     public interface IUserDao
     {
         /// <summary>
-        /// 取得乙筆使用者資料。
+        /// 取得使用者資料。
         /// </summary>
         /// <param name="backyardId">Backyard ID。</param>
         /// <returns>使用者資料。</returns>
@@ -21,7 +21,7 @@ namespace ErpApi.Data
         /// <summary>
         /// 取得多筆使用者資料。
         /// </summary>
-        /// <param name="userNames">多個使用者姓名。</param>
+        /// <param name="userNames">多個使用者帳號。</param>
         /// <returns>多筆使用者資料。</returns>
         IEnumerable<UserData> GetMany(IEnumerable<string> userNames);
     }

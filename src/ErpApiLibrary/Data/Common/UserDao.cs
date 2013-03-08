@@ -19,7 +19,7 @@ namespace ErpApi.Data.Common
         }
 
         /// <summary>
-        /// 取得乙筆使用者資料。
+        /// 取得使用者資料。
         /// </summary>
         /// <param name="backyardId">Backyard ID。</param>
         /// <returns>
@@ -50,13 +50,12 @@ namespace ErpApi.Data.Common
         /// <summary>
         /// 取得多筆使用者資料。
         /// </summary>
-        /// <param name="userNames">多個使用者姓名。</param>
+        /// <param name="userNames">多個使用者帳號。</param>
         /// <returns>
         /// 多筆使用者資料。
         /// </returns>
         /// <exception cref="System.ArgumentNullException">userNames</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">userNames</exception>
-        /// <exception cref="System.NotImplementedException"></exception>
         IEnumerable<UserData> IUserDao.GetMany(IEnumerable<string> userNames)
         {
             if (userNames == null)
@@ -83,15 +82,14 @@ namespace ErpApi.Data.Common
                     return reader.ToObjects(Converter);
                 }
             });
-            throw new NotImplementedException();
         }
 
         /// <summary>
-        /// 將資料轉換成 UserData 個體。
+        /// 讀取 IDataReader 並傳回使用者資料。
         /// </summary>
-        /// <param name="reader">The reader.</param>
+        /// <param name="reader">IDataReader 個體。</param>
         /// <returns>
-        /// UserData 個體。
+        /// 使用者資料。
         /// </returns>
         private UserData Converter(IDataReader reader)
         {

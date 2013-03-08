@@ -61,14 +61,14 @@ namespace ErpApi.Test
             this._context.ResponseContent.AssertAreEqual("Id", expected);
         }
 
-        [Then(@"回傳操作帳號為 '(.*)'")]
-        public void Then回傳操作帳號為(string expected)
+        [Then(@"回傳使用者帳號為 '(.*)'")]
+        public void Then回傳使用者帳號為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("Name", expected);
         }
 
-        [Then(@"回傳使用者中文姓名為 '(.*)'")]
-        public void Then回傳使用者中文姓名為(string expected)
+        [Then(@"回傳使用者姓名為 '(.*)'")]
+        public void Then回傳使用者姓名為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("FullName", expected);
         }
@@ -103,8 +103,8 @@ namespace ErpApi.Test
             this._context.ResponseContent.AssertAreEqual("BackyardID", expected);
         }
 
-        [Then(@"回傳使用者的子站為 '(.*)'")]
-        public void Then回傳使用者的子站為(string expected)
+        [Then(@"回傳子站代碼為 '(.*)'")]
+        public void Then回傳子站代碼為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("SubCatIds", expected);
         }

@@ -11,12 +11,12 @@ namespace ErpApi.Services
     public class Profile
     {
         /// <summary>
-        /// 取得使用者個人資料。
+        /// 使用者資訊。
         /// </summary>
         public User User { get; internal set; }
 
         /// <summary>
-        /// 取得使用者擁有的子站代碼。
+        /// 子站代碼。
         /// </summary>
         public IEnumerable<int> SubCatIds { get; internal set; }
     }

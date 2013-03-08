@@ -17,13 +17,14 @@ namespace ErpApi.Data.Common
         }
 
         /// <summary>
-        /// 取得乙筆拒絕權限資料。
+        /// 取得Deny Privilege Data。
         /// </summary>
         /// <param name="userId">使用者序號。</param>
         /// <param name="url">URL。</param>
         /// <returns>
-        /// 拒絕權限資料。
+        /// Deny Privilege Data。
         /// </returns>
+        /// <exception cref="System.ArgumentNullException">url</exception>
         DenyPrivilegeData IDenyPrivilegeDao.GetOne(int userId, string url)
         {
             if (url == null)
@@ -47,10 +48,10 @@ namespace ErpApi.Data.Common
         }
 
         /// <summary>
-        /// 將資料轉換成 DenyPrivilegeData 個體。
+        /// 讀取 IDataReader 並傳回Deny Privilege Data。
         /// </summary>
         /// <param name="r">IDataReader 個體。</param>
-        /// <returns>DenyPrivilegeData 個體。</returns>
+        /// <returns>Deny Privilege Data。</returns>
         private DenyPrivilegeData Converter(IDataReader r)
         {
             return new DenyPrivilegeData

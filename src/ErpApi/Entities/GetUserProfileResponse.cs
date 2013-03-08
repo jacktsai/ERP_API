@@ -9,49 +9,49 @@ namespace ErpApi.Entities
     public class GetUserProfileResponse
     {
         /// <summary>
-        /// 取得 ID。
+        /// 使用者序號。
         /// </summary>
         [DataMember]
         public int Id { get; set; }
 
         /// <summary>
-        /// 取得姓名。
+        /// 帳號。
         /// </summary>
         [DataMember]
         public string Name { get; set; }
 
         /// <summary>
-        /// 取得中文姓名。
+        /// 姓名。
         /// </summary>
         [DataMember]
         public string FullName { get; set; }
 
         /// <summary>
-        /// 取得部門。
+        /// 部門。
         /// </summary>
         [DataMember]
         public string Department { get; set; }
 
         /// <summary>
-        /// 取得操作等級。
+        /// 等級。
         /// </summary>
         [DataMember]
         public int Degree { get; set; }
 
         /// <summary>
-        /// 取得首頁。
+        /// 首頁。
         /// </summary>
         [DataMember]
         public string Homepage { get; set; }
 
         /// <summary>
-        /// 取得分機號碼。
+        /// 分機。
         /// </summary>
         [DataMember]
         public string ExtNumber { get; set; }
 
         /// <summary>
-        /// 取得 Backyard ID。
+        /// Backyard ID。
         /// </summary>
         [DataMember]
         public string BackyardID { get; set; }

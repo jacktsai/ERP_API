@@ -7,7 +7,7 @@ using ErpApi.Data;
 namespace ErpApi.Services
 {
     /// <summary>
-    /// 使用者個人資料。
+    /// 使用者資訊。
     /// </summary>
     public class User
     {
@@ -34,7 +34,7 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得姓名。
+        /// 帳號。
         /// </summary>
         public string Name
         {
@@ -42,7 +42,7 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得中文姓名。
+        /// 姓名。
         /// </summary>
         public string FullName
         {
@@ -50,7 +50,7 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得部門。
+        /// 部門。
         /// </summary>
         public string Department
         {
@@ -58,7 +58,7 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得操作等級。
+        /// 等級。
         /// </summary>
         public int Degree
         {
@@ -66,7 +66,7 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得電子郵件位址。
+        /// Email。
         /// </summary>
         public string Email
         {
@@ -74,7 +74,7 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得首頁。
+        /// 首頁。
         /// </summary>
         public string Homepage
         {
@@ -82,7 +82,7 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得分機號碼。
+        /// 分機。
         /// </summary>
         public string ExtNumber
         {
@@ -90,7 +90,7 @@ namespace ErpApi.Services
         }
 
         /// <summary>
-        /// 取得 Backyard ID。
+        /// Backyard ID。
         /// </summary>
         public string BackyardId
         {

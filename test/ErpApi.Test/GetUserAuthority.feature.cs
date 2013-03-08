@@ -79,7 +79,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
     testRunner.Given("無BackyardID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
-    testRunner.And("無目標網址", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("無網址", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
     testRunner.When("取得操作權限", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
@@ -99,7 +99,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
     testRunner.Given("BackyardID為空白", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
-    testRunner.And("目標網址為空白", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("網址為空白", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
     testRunner.When("取得操作權限", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
@@ -119,7 +119,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 19
     testRunner.Given("BackyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 20
-    testRunner.And("目標網址為 \'/test.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("網址為 \'/test.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
  testRunner.When("取得操作權限", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
@@ -127,7 +127,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 23
  testRunner.And("回傳使用者BardyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
-    testRunner.And("回傳目標網址為 \'/test.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳網址為 \'/test.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
     testRunner.And("回傳讀取權限為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
@@ -155,7 +155,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 33
     testRunner.Given("BackyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 34
-    testRunner.And("目標網址為 \'/Security/Privilege/UserMgmt.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("網址為 \'/Security/Privilege/UserMgmt.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
  testRunner.When("取得操作權限", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 36
@@ -163,7 +163,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 37
  testRunner.And("回傳使用者BardyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
-    testRunner.And("回傳目標網址為 \'/Security/Privilege/UserMgmt.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳網址為 \'/Security/Privilege/UserMgmt.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
     testRunner.And("回傳讀取權限為 True", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
@@ -191,7 +191,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 47
     testRunner.Given("BackyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 48
-    testRunner.And("目標網址為 \'not_exists.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("網址為 \'not_exists.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 49
  testRunner.When("取得操作權限", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 50
@@ -199,7 +199,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 51
  testRunner.And("回傳使用者BardyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 52
-    testRunner.And("回傳目標網址為 \'not_exists.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳網址為 \'not_exists.aspx\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 53
     testRunner.And("回傳讀取權限為 False", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 54

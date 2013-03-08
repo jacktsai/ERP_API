@@ -1,7 +1,7 @@
 ﻿namespace ErpApi.Data
 {
     /// <summary>
-    /// 使用者功能授權資料。
+    /// Privilege Data。
     /// </summary>
     public class PrivilegeData
     {

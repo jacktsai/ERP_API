@@ -16,7 +16,7 @@
         public string Name { get; set; }
 
         /// <summary>
-        /// 中文姓名。
+        /// 姓名。
         /// </summary>
         public string FullName { get; set; }
 
@@ -31,7 +31,7 @@
         public byte Degree { get; set; }
 
         /// <summary>
-        /// 電子郵件位址。
+        /// Email。
         /// </summary>
         public string Email { get; set; }
 
@@ -41,7 +41,7 @@
         public string Homepage { get; set; }
 
         /// <summary>
-        /// 分機號碼。
+        /// 分機。
         /// </summary>
         public string ExtNumber { get; set; }
 

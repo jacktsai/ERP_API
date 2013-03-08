@@ -6,7 +6,7 @@ using System.Text;
 namespace ErpApi.Data
 {
     /// <summary>
-    /// 拒絕權限資料。
+    /// Deny Privilege Data。
     /// </summary>
     public class DenyPrivilegeData
     {

@@ -31,7 +31,7 @@ namespace ErpApi.Test
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetUserProfile", "In order to 顯示線上使用者的資訊\r\nAs a 線上使用者\r\nI want to 取得使用者的資訊", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetUserProfile", "In order to 顯示線上使用者的資訊\r\nAs a 線上使用者\r\nI want to 取得使用者的相關資訊", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -121,9 +121,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 20
     testRunner.And("回傳使用者序號為 2733", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
-    testRunner.And("回傳操作帳號為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者帳號為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
-    testRunner.And("回傳使用者中文姓名為 \'Jack Tsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者姓名為 \'Jack Tsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
     testRunner.And("回傳使用者部門為 \'研發\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
@@ -135,7 +135,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 27
     testRunner.And("回傳使用者BackyardID為 \'jacktsai\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
-    testRunner.And("回傳使用者的子站為 \'25,39\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳子站代碼為 \'25,39\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -157,9 +157,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 34
     testRunner.And("回傳使用者序號為 2121", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 35
-    testRunner.And("回傳操作帳號為 \'kevincheng\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者帳號為 \'kevincheng\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
-    testRunner.And("回傳使用者中文姓名為 \'鄭凱文\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳使用者姓名為 \'鄭凱文\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
     testRunner.And("回傳使用者部門為 \'研發\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 38
@@ -171,7 +171,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 41
     testRunner.And("回傳使用者BackyardID為 \'kevin113\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 42
-    testRunner.And("回傳使用者的子站為 \'\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("回傳子站代碼為 \'\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

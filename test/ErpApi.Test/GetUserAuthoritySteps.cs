@@ -39,20 +39,20 @@ namespace ErpApi.Test
             this._context.SetRequestValue("BackyardId", backyardId);
         }
 
-        [Given(@"無目標網址")]
-        public void Given無目標網址()
+        [Given(@"無網址")]
+        public void Given無網址()
         {
             this._context.SetRequestValue("Url", null);
         }
 
-        [Given(@"目標網址為空白")]
-        public void Given目標網址為空白()
+        [Given(@"網址為空白")]
+        public void Given網址為空白()
         {
             this._context.SetRequestValue("Url", "");
         }
 
-        [Given(@"目標網址為 '(.*)'")]
-        public void Given目標網址為(string url)
+        [Given(@"網址為 '(.*)'")]
+        public void Given網址為(string url)
         {
             this._context.SetRequestValue("Url", url);
         }
@@ -81,8 +81,8 @@ namespace ErpApi.Test
             this._context.ResponseContent.AssertAreEqual("BackyardId", expected);
         }
 
-        [Then(@"回傳目標網址為 '(.*)'")]
-        public void Then回傳目標網址為(string expected)
+        [Then(@"回傳網址為 '(.*)'")]
+        public void Then回傳網址為(string expected)
         {
             this._context.ResponseContent.AssertAreEqual("Url", expected);
         }
