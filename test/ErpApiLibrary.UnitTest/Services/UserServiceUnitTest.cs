@@ -3,61 +3,46 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ErpApi.Data;
+using ErpApi.DAL;
 using Rhino.Mocks;
+using ErpApi.Entities;
 
-namespace ErpApi.Services
+namespace ErpApi.BLL
 {
     [TestClass]
     public class UserServiceUnitTest
     {
-        private IDaoFactory _factory;
         private IUserDao _userDao;
         private ISubCategoryDao _subCatDao;
         private IRoleDao _roleDao;
         private IPrivilegeDao _privDao;
         private IDenyPrivilegeDao _denyDao;
+        private IUserService _target;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this._factory = MockRepository.GenerateStub<IDaoFactory>();
             this._userDao = MockRepository.GenerateStub<IUserDao>();
             this._subCatDao = MockRepository.GenerateStub<ISubCategoryDao>();
             this._roleDao = MockRepository.GenerateStub<IRoleDao>();
             this._privDao = MockRepository.GenerateStub<IPrivilegeDao>();
             this._denyDao = MockRepository.GenerateStub<IDenyPrivilegeDao>();
 
-            this._factory
-                .Stub(o => o.GetUserDao())
-                .Return(this._userDao);
-            this._factory
-                .Stub(o => o.GetSubCategoryDao())
-                .Return(this._subCatDao);
-            this._factory
-                .Stub(o => o.GetRoleDao())
-                .Return(this._roleDao);
-            this._factory
-                .Stub(o => o.GetPrivilegeDao())
-                .Return(this._privDao);
-            this._factory
-                .Stub(o => o.GetDenyPrivilegeDao())
-                .Return(this._denyDao);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Ctor_factory_null()
-        {
-            new UserService(null);
+            this._target = new UserService
+            {
+                UserDao = this._userDao,
+                SubCategoryDao = this._subCatDao,
+                RoleDao = this._roleDao,
+                PrivilegeDao = this._privDao,
+                DenyPrivilegeDao = this._denyDao,
+            };
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetProfile_backyardId_null()
         {
-            IUserService target = new UserService(this._factory);
-            target.GetProfile(null);
+            this._target.GetProfile(null);
         }
 
         [TestMethod]
@@ -67,8 +52,7 @@ namespace ErpApi.Services
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything))
                 .Return(null);
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetProfile("jacktsai");
+            var actual = this._target.GetProfile("jacktsai");
 
             Assert.IsNull(actual);
         }
@@ -76,44 +60,35 @@ namespace ErpApi.Services
         [TestMethod]
         public void GetProfile()
         {
-            var expectedUser = new UserData
+            var expectedUser = new User
             {
-                Id = 2733,
-                Name = "jack",
-                FullName = "Jack Tsai",
-                Department = "department",
-                Degree = 1,
-                Email = "my email",
-                Homepage = "homepage",
-                ExtNumber = "12345",
-                BackyardId = "jacktsai",
+                priuser_id = 2733,
+                priuser_name = "jack",
+                priuser_fullname = "Jack Tsai",
+                priuser_department = "department",
+                priuser_degree = 1,
+                priuser_email = "my email",
+                priuser_homepage = "homepage",
+                priuser_extno = "12345",
+                priuser_backyardid = "jacktsai",
             };
             this._userDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything))
                 .Return(expectedUser);
 
-            var expectedSubCat = new SubCategoryData
+            var expectedSubCat = new SubCategory
             {
-                Id = 999,
+                catsub_id = 999,
             };
             this._subCatDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything))
-                .Return(new SubCategoryData[] { expectedSubCat });
+                .Return(new[] { expectedSubCat });
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetProfile("jacktsai");
+            var actual = this._target.GetProfile("jacktsai");
 
             Assert.IsNotNull(actual);
             Assert.IsNotNull(actual.User);
-            Assert.AreEqual(expectedUser.Id, actual.User.Id);
-            Assert.AreEqual(expectedUser.Name, actual.User.Name);
-            Assert.AreEqual(expectedUser.FullName, actual.User.FullName);
-            Assert.AreEqual(expectedUser.Department, actual.User.Department);
-            Assert.AreEqual(expectedUser.Degree, actual.User.Degree);
-            Assert.AreEqual(expectedUser.Email, actual.User.Email);
-            Assert.AreEqual(expectedUser.Homepage, actual.User.Homepage);
-            Assert.AreEqual(expectedUser.ExtNumber, actual.User.ExtNumber);
-            Assert.AreEqual(expectedUser.BackyardId, actual.User.BackyardId);
+            Assert.AreSame(expectedUser, actual.User);
             Assert.IsNotNull(actual.SubCatIds);
             Assert.AreEqual(1, actual.SubCatIds.Count());
             Assert.AreEqual(999, actual.SubCatIds.ElementAt(0));
@@ -123,24 +98,21 @@ namespace ErpApi.Services
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetAuthority_backyardId_null_url_null()
         {
-            IUserService target = new UserService(this._factory);
-            target.GetAuthority(null, null);
+            this._target.GetAuthority(null, null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetAuthority_backyardId_empty_url_null()
         {
-            IUserService target = new UserService(this._factory);
-            target.GetAuthority(string.Empty, null);
+            this._target.GetAuthority(string.Empty, null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetAuthority_backyardId_null_url_empty()
         {
-            IUserService target = new UserService(this._factory);
-            target.GetAuthority(null, string.Empty);
+            this._target.GetAuthority(null, string.Empty);
         }
 
         [TestMethod]
@@ -150,8 +122,7 @@ namespace ErpApi.Services
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
                 .Return(null);
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsFalse(actual.CanAccess);
@@ -167,10 +138,9 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.CanAccess);
@@ -186,13 +156,12 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._roleDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(CreateRoleDatas(true));
+                .Return(CreateRoles(true));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.CanSelect);
@@ -207,13 +176,12 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._roleDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(CreateRoleDatas(false));
+                .Return(CreateRoles(false));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsFalse(actual.CanSelect);
@@ -228,13 +196,12 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._roleDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(CreateRoleDatas(null));
+                .Return(CreateRoles(null));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsFalse(actual.CanSelect);
@@ -249,13 +216,12 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._denyDao
                  .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
                  .Return(CreateDenyData(true));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsFalse(actual.CanSelect);
@@ -270,13 +236,12 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._denyDao
                  .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
                  .Return(CreateDenyData(false));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsFalse(actual.CanSelect);
@@ -291,16 +256,15 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._roleDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(CreateRoleDatas(true));
+                .Return(CreateRoles(true));
             this._denyDao
                 .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
                 .Return(CreateDenyData(true));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsFalse(actual.CanSelect);
@@ -315,16 +279,15 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._roleDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(CreateRoleDatas(true));
+                .Return(CreateRoles(true));
             this._denyDao
                 .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
                 .Return(CreateDenyData(false));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.CanSelect);
@@ -339,16 +302,15 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._roleDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(CreateRoleDatas(false));
+                .Return(CreateRoles(false));
             this._denyDao
                 .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
                 .Return(CreateDenyData(true));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsFalse(actual.CanSelect);
@@ -363,16 +325,15 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._roleDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(CreateRoleDatas(false));
+                .Return(CreateRoles(false));
             this._denyDao
                 .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
                 .Return(CreateDenyData(false));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsFalse(actual.CanSelect);
@@ -387,16 +348,15 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._roleDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(CreateRoleDatas(null));
+                .Return(CreateRoles(null));
             this._denyDao
                 .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
                 .Return(CreateDenyData(true));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsFalse(actual.CanSelect);
@@ -411,16 +371,15 @@ namespace ErpApi.Services
         {
             this._privDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(new PrivilegeData());
+                .Return(new Privilege());
             this._roleDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
-                .Return(CreateRoleDatas(null));
+                .Return(CreateRoles(null));
             this._denyDao
                 .Stub(o => o.GetOne(Arg<int>.Is.Anything, Arg<string>.Is.Anything))
                 .Return(CreateDenyData(false));
 
-            IUserService target = new UserService(this._factory);
-            var actual = target.GetAuthority(string.Empty, string.Empty);
+            var actual = this._target.GetAuthority(string.Empty, string.Empty);
 
             Assert.IsNotNull(actual);
             Assert.IsFalse(actual.CanSelect);
@@ -430,29 +389,29 @@ namespace ErpApi.Services
             Assert.IsFalse(actual.CanParticular);
         }
 
-        private IEnumerable<RoleData> CreateRoleDatas(bool? can)
+        private IEnumerable<Role> CreateRoles(bool? can)
         {
-            var roleData = new RoleData
+            var Role = new Role
             {
-                CanSelect = can,
-                CanInsert = can,
-                CanUpdate = can,
-                CanDelete = can,
-                CanParticular = can,
+                roles_select = can,
+                roles_insert = can,
+                roles_update = can,
+                roles_delete = can,
+                roles_particular = can,
             };
 
-            return new RoleData[] { roleData };
+            return new Role[] { Role };
         }
 
-        private DenyPrivilegeData CreateDenyData(bool deny)
+        private DenyPrivilege CreateDenyData(bool deny)
         {
-            var denyData = new DenyPrivilegeData
+            var denyData = new DenyPrivilege
             {
-                DenySelect = deny,
-                DenyInsert = deny,
-                DenyUpdate = deny,
-                DenyDelete = deny,
-                DenyParticular = deny,
+                denyprivs_select = deny,
+                denyprivs_insert = deny,
+                denyprivs_update = deny,
+                denyprivs_delete = deny,
+                denyprivs_particular = deny,
             };
 
             return denyData;

@@ -41,6 +41,9 @@
       <HintPath>..\..\packages\ApiFoundation\ApiFoundation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Monday.Environment, Version=1.1.1007.1401, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Monday\Monday.Environment.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -124,26 +127,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiControllers\SubCategoryController.cs" />
+    <Compile Include="Controllers\SubCategoryController.cs" />
     <Compile Include="Entities\GetSubCategoryContactsRequest.cs" />
     <Compile Include="Entities\GetSubCategoryContactsResponse.cs" />
     <Compile Include="Entities\GetUserAuthorityRequest.cs" />
     <Compile Include="Entities\GetUserAuthorityResponse.cs" />
     <Compile Include="Entities\GetUserProfileRequest.cs" />
     <Compile Include="Entities\GetUserProfileResponse.cs" />
-    <Compile Include="ApiControllers\UserController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Entities\SubCategoryContact.cs" />
-    <Compile Include="Filters\ModelStateActionFilter.cs" />
+    <Compile Include="ModelStateActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MessageHandlers\DumpingMessageHandler.cs" />
-    <Compile Include="Services\ServiceAdapter.cs" />
-    <Compile Include="Services\IServiceAdapter.cs" />
+    <Compile Include="DumpingMessageHandler.cs" />
+    <Compile Include="Services\UserServiceAdapter.cs" />
+    <Compile Include="Utilities\ServiceFactory.cs" />
+    <Compile Include="Services\SubCategoryServiceAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

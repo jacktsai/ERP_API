@@ -57,6 +57,8 @@ namespace ErpApi.Test
                     new DefaultKeyProvider(),
                     clientSecuredMsg));
 
+            //var handler = new HttpClientHandler();
+
             using (var httpClient = new HttpClient(handler))
             {
                 httpClient.BaseAddress = new Uri(_baseAddress);

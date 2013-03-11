@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Monday.Environment">
+      <HintPath>..\..\packages\Monday\Monday.Environment.dll</HintPath>
+    </Reference>
+    <Reference Include="Monday.Utility.SqlComm">
+      <HintPath>..\..\packages\Monday\Monday.Utility.SqlComm.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -45,61 +51,48 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Common\DenyPrivilegeDao.cs" />
-    <Compile Include="Data\Common\PrivilegeDao.cs" />
-    <Compile Include="Data\Common\RoleDao.cs" />
-    <Compile Include="Data\DenyPrivilegeData.cs" />
-    <Compile Include="Data\IDenyPrivilegeDao.cs" />
-    <Compile Include="Data\IPrivilegeDao.cs" />
-    <Compile Include="Data\IRoleDao.cs" />
-    <Compile Include="Data\PrivilegeData.cs" />
-    <Compile Include="Data\RoleData.cs" />
-    <Compile Include="Services\Authority.cs" />
-    <Compile Include="Services\CommonServiceProvider.cs" />
-    <Compile Include="Services\IServiceProvider.cs" />
-    <Compile Include="Services\User.cs" />
-    <Compile Include="Services\ISubCategoryService.cs" />
-    <Compile Include="Services\IUserService.cs" />
-    <Compile Include="Services\Profile.cs" />
-    <Compile Include="Services\SubCategoryUser.cs" />
-    <Compile Include="Services\SubCategoryService.cs" />
-    <Compile Include="Services\UserService.cs" />
-    <Compile Include="Extensions\DictionaryExtensions.cs" />
-    <Compile Include="Extensions\IDbCommandExtensions.cs" />
-    <Compile Include="Data\Common\CommonDaoFactory.cs" />
-    <Compile Include="Data\IDaoFactory.cs" />
-    <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="Data\SubCategoryData.cs" />
-    <Compile Include="Data\Common\SubCategoryDao.cs" />
-    <Compile Include="Data\Common\CommonDao.cs" />
-    <Compile Include="Data\Common\UserDao.cs" />
-    <Compile Include="Data\ISubCategoryDao.cs" />
-    <Compile Include="Extensions\IDataReaderExtensions.cs" />
-    <Compile Include="Data\IUserDao.cs" />
-    <Compile Include="Data\Common\MissingConnectionStringSettingsException.cs" />
-    <Compile Include="Data\Common\Resources\Resource.cs" />
-    <Compile Include="Data\UserData.cs" />
+    <Compile Include="BLL\SubCategoryService.cs" />
+    <Compile Include="BLL\UserService.cs" />
+    <Compile Include="DAL\DenyPrivilegeDao.cs" />
+    <Compile Include="DAL\IDenyPrivilegeDao.cs" />
+    <Compile Include="DAL\IPrivilegeDao.cs" />
+    <Compile Include="DAL\IRoleDao.cs" />
+    <Compile Include="DAL\ISubCategoryDao.cs" />
+    <Compile Include="DAL\PrivilegeDao.cs" />
+    <Compile Include="DAL\RoleDao.cs" />
+    <Compile Include="DAL\SubCategoryDao.cs" />
+    <Compile Include="Entities\DenyPrivilege.cs" />
+    <Compile Include="Entities\Privilege.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Authority.cs" />
+    <Compile Include="BLL\ISubCategoryService.cs" />
+    <Compile Include="BLL\IUserService.cs" />
+    <Compile Include="Entities\Profile.cs" />
+    <Compile Include="Entities\SubCategoryContactModel.cs" />
+    <Compile Include="T4\GenerateEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenerateEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SubCategoryUser.cs" />
+    <Compile Include="Utilities\ColumnMappingHelper.cs" />
+    <Compile Include="Utilities\Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Utilities\Extensions\IDbCommandExtensions.cs" />
+    <Compile Include="Utilities\Extensions\TypeExtensions.cs" />
+    <Compile Include="Entities\SubCategory.cs" />
+    <Compile Include="DAL\UserDao.cs" />
+    <Compile Include="Utilities\Extensions\IDataReaderExtensions.cs" />
+    <Compile Include="DAL\IUserDao.cs" />
+    <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\UserDao.GetOne_backyardId.sql" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetMany_userId.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\SubCategoryDao.GetMany_ids.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\UserDao.GetMany_userNames.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\PrivilegeDao.GetOne_backyardId_url.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\RoleDao.GetMany_userId_url.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\Common\Resources\System.Data.SqlClient\DenyPrivilegeDao.GetOne_userId_url.sql" />
+    <None Include="T4\GenerateEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateEntity.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
