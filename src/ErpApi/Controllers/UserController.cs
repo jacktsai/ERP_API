@@ -26,8 +26,8 @@ namespace ErpApi.ApiControllers
         /// <summary>
         /// 取得使用者相關資訊。
         /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns>The response.</returns>
+        /// <param name="request">Request 內容。</param>
+        /// <returns>Response 內容。</returns>
         [HttpPost]
         public GetUserProfileResponse GetProfile([FromBody]GetUserProfileRequest request)
         {
@@ -53,8 +53,8 @@ namespace ErpApi.ApiControllers
         /// <summary>
         /// 取得使用者 URL 的權限資訊。
         /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns>The response.</returns>
+        /// <param name="request">Request 內容。</param>
+        /// <returns>Response 內容。</returns>
         [HttpPost]
         public GetUserAuthorityResponse GetAuthority([FromBody]GetUserAuthorityRequest request)
         {

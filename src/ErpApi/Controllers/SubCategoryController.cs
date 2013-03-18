@@ -27,8 +27,8 @@ namespace ErpApi.ApiControllers
         /// <summary>
         /// 取得子站維護人員資訊。
         /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns>The response.</returns>
+        /// <param name="request">Request 內容。</param>
+        /// <returns>Response 內容。</returns>
         [HttpPost]
         public GetSubCategoryContactsResponse GetContacts([FromBody]GetSubCategoryContactsRequest request)
         {
