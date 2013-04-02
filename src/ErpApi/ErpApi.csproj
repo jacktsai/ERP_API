@@ -156,9 +156,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DumpingMessageHandler.cs" />
-    <Compile Include="Services\UserServiceAdapter.cs" />
     <Compile Include="Utilities\ServiceFactory.cs" />
-    <Compile Include="Services\SubCategoryServiceAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

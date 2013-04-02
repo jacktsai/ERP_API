@@ -1,4 +1,5 @@
 ﻿using ErpApi.BLL;
+using ErpApi.DAL;
 
 namespace ErpApi.Utilities
 {
@@ -13,7 +14,14 @@ namespace ErpApi.Utilities
         /// <returns>The instance of <see cref="ErpApi.BLL.IUserService"/> interface.</returns>
         public static IUserService GetUserService()
         {
-            return new UserServiceAdapter();
+            return new UserService()
+            {
+                UserDao = new UserDao(),
+                SubCategoryDao = new SubCategoryDao(),
+                RoleDao = new RoleDao(),
+                PrivilegeDao = new PrivilegeDao(),
+                DenyPrivilegeDao = new DenyPrivilegeDao(),
+            };
         }
 
         /// <summary>
@@ -22,7 +30,11 @@ namespace ErpApi.Utilities
         /// <returns>The instance of <see cref="ErpApi.BLL.ISubCategoryService"/> interface.</returns>
         public static ISubCategoryService GetSubCategoryService()
         {
-            return new SubCategoryServiceAdapter();
+            return new SubCategoryService()
+            {
+                UserDao = new UserDao(),
+                SubCategoryDao = new SubCategoryDao(),
+            };
         }
     }
 }
