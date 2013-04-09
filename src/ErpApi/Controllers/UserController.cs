@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Linq;
+using System.Web.Http;
 using ErpApi.Entities;
 using ErpApi.BLL;
 using ErpApi.Utilities;
@@ -44,7 +45,7 @@ namespace ErpApi.ApiControllers
                 response.Homepage = profile.User.priuser_homepage;
                 response.ExtNumber = profile.User.priuser_extno;
                 response.BackyardID = profile.User.priuser_backyardid;
-                response.SubCatIds = string.Join(",", profile.SubCatIds);
+                response.CatSubIds = profile.SubCatIds.ToArray();
             }
 
             return response;

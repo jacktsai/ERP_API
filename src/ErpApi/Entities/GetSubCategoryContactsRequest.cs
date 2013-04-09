@@ -10,12 +10,9 @@ namespace ErpApi.Entities
     public class GetSubCategoryContactsRequest
     {
         /// <summary>
-        /// Gets or sets the sub category ids.
+        /// 子站編號
         /// </summary>
-        /// <value>
-        /// The sub category ids.
-        /// </value>
         [DataMember(IsRequired = true), Required]
-        public int[] SubCategoryIds { get; set; }
+        public int[] CatSubIds { get; set; }
     }
 }

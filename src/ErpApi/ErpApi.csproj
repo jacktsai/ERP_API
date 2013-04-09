@@ -143,6 +143,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\SubCategoryController.cs" />
+    <Compile Include="Entities\CatZone.cs" />
+    <Compile Include="Entities\GetSubCategoriesRequest.cs" />
+    <Compile Include="Entities\GetSubCategoriesResponse.cs" />
     <Compile Include="Entities\GetSubCategoryContactsRequest.cs" />
     <Compile Include="Entities\GetSubCategoryContactsResponse.cs" />
     <Compile Include="Entities\GetUserAuthorityRequest.cs" />
@@ -150,7 +153,9 @@
     <Compile Include="Entities\GetUserProfileRequest.cs" />
     <Compile Include="Entities\GetUserProfileResponse.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Entities\CatSub.cs" />
     <Compile Include="Entities\SubCategoryContact.cs" />
+    <Compile Include="Entities\CatType.cs" />
     <Compile Include="ModelStateActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

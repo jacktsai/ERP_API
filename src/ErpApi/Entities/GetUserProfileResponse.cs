@@ -60,6 +60,6 @@ namespace ErpApi.Entities
         /// 子站代碼。
         /// </summary>
         [DataMember]
-        public string SubCatIds { get; set; }
+        public int[] CatSubIds { get; set; }
     }
 }

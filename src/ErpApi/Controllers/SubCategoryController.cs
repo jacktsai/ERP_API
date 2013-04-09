@@ -3,6 +3,7 @@ using System.Web.Http;
 using ErpApi.Entities;
 using ErpApi.BLL;
 using ErpApi.Utilities;
+using System;
 
 namespace ErpApi.ApiControllers
 {
@@ -25,6 +26,16 @@ namespace ErpApi.ApiControllers
         }
 
         /// <summary>
+        /// 取得子站相關資訊。
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        public GetSubCategoriesResponse GetSubCategories([FromBody]GetSubCategoriesRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// 取得子站維護人員資訊。
         /// </summary>
         /// <param name="request">Request 內容。</param>
@@ -32,7 +43,7 @@ namespace ErpApi.ApiControllers
         [HttpPost]
         public GetSubCategoryContactsResponse GetContacts([FromBody]GetSubCategoryContactsRequest request)
         {
-            var subCatUsers = this._subCategoryService.GetSubCategoryUsers(request.SubCategoryIds);
+            var subCatUsers = this._subCategoryService.GetSubCategoryUsers(request.CatSubIds);
             var subCatContacts = subCatUsers.Select(o => this.CreateContact(o)).ToArray();
 
             var response = new GetSubCategoryContactsResponse
