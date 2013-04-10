@@ -1,18 +1,23 @@
 ﻿namespace ErpApi.Entities
 {
     /// <summary>
-    /// 子站資訊
+    /// 小類資訊
     /// </summary>
-    public class CatSub
+    public class CategoryZone
     {
         /// <summary>
-        /// 子站編號
+        /// 小類編號
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// 子站名稱
+        /// 小類名稱
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// 子站資訊
+        /// </summary>
+        public Category[] Categories { get; set; }
     }
 }

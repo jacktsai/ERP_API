@@ -11,9 +11,9 @@ using Monday.Environments;
 namespace ErpApi.DAL
 {
     /// <summary>
-    /// <see cref="IUserDao"/> 介面實作。
+    /// <see cref="IPriUserDao"/> 介面實作。
     /// </summary>
-    public class UserDao : IUserDao
+    public class PriUserDao : IPriUserDao
     {
         /// <summary>
         /// The database connection string.
@@ -21,9 +21,9 @@ namespace ErpApi.DAL
         private readonly string _connectionString;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserDao" /> class.
+        /// Initializes a new instance of the <see cref="PriUserDao" /> class.
         /// </summary>
-        public UserDao()
+        public PriUserDao()
         {
             this._connectionString = Setting.GetConnectionString("security");
         }
@@ -36,7 +36,7 @@ namespace ErpApi.DAL
         /// 使用者資料。
         /// </returns>
         /// <exception cref="System.ArgumentNullException">backyardId</exception>
-        User IUserDao.GetOne(string backyardId)
+        PriUser IPriUserDao.GetOne(string backyardId)
         {
             if (backyardId == null)
             {
@@ -87,7 +87,7 @@ WHERE
                 CommandType.Text,
                 commandText,
                 this._connectionString,
-                dataRow => ColumnMappingHelper.MappingEntity<User>(dataRow),
+                dataRow => ColumnMappingHelper.MappingEntity<PriUser>(dataRow),
                 backyardIdParameter);
 
             return result.FirstOrDefault();
@@ -102,7 +102,7 @@ WHERE
         /// </returns>
         /// <exception cref="System.ArgumentNullException">userNames</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">userNames</exception>
-        IEnumerable<User> IUserDao.GetMany(IEnumerable<string> userNames)
+        IEnumerable<PriUser> IPriUserDao.GetMany(IEnumerable<string> userNames)
         {
             if (userNames == null)
             {
@@ -115,8 +115,8 @@ WHERE
             }
 
             var wrappedUserNames = userNames.Select(s => string.Format("'{0}'", s)); // 給每個值的前後加上單引號。
-            var commandText = string.Format(@"
-SELECT
+            var commandText = string.Format(
+@"SELECT
 	[priuser_id],
 	[priuser_name],
 	[priuser_fullname],
@@ -158,7 +158,7 @@ WHERE
                 CommandType.Text,
                 commandText,
                 this._connectionString,
-                dataRow => ColumnMappingHelper.MappingEntity<User>(dataRow));
+                dataRow => ColumnMappingHelper.MappingEntity<PriUser>(dataRow));
 
             return result;
         }

@@ -1,4 +1,4 @@
-﻿Feature: GetSubCategoryContacts
+﻿Feature: GetCategoryContacts
 	In order to 顯示資料
 	As a 線上使用者
 	I want to 取得聯絡人資訊

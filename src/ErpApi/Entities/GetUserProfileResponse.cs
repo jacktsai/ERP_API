@@ -54,12 +54,12 @@ namespace ErpApi.Entities
         /// Backyard ID。
         /// </summary>
         [DataMember]
-        public string BackyardID { get; set; }
+        public string BackyardId { get; set; }
 
         /// <summary>
         /// 子站代碼。
         /// </summary>
         [DataMember]
-        public int[] CatSubIds { get; set; }
+        public int[] CategoryIds { get; set; }
     }
 }

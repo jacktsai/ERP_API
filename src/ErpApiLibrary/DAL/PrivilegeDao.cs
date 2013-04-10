@@ -49,8 +49,8 @@ namespace ErpApi.DAL
                 throw new ArgumentNullException("url");
             }
 
-            var commandText = @"
-SELECT
+            var commandText =
+@"SELECT
 	[privilege_id],
 	[privilege_prifuncid],
 	[privilege_priuserid],

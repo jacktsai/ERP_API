@@ -51,39 +51,39 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\SubCategoryService.cs" />
+    <Compile Include="BLL\CategoryService.cs" />
     <Compile Include="BLL\UserService.cs" />
-    <Compile Include="DAL\DenyPrivilegeDao.cs" />
-    <Compile Include="DAL\IDenyPrivilegeDao.cs" />
+    <Compile Include="DAL\DenyPrivDao.cs" />
+    <Compile Include="DAL\IDenyPrivDao.cs" />
     <Compile Include="DAL\IPrivilegeDao.cs" />
     <Compile Include="DAL\IRoleDao.cs" />
-    <Compile Include="DAL\ISubCategoryDao.cs" />
+    <Compile Include="DAL\ICatSubDao.cs" />
     <Compile Include="DAL\PrivilegeDao.cs" />
     <Compile Include="DAL\RoleDao.cs" />
-    <Compile Include="DAL\SubCategoryDao.cs" />
-    <Compile Include="Entities\DenyPrivilege.cs" />
+    <Compile Include="DAL\CatSubDao.cs" />
+    <Compile Include="Entities\DenyPriv.cs" />
     <Compile Include="Entities\Privilege.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Authority.cs" />
-    <Compile Include="BLL\ISubCategoryService.cs" />
+    <Compile Include="BLL\ICategoryService.cs" />
     <Compile Include="BLL\IUserService.cs" />
     <Compile Include="Entities\Profile.cs" />
-    <Compile Include="Entities\SubCategoryContactModel.cs" />
+    <Compile Include="Entities\CategoryContactModel.cs" />
     <Compile Include="T4\GenerateEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\SubCategoryUser.cs" />
+    <Compile Include="Entities\CatSubUsr.cs" />
     <Compile Include="Utilities\ColumnMappingHelper.cs" />
     <Compile Include="Utilities\Extensions\DictionaryExtensions.cs" />
     <Compile Include="Utilities\Extensions\IDbCommandExtensions.cs" />
     <Compile Include="Utilities\Extensions\TypeExtensions.cs" />
-    <Compile Include="Entities\SubCategory.cs" />
-    <Compile Include="DAL\UserDao.cs" />
+    <Compile Include="Entities\CatSub.cs" />
+    <Compile Include="DAL\PriUserDao.cs" />
     <Compile Include="Utilities\Extensions\IDataReaderExtensions.cs" />
-    <Compile Include="DAL\IUserDao.cs" />
-    <Compile Include="Entities\User.cs" />
+    <Compile Include="DAL\IPriUserDao.cs" />
+    <Compile Include="Entities\PriUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

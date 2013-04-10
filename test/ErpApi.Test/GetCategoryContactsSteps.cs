@@ -11,12 +11,12 @@ using System.Net;
 namespace ErpApi.Test
 {
     [Binding]
-    [Scope(Feature = "GetSubCategoryContacts")]
-    public class GetSubCategoryContactsSteps
+    [Scope(Feature = "GetCategoryContacts")]
+    public class GetCategoryContactsSteps
     {
         private readonly HttpContext _context;
 
-        public GetSubCategoryContactsSteps(HttpContext context)
+        public GetCategoryContactsSteps(HttpContext context)
         {
             this._context = context;
         }
@@ -24,26 +24,26 @@ namespace ErpApi.Test
         [Given(@"無子站代碼")]
         public void Given無子站代碼()
         {
-            this._context.SetRequestValue("SubCategoryIds", null);
+            this._context.SetRequestValue("CategoryIds", null);
         }
 
         [Given(@"子站代碼為空白")]
         public void Given子站代碼為空白()
         {
-            this._context.SetRequestValue("SubCategoryIds", string.Empty);
+            this._context.SetRequestValue("CategoryIds", string.Empty);
         }
 
         [Given(@"子站代碼為 (.*)")]
-        public void Given子站代碼為(string subCatIds)
+        public void Given子站代碼為(string ids)
         {
-            var idArray = subCatIds.Split(',').Select(s => int.Parse(s)).ToArray();
-            this._context.SetRequestValue("SubCategoryIds", idArray);
+            var idArray = ids.Split(',').Select(s => int.Parse(s)).ToArray();
+            this._context.SetRequestValue("CategoryIds", idArray);
         }
 
         [When(@"取得聯絡人資訊")]
         public void When取得聯絡人資訊()
         {
-            this._context.Send(HttpMethod.Post, "api/SubCategory/GetContacts");
+            this._context.Send(HttpMethod.Post, "api/Category/GetCategoryContacts");
         }
 
         [Then(@"回傳成功狀態")]
@@ -60,14 +60,14 @@ namespace ErpApi.Test
 
         private JObject GetElement(int index)
         {
-            JArray array = this._context.ResponseContent.Value<JArray>("Contacts");
+            JArray array = this._context.ResponseContent.Value<JArray>("CategoryContacts");
             return array[index - 1].Value<JObject>();
         }
 
         [Then(@"回傳第 (.*) 個子站代碼為 (.*)")]
         public void Then回傳第個子站代碼為(int index, int expected)
         {
-            this.GetElement(index).AssertAreEqual("SubCategoryId", expected);
+            this.GetElement(index).AssertAreEqual("CategoryId", expected);
         }
 
         [Then(@"回傳第 (.*) 個負責PM的BackyardID為 '(.*)'")]

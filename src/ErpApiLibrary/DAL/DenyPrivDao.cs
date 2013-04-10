@@ -10,9 +10,9 @@ using Monday.Environments;
 namespace ErpApi.DAL
 {
     /// <summary>
-    /// 以 System.Data.Common 為基礎所建立的 <see cref="IDenyPrivilegeDao"/> 介面實作。
+    /// 以 System.Data.Common 為基礎所建立的 <see cref="IDenyPrivDao"/> 介面實作。
     /// </summary>
-    public class DenyPrivilegeDao : IDenyPrivilegeDao
+    public class DenyPrivDao : IDenyPrivDao
     {
         /// <summary>
         /// The database connection string.
@@ -20,9 +20,9 @@ namespace ErpApi.DAL
         private readonly string _connectionString;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DenyPrivilegeDao" /> class.
+        /// Initializes a new instance of the <see cref="DenyPrivDao" /> class.
         /// </summary>
-        public DenyPrivilegeDao()
+        public DenyPrivDao()
         {
             this._connectionString = Setting.GetConnectionString("security");
         }
@@ -36,7 +36,7 @@ namespace ErpApi.DAL
         /// Deny Privilege Data。
         /// </returns>
         /// <exception cref="System.ArgumentNullException">url</exception>
-        DenyPrivilege IDenyPrivilegeDao.GetOne(int userId, string url)
+        DenyPriv IDenyPrivDao.GetOne(int userId, string url)
         {
             if (url == null)
             {
@@ -71,7 +71,7 @@ WHERE
                 CommandType.Text,
                 commandText,
                 this._connectionString,
-                dataRow => ColumnMappingHelper.MappingEntity<DenyPrivilege>(dataRow),
+                dataRow => ColumnMappingHelper.MappingEntity<DenyPriv>(dataRow),
                 userIdParameter,
                 urlParameter);
 

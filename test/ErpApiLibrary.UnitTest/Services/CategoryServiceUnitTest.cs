@@ -10,72 +10,72 @@ using ErpApi.Entities;
 namespace ErpApi.BLL
 {
     [TestClass]
-    public class SubCategoryServiceUnitTest
+    public class CategoryServiceUnitTest
     {
-        private IUserDao _userDao;
-        private ISubCategoryDao _subCatDao;
-        private ISubCategoryService _target;
+        private IPriUserDao _userDao;
+        private ICatSubDao _subCatDao;
+        private ICategoryService _target;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this._userDao = MockRepository.GenerateStub<IUserDao>();
-            this._subCatDao = MockRepository.GenerateStub<ISubCategoryDao>();
+            this._userDao = MockRepository.GenerateStub<IPriUserDao>();
+            this._subCatDao = MockRepository.GenerateStub<ICatSubDao>();
 
-            this._target = new SubCategoryService
+            this._target = new CategoryService
             {
-                UserDao = this._userDao,
-                SubCategoryDao = this._subCatDao,
+                PriUserDao = this._userDao,
+                CatSubDao = this._subCatDao,
             };
         }
 
         [TestMethod]
-        public void GetSubCategories_SubCat_null()
+        public void GetCategories_Category_null()
         {
             this._subCatDao
                 .Stub(o => o.GetMany(Arg<IEnumerable<int>>.Is.Anything))
                 .Return(null);
 
-            var actual = this._target.GetSubCategoryUsers(new[] { 1 });
+            var actual = this._target.GetCategoryContacts(new[] { 1 });
 
             Assert.IsNotNull(actual);
             Assert.AreEqual(0, actual.Count());
         }
 
         [TestMethod]
-        public void GetSubCategories_SubCat_ZeroLength()
+        public void GetCategories_Category_ZeroLength()
         {
             this._subCatDao
                 .Stub(o => o.GetMany(Arg<IEnumerable<int>>.Is.Anything))
-                .Return(new SubCategory[0]);
+                .Return(new CatSub[0]);
 
-            var actual = this._target.GetSubCategoryUsers(new[] { 1 });
+            var actual = this._target.GetCategoryContacts(new[] { 1 });
 
             Assert.IsNotNull(actual);
             Assert.AreEqual(0, actual.Count());
         }
 
         [TestMethod]
-        public void GetSubCategories_User_null()
+        public void GetCategories_User_null()
         {
-            var subCat1 = new SubCategory
+            var subCat1 = new CatSub
             {
-                catsub_id = 1,
-                User = new SubCategoryUser
+                Id = 1,
+                User = new CatSubUsr
                 {
-                    catsubusr_usrname = "pm name",
+                    UsrName = "pm name",
                 },
-                catsub_mdypm = "manager name",
-                catsub_mdypurher = string.Empty,
-                catsub_mdystaff = null,
+                MdyPm = "manager name",
+                MdyPurher = string.Empty,
+                MdyStaff = null,
             };
-            var subCat2 = new SubCategory
+            var subCat2 = new CatSub
             {
-                catsub_id = 3,
-                User = new SubCategoryUser(),
-                catsub_mdypm = string.Empty,
-                catsub_mdypurher = "purchaser name",
-                catsub_mdystaff = "staff name",
+                Id = 3,
+                User = new CatSubUsr(),
+                MdyPm = string.Empty,
+                MdyPurher = "purchaser name",
+                MdyStaff = "staff name",
             };
             this._subCatDao
                 .Stub(o => o.GetMany(Arg<IEnumerable<int>>.Is.Anything))
@@ -85,13 +85,13 @@ namespace ErpApi.BLL
                 .Stub(o => o.GetMany(Arg<IEnumerable<string>>.Is.Anything))
                 .Return(null);
 
-            var subCats = this._target.GetSubCategoryUsers(new[] { 1, 2, 3 });
+            var subCats = this._target.GetCategoryContacts(new[] { 1, 2, 3 });
 
             Assert.IsNotNull(subCats);
             Assert.AreEqual(2, subCats.Count());
 
             var contact1 = subCats.ElementAt(0);
-            Assert.AreEqual(1, subCat1.catsub_id);
+            Assert.AreEqual(1, subCat1.Id);
             Assert.IsNull(contact1.Pm);
             Assert.IsNull(contact1.Manager);
             Assert.IsNull(contact1.Purchaser);
@@ -106,26 +106,26 @@ namespace ErpApi.BLL
         }
 
         [TestMethod]
-        public void GetSubCategories_User_ZeroLength()
+        public void GetCategories_User_ZeroLength()
         {
-            var subCat1 = new SubCategory
+            var subCat1 = new CatSub
             {
-                catsub_id = 1,
-                User = new SubCategoryUser
+                Id = 1,
+                User = new CatSubUsr
                 {
-                    catsubusr_usrname = "pm name",
+                    UsrName = "pm name",
                 },
-                catsub_mdypm = "manager name",
-                catsub_mdypurher = string.Empty,
-                catsub_mdystaff = null,
+                MdyPm = "manager name",
+                MdyPurher = string.Empty,
+                MdyStaff = null,
             };
-            var subCat2 = new SubCategory
+            var subCat2 = new CatSub
             {
-                catsub_id = 3,
-                User = new SubCategoryUser(),
-                catsub_mdypm = string.Empty,
-                catsub_mdypurher = "purchaser name",
-                catsub_mdystaff = "staff name",
+                Id = 3,
+                User = new CatSubUsr(),
+                MdyPm = string.Empty,
+                MdyPurher = "purchaser name",
+                MdyStaff = "staff name",
             };
             this._subCatDao
                 .Stub(o => o.GetMany(Arg<IEnumerable<int>>.Is.Anything))
@@ -133,9 +133,9 @@ namespace ErpApi.BLL
 
             this._userDao
                 .Stub(o => o.GetMany(Arg<IEnumerable<string>>.Is.Anything))
-                .Return(new User[0]);
+                .Return(new PriUser[0]);
 
-            var subCats = this._target.GetSubCategoryUsers(new[] { 1, 2, 3 });
+            var subCats = this._target.GetCategoryContacts(new[] { 1, 2, 3 });
 
             Assert.IsNotNull(subCats);
             Assert.AreEqual(2, subCats.Count());
@@ -156,52 +156,52 @@ namespace ErpApi.BLL
         }
 
         [TestMethod]
-        public void GetSubCategories()
+        public void GetCategories()
         {
-            var subCat1 = new SubCategory
+            var subCat1 = new CatSub
             {
-                catsub_id = 1,
-                User = new SubCategoryUser
+                Id = 1,
+                User = new CatSubUsr
                 {
-                    catsubusr_usrname = "pm name",
+                    UsrName = "pm name",
                 },
-                catsub_mdypm = "manager name",
-                catsub_mdypurher = string.Empty,
-                catsub_mdystaff = null,
+                MdyPm = "manager name",
+                MdyPurher = string.Empty,
+                MdyStaff = null,
             };
-            var subCat2 = new SubCategory
+            var subCat2 = new CatSub
             {
-                catsub_id = 3,
-                User = new SubCategoryUser(),
-                catsub_mdypm = string.Empty,
-                catsub_mdypurher = "purchaser name",
-                catsub_mdystaff = "staff name",
+                Id = 3,
+                User = new CatSubUsr(),
+                MdyPm = string.Empty,
+                MdyPurher = "purchaser name",
+                MdyStaff = "staff name",
             };
             this._subCatDao
                 .Stub(o => o.GetMany(Arg<IEnumerable<int>>.Is.Anything))
                 .Return(new[] { subCat1, subCat2 });
 
-            var pm = new User
+            var pm = new PriUser
             {
-                priuser_name = "pm name",
+                Name = "pm name",
             };
-            var manager = new User
+            var manager = new PriUser
             {
-                priuser_name = "manager name",
+                Name = "manager name",
             };
-            var purchaser = new User
+            var purchaser = new PriUser
             {
-                priuser_name = "purchaser name",
+                Name = "purchaser name",
             };
-            var staff = new User
+            var staff = new PriUser
             {
-                priuser_name = "staff name",
+                Name = "staff name",
             };
             this._userDao
                 .Stub(o => o.GetMany(Arg<IEnumerable<string>>.Is.Anything))
                 .Return(new[] { pm, manager, purchaser, staff });
 
-            var subCats = this._target.GetSubCategoryUsers(new[] { 1, 2, 3 });
+            var subCats = this._target.GetCategoryContacts(new[] { 1, 2, 3 });
 
             Assert.IsNotNull(subCats);
             Assert.AreEqual(2, subCats.Count());
@@ -209,9 +209,9 @@ namespace ErpApi.BLL
             var contact1 = subCats.ElementAt(0);
             Assert.AreEqual(1, contact1.Id);
             Assert.IsNotNull(contact1.Pm);
-            Assert.AreEqual(pm.priuser_name, contact1.Pm.priuser_name);
+            Assert.AreEqual(pm.Name, contact1.Pm.Name);
             Assert.IsNotNull(contact1.Manager);
-            Assert.AreEqual(manager.priuser_name, contact1.Manager.priuser_name);
+            Assert.AreEqual(manager.Name, contact1.Manager.Name);
             Assert.IsNull(contact1.Purchaser);
             Assert.IsNull(contact1.Staff);
 
@@ -220,9 +220,9 @@ namespace ErpApi.BLL
             Assert.IsNull(contact2.Pm);
             Assert.IsNull(contact2.Manager);
             Assert.IsNotNull(contact2.Purchaser);
-            Assert.AreEqual(purchaser.priuser_name, contact2.Purchaser.priuser_name);
+            Assert.AreEqual(purchaser.Name, contact2.Purchaser.Name);
             Assert.IsNotNull(contact2.Staff);
-            Assert.AreEqual(staff.priuser_name, contact2.Staff.priuser_name);
+            Assert.AreEqual(staff.Name, contact2.Staff.Name);
         }
     }
 }

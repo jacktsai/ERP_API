@@ -19,19 +19,19 @@ namespace ErpApi.Test
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class GetSubCategoryContactsFeature
+    public partial class GetCategoryContactsFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "GetSubCategoryContacts.feature"
+#line 1 "GetCategoryContacts.feature"
 #line hidden
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetSubCategoryContacts", "In order to 顯示資料\r\nAs a 線上使用者\r\nI want to 取得聯絡人資訊", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "GetCategoryContacts", "In order to 顯示資料\r\nAs a 線上使用者\r\nI want to 取得聯絡人資訊", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -46,9 +46,9 @@ namespace ErpApi.Test
         public virtual void TestInitialize()
         {
             if (((TechTalk.SpecFlow.FeatureContext.Current != null) 
-                        && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "GetSubCategoryContacts")))
+                        && (TechTalk.SpecFlow.FeatureContext.Current.FeatureInfo.Title != "GetCategoryContacts")))
             {
-                ErpApi.Test.GetSubCategoryContactsFeature.FeatureSetup(null);
+                ErpApi.Test.GetCategoryContactsFeature.FeatureSetup(null);
             }
         }
         
@@ -70,7 +70,7 @@ namespace ErpApi.Test
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以無子站代碼取得聯絡人資訊")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetSubCategoryContacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetCategoryContacts")]
         public virtual void 以無子站代碼取得聯絡人資訊()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以無子站代碼取得聯絡人資訊", ((string[])(null)));
@@ -88,7 +88,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以空白子站代碼取得聯絡人資訊")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetSubCategoryContacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetCategoryContacts")]
         public virtual void 以空白子站代碼取得聯絡人資訊()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以空白子站代碼取得聯絡人資訊", ((string[])(null)));
@@ -106,7 +106,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以子站代碼 2,3,4,5 取得聯絡人資訊")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetSubCategoryContacts")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetCategoryContacts")]
         public virtual void 以子站代碼2345取得聯絡人資訊()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以子站代碼 2,3,4,5 取得聯絡人資訊", ((string[])(null)));

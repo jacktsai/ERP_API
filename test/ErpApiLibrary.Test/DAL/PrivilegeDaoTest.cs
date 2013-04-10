@@ -40,10 +40,10 @@ namespace ErpApi.DAL
             var actual = target.GetOne("jacktsai", "/test.aspx");
 
             Assert.IsNotNull(actual);
-            Assert.AreEqual(150117, actual.privilege_id);
-            Assert.AreEqual(2733, actual.privilege_priuserid);
-            Assert.AreEqual(873, actual.privilege_prifuncid);
-            Assert.AreEqual("新使用者建立(ctr_AssignUserBasicPrivs)", actual.privilege_note);
+            Assert.AreEqual(150117, actual.Id);
+            Assert.AreEqual(2733, actual.PriUserId);
+            Assert.AreEqual(873, actual.PriFuncId);
+            Assert.AreEqual("新使用者建立(ctr_AssignUserBasicPrivs)", actual.Note);
         }
     }
 }

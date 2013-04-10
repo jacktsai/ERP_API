@@ -56,7 +56,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\SubCategoryServiceUnitTest.cs" />
+    <Compile Include="Services\CategoryServiceUnitTest.cs" />
     <Compile Include="Services\UserServiceUnitTest.cs" />
     <Compile Include="Utilities\Extensions\DictionaryExtensionsUnitTest.cs" />
   </ItemGroup>

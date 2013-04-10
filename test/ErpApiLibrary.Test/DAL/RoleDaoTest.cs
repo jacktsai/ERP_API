@@ -35,11 +35,11 @@ namespace ErpApi.DAL
 
             Assert.IsNotNull(actual);
             Assert.AreEqual(5, actual.Count());
-            Assert.IsTrue(actual.Any(o => o.roles_name == "Administrators"));
-            Assert.IsTrue(actual.Any(o => o.roles_name == "Select"));
-            Assert.IsTrue(actual.Any(o => o.roles_name == "Insert"));
-            Assert.IsTrue(actual.Any(o => o.roles_name == "Update"));
-            Assert.IsTrue(actual.Any(o => o.roles_name == "Delete"));
+            Assert.IsTrue(actual.Any(o => o.Name == "Administrators"));
+            Assert.IsTrue(actual.Any(o => o.Name == "Select"));
+            Assert.IsTrue(actual.Any(o => o.Name == "Insert"));
+            Assert.IsTrue(actual.Any(o => o.Name == "Update"));
+            Assert.IsTrue(actual.Any(o => o.Name == "Delete"));
         }
     }
 }

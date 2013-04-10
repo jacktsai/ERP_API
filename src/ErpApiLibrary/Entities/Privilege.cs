@@ -12,60 +12,60 @@ namespace ErpApi.Entities
         /// privilege_id。
         /// </summary>
         [DBColumnMapping("privilege_id")]
-        public Int32 privilege_id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// privilege_prifuncid。
         /// </summary>
         [DBColumnMapping("privilege_prifuncid")]
-        public Int32 privilege_prifuncid { get; set; }
+        public int PriFuncId { get; set; }
 
         /// <summary>
         /// privilege_priuserid。
         /// </summary>
         [DBColumnMapping("privilege_priuserid")]
-        public Int32 privilege_priuserid { get; set; }
+        public int PriUserId { get; set; }
 
         /// <summary>
         /// privilege_date。
         /// </summary>
         [DBColumnMapping("privilege_date")]
-        public DateTime privilege_date { get; set; }
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// privilege_note。
         /// </summary>
         [DBColumnMapping("privilege_note")]
-        public string privilege_note { get; set; }
+        public string Note { get; set; }
 
         /// <summary>
         /// privilege_sysdate。
         /// </summary>
         [DBColumnMapping("privilege_sysdate")]
-        public DateTime privilege_sysdate { get; set; }
+        public DateTime SysDate { get; set; }
 
         /// <summary>
         /// privilege_updated。
         /// </summary>
         [DBColumnMapping("privilege_updated")]
-        public Byte privilege_updated { get; set; }
+        public byte Updated { get; set; }
 
         /// <summary>
         /// privilege_updateddate。
         /// </summary>
         [DBColumnMapping("privilege_updateddate")]
-        public DateTime privilege_updateddate { get; set; }
+        public DateTime UpdatedDate { get; set; }
 
         /// <summary>
         /// privilege_updateduser。
         /// </summary>
         [DBColumnMapping("privilege_updateduser")]
-        public string privilege_updateduser { get; set; }
+        public string UpdatedUser { get; set; }
 
         /// <summary>
         /// privilege_prigroupid。
         /// </summary>
         [DBColumnMapping("privilege_prigroupid")]
-        public Int32? privilege_prigroupid { get; set; }
+        public int? PriGroupId { get; set; }
     }
 }

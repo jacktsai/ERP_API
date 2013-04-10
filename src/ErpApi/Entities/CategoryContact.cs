@@ -3,12 +3,12 @@
     /// <summary>
     /// 子站聯絡資訊。
     /// </summary>
-    public class SubCategoryContact
+    public class CategoryContact
     {
         /// <summary>
         /// 子站代碼。
         /// </summary>
-        public int SubCategoryId { get; set; }
+        public int CategoryId { get; set; }
 
         /// <summary>
         /// 負責 PM ID。

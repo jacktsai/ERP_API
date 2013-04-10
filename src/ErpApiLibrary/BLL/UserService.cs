@@ -12,12 +12,12 @@ namespace ErpApi.BLL
     public class UserService : IUserService
     {
         /// <summary>
-        /// Gets or sets the <see cref="ErpApi.DAL.IUserDao"/> instance.
+        /// Gets or sets the <see cref="ErpApi.DAL.IPriUserDao"/> instance.
         /// </summary>
         /// <value>
-        /// The <see cref="ErpApi.DAL.IUserDao"/> instance.
+        /// The <see cref="ErpApi.DAL.IPriUserDao"/> instance.
         /// </value>
-        public IUserDao UserDao { get; set; }
+        public IPriUserDao PriUserDao { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="ErpApi.DAL.IRoleDao"/> instance.
@@ -28,12 +28,12 @@ namespace ErpApi.BLL
         public IRoleDao RoleDao { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="ErpApi.DAL.ISubCategoryDao"/> instance.
+        /// Gets or sets the <see cref="ErpApi.DAL.ICatSubDao"/> instance.
         /// </summary>
         /// <value>
-        /// The <see cref="ErpApi.DAL.ISubCategoryDao"/> instance.
+        /// The <see cref="ErpApi.DAL.ICatSubDao"/> instance.
         /// </value>
-        public ISubCategoryDao SubCategoryDao { get; set; }
+        public ICatSubDao CatSubDao { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="ErpApi.DAL.IPrivilegeDao"/> instance.
@@ -44,12 +44,12 @@ namespace ErpApi.BLL
         public IPrivilegeDao PrivilegeDao { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="ErpApi.DAL.IDenyPrivilegeDao"/> instance.
+        /// Gets or sets the <see cref="ErpApi.DAL.IDenyPrivDao"/> instance.
         /// </summary>
         /// <value>
-        /// The <see cref="ErpApi.DAL.IDenyPrivilegeDao"/> instance.
+        /// The <see cref="ErpApi.DAL.IDenyPrivDao"/> instance.
         /// </value>
-        public IDenyPrivilegeDao DenyPrivilegeDao { get; set; }
+        public IDenyPrivDao DenyPrivDao { get; set; }
 
         /// <summary>
         /// 取得使用者相關資訊。
@@ -66,19 +66,19 @@ namespace ErpApi.BLL
                 throw new ArgumentNullException("backyardId");
             }
 
-            var user = this.UserDao.GetOne(backyardId);
+            var user = this.PriUserDao.GetOne(backyardId);
 
             if (user == null)
             {
                 return null;
             }
 
-            var subCats = this.SubCategoryDao.GetMany(user.priuser_id);
+            var subCats = this.CatSubDao.GetMany(user.Id);
 
             return new Profile
             {
                 User = user,
-                SubCatIds = subCats.Select(o => o.catsub_id),
+                SubCatIds = subCats.Select(o => o.Id),
             };
         }
 
@@ -110,14 +110,14 @@ namespace ErpApi.BLL
             {
                 authority.CanAccess = true;
 
-                var roleDatas = this.RoleDao.GetMany(privilege.privilege_priuserid, url);
-                var denyData = this.DenyPrivilegeDao.GetOne(privilege.privilege_priuserid, url);
+                var roleDatas = this.RoleDao.GetMany(privilege.PriUserId, url);
+                var denyData = this.DenyPrivDao.GetOne(privilege.PriUserId, url);
 
-                authority.CanSelect = this.Judge(roleDatas, r => r.roles_select, denyData, d => d.denyprivs_select);
-                authority.CanInsert = this.Judge(roleDatas, r => r.roles_insert, denyData, d => d.denyprivs_insert);
-                authority.CanUpdate = this.Judge(roleDatas, r => r.roles_update, denyData, d => d.denyprivs_update);
-                authority.CanDelete = this.Judge(roleDatas, r => r.roles_delete, denyData, d => d.denyprivs_delete);
-                authority.CanParticular = this.Judge(roleDatas, r => r.roles_particular, denyData, d => d.denyprivs_particular);
+                authority.CanSelect = this.Judge(roleDatas, r => r.Select, denyData, d => d.Select);
+                authority.CanInsert = this.Judge(roleDatas, r => r.Insert, denyData, d => d.Insert);
+                authority.CanUpdate = this.Judge(roleDatas, r => r.Update, denyData, d => d.Update);
+                authority.CanDelete = this.Judge(roleDatas, r => r.Delete, denyData, d => d.Delete);
+                authority.CanParticular = this.Judge(roleDatas, r => r.Particular, denyData, d => d.Particular);
             }
 
             return authority;
@@ -133,7 +133,7 @@ namespace ErpApi.BLL
         /// <returns>
         /// 如果有權限則回傳 true；否則回傳 false。
         /// </returns>
-        private bool Judge(IEnumerable<Role> roleDatas, Func<Role, bool?> canGetter, DenyPrivilege denyPriv, Func<DenyPrivilege, bool> denyGetter)
+        private bool Judge(IEnumerable<Role> roleDatas, Func<Role, bool?> canGetter, DenyPriv denyPriv, Func<DenyPriv, bool> denyGetter)
         {
             // is denied ?
             if (denyPriv != null && denyGetter(denyPriv))

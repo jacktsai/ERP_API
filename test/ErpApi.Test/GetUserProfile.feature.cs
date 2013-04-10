@@ -141,11 +141,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以 Backyard ID \'kevin113\' 取得登入資訊")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("以 Backyard ID \'kevin113\' 取得使用者資訊")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GetUserProfile")]
-        public virtual void 以BackyardIDKevin113取得登入資訊()
+        public virtual void 以BackyardIDKevin113取得使用者資訊()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以 Backyard ID \'kevin113\' 取得登入資訊", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("以 Backyard ID \'kevin113\' 取得使用者資訊", ((string[])(null)));
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line 31

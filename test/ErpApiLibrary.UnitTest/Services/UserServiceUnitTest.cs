@@ -12,29 +12,29 @@ namespace ErpApi.BLL
     [TestClass]
     public class UserServiceUnitTest
     {
-        private IUserDao _userDao;
-        private ISubCategoryDao _subCatDao;
+        private IPriUserDao _userDao;
+        private ICatSubDao _subCatDao;
         private IRoleDao _roleDao;
         private IPrivilegeDao _privDao;
-        private IDenyPrivilegeDao _denyDao;
+        private IDenyPrivDao _denyDao;
         private IUserService _target;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this._userDao = MockRepository.GenerateStub<IUserDao>();
-            this._subCatDao = MockRepository.GenerateStub<ISubCategoryDao>();
+            this._userDao = MockRepository.GenerateStub<IPriUserDao>();
+            this._subCatDao = MockRepository.GenerateStub<ICatSubDao>();
             this._roleDao = MockRepository.GenerateStub<IRoleDao>();
             this._privDao = MockRepository.GenerateStub<IPrivilegeDao>();
-            this._denyDao = MockRepository.GenerateStub<IDenyPrivilegeDao>();
+            this._denyDao = MockRepository.GenerateStub<IDenyPrivDao>();
 
             this._target = new UserService
             {
-                UserDao = this._userDao,
-                SubCategoryDao = this._subCatDao,
+                PriUserDao = this._userDao,
+                CatSubDao = this._subCatDao,
                 RoleDao = this._roleDao,
                 PrivilegeDao = this._privDao,
-                DenyPrivilegeDao = this._denyDao,
+                DenyPrivDao = this._denyDao,
             };
         }
 
@@ -60,25 +60,25 @@ namespace ErpApi.BLL
         [TestMethod]
         public void GetProfile()
         {
-            var expectedUser = new User
+            var expectedUser = new PriUser
             {
-                priuser_id = 2733,
-                priuser_name = "jack",
-                priuser_fullname = "Jack Tsai",
-                priuser_department = "department",
-                priuser_degree = 1,
-                priuser_email = "my email",
-                priuser_homepage = "homepage",
-                priuser_extno = "12345",
-                priuser_backyardid = "jacktsai",
+                Id = 2733,
+                Name = "jack",
+                FullName = "Jack Tsai",
+                Department = "department",
+                Degree = 1,
+                Email = "my email",
+                Homepage = "homepage",
+                ExtNo = "12345",
+                BackyardId = "jacktsai",
             };
             this._userDao
                 .Stub(o => o.GetOne(Arg<string>.Is.Anything))
                 .Return(expectedUser);
 
-            var expectedSubCat = new SubCategory
+            var expectedSubCat = new CatSub
             {
-                catsub_id = 999,
+                Id = 999,
             };
             this._subCatDao
                 .Stub(o => o.GetMany(Arg<int>.Is.Anything))
@@ -393,25 +393,25 @@ namespace ErpApi.BLL
         {
             var Role = new Role
             {
-                roles_select = can,
-                roles_insert = can,
-                roles_update = can,
-                roles_delete = can,
-                roles_particular = can,
+                Select = can,
+                Insert = can,
+                Update = can,
+                Delete = can,
+                Particular = can,
             };
 
             return new Role[] { Role };
         }
 
-        private DenyPrivilege CreateDenyData(bool deny)
+        private DenyPriv CreateDenyData(bool deny)
         {
-            var denyData = new DenyPrivilege
+            var denyData = new DenyPriv
             {
-                denyprivs_select = deny,
-                denyprivs_insert = deny,
-                denyprivs_update = deny,
-                denyprivs_delete = deny,
-                denyprivs_particular = deny,
+                Select = deny,
+                Insert = deny,
+                Update = deny,
+                Delete = deny,
+                Particular = deny,
             };
 
             return denyData;

@@ -17,11 +17,11 @@ namespace ErpApi.BLL
         {
             this._target = new UserService()
             {
-                UserDao = new UserDao(),
-                SubCategoryDao = new SubCategoryDao(),
+                PriUserDao = new PriUserDao(),
+                CatSubDao = new CatSubDao(),
                 RoleDao = new RoleDao(),
                 PrivilegeDao = new PrivilegeDao(),
-                DenyPrivilegeDao = new DenyPrivilegeDao(),
+                DenyPrivDao = new DenyPrivDao(),
             };
         }
 
@@ -32,14 +32,14 @@ namespace ErpApi.BLL
 
             Assert.IsNotNull(actual);
             Assert.IsNotNull(actual.User);
-            Assert.AreEqual(2733, actual.User.priuser_id);
-            Assert.AreEqual("jacktsai", actual.User.priuser_name);
-            Assert.AreEqual("Jack Tsai", actual.User.priuser_fullname);
-            Assert.AreEqual("研發", actual.User.priuser_department);
-            Assert.AreEqual(0, actual.User.priuser_degree);
-            Assert.AreEqual("/privilege/homepages/erp.asp", actual.User.priuser_homepage);
-            Assert.AreEqual("3628", actual.User.priuser_extno);
-            Assert.AreEqual("jacktsai", actual.User.priuser_backyardid);
+            Assert.AreEqual(2733, actual.User.Id);
+            Assert.AreEqual("jacktsai", actual.User.Name);
+            Assert.AreEqual("Jack Tsai", actual.User.FullName);
+            Assert.AreEqual("研發", actual.User.Department);
+            Assert.AreEqual(0, actual.User.Degree);
+            Assert.AreEqual("/privilege/homepages/erp.asp", actual.User.Homepage);
+            Assert.AreEqual("3628", actual.User.ExtNo);
+            Assert.AreEqual("jacktsai", actual.User.BackyardId);
             Assert.IsNotNull(actual.SubCatIds);
             Assert.AreEqual(2, actual.SubCatIds.Count());
             Assert.AreEqual(25, actual.SubCatIds.ElementAt(0));
@@ -53,14 +53,14 @@ namespace ErpApi.BLL
 
             Assert.IsNotNull(actual);
             Assert.IsNotNull(actual.User);
-            Assert.AreEqual(2121, actual.User.priuser_id);
-            Assert.AreEqual("kevincheng", actual.User.priuser_name);
-            Assert.AreEqual("鄭凱文", actual.User.priuser_fullname);
-            Assert.AreEqual("研發", actual.User.priuser_department);
-            Assert.AreEqual(0, actual.User.priuser_degree);
-            Assert.AreEqual("/privilege/homepages/ERP.asp", actual.User.priuser_homepage);
-            Assert.AreEqual("151", actual.User.priuser_extno);
-            Assert.AreEqual("kevin113", actual.User.priuser_backyardid);
+            Assert.AreEqual(2121, actual.User.Id);
+            Assert.AreEqual("kevincheng", actual.User.Name);
+            Assert.AreEqual("鄭凱文", actual.User.FullName);
+            Assert.AreEqual("研發", actual.User.Department);
+            Assert.AreEqual(0, actual.User.Degree);
+            Assert.AreEqual("/privilege/homepages/ERP.asp", actual.User.Homepage);
+            Assert.AreEqual("151", actual.User.ExtNo);
+            Assert.AreEqual("kevin113", actual.User.BackyardId);
             Assert.IsNotNull(actual.SubCatIds);
             Assert.AreEqual(0, actual.SubCatIds.Count());
         }

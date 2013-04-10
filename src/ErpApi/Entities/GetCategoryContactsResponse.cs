@@ -6,12 +6,12 @@ namespace ErpApi.Entities
     /// GetSubCategoryContacts response format.
     /// </summary>
     [DataContract]
-    public class GetSubCategoryContactsResponse
+    public class GetCategoryContactsResponse
     {
         /// <summary>
         /// The contacts.
         /// </summary>
         [DataMember]
-        public SubCategoryContact[] Contacts { get; set; }
+        public CategoryContact[] CategoryContacts { get; set; }
     }
 }

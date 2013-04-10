@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
@@ -50,63 +51,76 @@ namespace ErpApi.Test
         }
 
         [Then(@"回傳狀態為 '(.*)'")]
-        public void Then回傳狀態為(HttpStatusCode expected)
+        public void Then回傳狀態為(HttpStatusCode status)
         {
-            Assert.AreEqual(expected, this._context.StatusCode);
+            Assert.AreEqual(status, this._context.StatusCode);
         }
 
         [Then(@"回傳使用者序號為 (.*)")]
-        public void Then回傳使用者序號為(int expected)
+        public void Then回傳使用者序號為(int id)
         {
-            this._context.ResponseContent.AssertAreEqual("Id", expected);
+            this._context.ResponseContent.AssertAreEqual("Id", id);
         }
 
         [Then(@"回傳使用者帳號為 '(.*)'")]
-        public void Then回傳使用者帳號為(string expected)
+        public void Then回傳使用者帳號為(string name)
         {
-            this._context.ResponseContent.AssertAreEqual("Name", expected);
+            this._context.ResponseContent.AssertAreEqual("Name", name);
         }
 
         [Then(@"回傳使用者姓名為 '(.*)'")]
-        public void Then回傳使用者姓名為(string expected)
+        public void Then回傳使用者姓名為(string fullName)
         {
-            this._context.ResponseContent.AssertAreEqual("FullName", expected);
+            this._context.ResponseContent.AssertAreEqual("FullName", fullName);
         }
 
         [Then(@"回傳使用者部門為 '(.*)'")]
-        public void Then回傳使用者部門為(string expected)
+        public void Then回傳使用者部門為(string department)
         {
-            this._context.ResponseContent.AssertAreEqual("Department", expected);
+            this._context.ResponseContent.AssertAreEqual("Department", department);
         }
 
         [Then(@"回傳使用者等級為 (.*)")]
-        public void Then回傳使用者等級為(int expected)
+        public void Then回傳使用者等級為(int degree)
         {
-            this._context.ResponseContent.AssertAreEqual("Degree", expected);
+            this._context.ResponseContent.AssertAreEqual("Degree", degree);
         }
 
         [Then(@"回傳使用者首頁為 '(.*)'")]
-        public void Then回傳使用者首頁為(string expected)
+        public void Then回傳使用者首頁為(string homepage)
         {
-            this._context.ResponseContent.AssertAreEqual("Homepage", expected);
+            this._context.ResponseContent.AssertAreEqual("Homepage", homepage);
         }
 
         [Then(@"回傳使用者分機為 '(.*)'")]
-        public void Then回傳使用者分機為(string expected)
+        public void Then回傳使用者分機為(string extNumber)
         {
-            this._context.ResponseContent.AssertAreEqual("ExtNumber", expected);
+            this._context.ResponseContent.AssertAreEqual("ExtNumber", extNumber);
         }
 
         [Then(@"回傳使用者BackyardID為 '(.*)'")]
-        public void Then回傳使用者BackyardID為(string expected)
+        public void Then回傳使用者BackyardID為(string backyardId)
         {
-            this._context.ResponseContent.AssertAreEqual("BackyardID", expected);
+            this._context.ResponseContent.AssertAreEqual("BackyardId", backyardId);
         }
 
         [Then(@"回傳子站代碼為 '(.*)'")]
-        public void Then回傳子站代碼為(string expected)
+        public void Then回傳子站代碼為(string ids)
         {
-            this._context.ResponseContent.AssertAreEqual("SubCatIds", expected);
+            JArray actualIds = this._context.ResponseContent.Value<JArray>("CategoryIds");
+
+            if (ids.Length == 0)
+            {
+                Assert.AreEqual(0, actualIds.Count);
+                return;
+            }
+
+            var expectedIds = ids.Split(',').Select(s => int.Parse(s)).ToArray();
+            Assert.AreEqual(expectedIds.Length, actualIds.Count);
+            for (int i = 0; i < expectedIds.Length; i++)
+            {
+                Assert.AreEqual(expectedIds[i], actualIds[i].Value<int>());
+            }
         }
     }
 }

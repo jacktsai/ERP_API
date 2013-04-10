@@ -27,7 +27,7 @@ Scenario: 以 Backyard ID 'jacktsai' 取得使用者資訊
     And 回傳使用者BackyardID為 'jacktsai'
     And 回傳子站代碼為 '25,39'
     
-Scenario: 以 Backyard ID 'kevin113' 取得登入資訊
+Scenario: 以 Backyard ID 'kevin113' 取得使用者資訊
     Given BackyardID為 'kevin113'
 	When 取得使用者資訊
     Then 回傳成功狀態

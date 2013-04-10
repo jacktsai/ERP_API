@@ -4,15 +4,15 @@ using System.Runtime.Serialization;
 namespace ErpApi.Entities
 {
     /// <summary>
-    /// GetSubCategories request format.
+    /// GetSubCategoryContacts request format.
     /// </summary>
     [DataContract]
-    public sealed class GetSubCategoriesRequest
+    public class GetCategoryContactsRequest
     {
         /// <summary>
         /// 子站編號
         /// </summary>
         [DataMember(IsRequired = true), Required]
-        public int[] CatSubIds { get; set; }
+        public int[] CategoryIds { get; set; }
     }
 }

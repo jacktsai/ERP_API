@@ -13,7 +13,7 @@ namespace ErpApi.Entities
         /// <summary>
         /// 使用者資訊。
         /// </summary>
-        public User User { get; internal set; }
+        public PriUser User { get; internal set; }
 
         /// <summary>
         /// 子站代碼。

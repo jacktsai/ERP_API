@@ -43,8 +43,8 @@ namespace ErpApi.DAL
                 throw new ArgumentNullException("url");
             }
 
-            var commandText = @"
-SELECT
+            var commandText =
+@"SELECT
 	[roles_id],
 	[roles_name],
 	[roles_decimalprivs],

@@ -6,12 +6,12 @@ namespace ErpApi.Entities
     /// GetSubCategories response fomrat.
     /// </summary>
     [DataContract]
-    public sealed class GetSubCategoriesResponse
+    public sealed class GetCategoriesResponse
     {
         /// <summary>
         /// 大類資訊
         /// </summary>
         [DataMember]
-        public CatType[] CatTypes { get; set; }
+        public CategoryType[] CategoryTypes { get; set; }
     }
 }

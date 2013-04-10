@@ -37,15 +37,15 @@ namespace ErpApi.ApiControllers
             var response = new GetUserProfileResponse();
             if (profile != null)
             {
-                response.Id = profile.User.priuser_id;
-                response.Name = profile.User.priuser_name;
-                response.FullName = profile.User.priuser_fullname;
-                response.Department = profile.User.priuser_department;
-                response.Degree = profile.User.priuser_degree;
-                response.Homepage = profile.User.priuser_homepage;
-                response.ExtNumber = profile.User.priuser_extno;
-                response.BackyardID = profile.User.priuser_backyardid;
-                response.CatSubIds = profile.SubCatIds.ToArray();
+                response.Id = profile.User.Id;
+                response.Name = profile.User.Name;
+                response.FullName = profile.User.FullName;
+                response.Department = profile.User.Department;
+                response.Degree = profile.User.Degree;
+                response.Homepage = profile.User.Homepage;
+                response.ExtNumber = profile.User.ExtNo;
+                response.BackyardId = profile.User.BackyardId;
+                response.CategoryIds = profile.SubCatIds.ToArray();
             }
 
             return response;

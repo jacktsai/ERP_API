@@ -6,84 +6,84 @@ namespace ErpApi.Entities
     /// <summary>
     /// mapping table name: denyprivs。
     /// </summary>
-    public class DenyPrivilege
+    public class DenyPriv
     {
         /// <summary>
         /// 序號。
         /// </summary>
         [DBColumnMapping("denyprivs_id")]
-        public Int32 denyprivs_id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// 拒絕存取 URL。
         /// </summary>
         [DBColumnMapping("denyprivs_url")]
-        public string denyprivs_url { get; set; }
+        public string Url { get; set; }
 
         /// <summary>
         /// 使用者序號。
         /// </summary>
         [DBColumnMapping("denyprivs_priuserid")]
-        public Int32 denyprivs_priuserid { get; set; }
+        public int PriUserId { get; set; }
 
         /// <summary>
         /// 拒絕SELECT權限。
         /// </summary>
         [DBColumnMapping("denyprivs_select")]
-        public Boolean denyprivs_select { get; set; }
+        public bool Select { get; set; }
 
         /// <summary>
         /// 拒絕INSERT權限。
         /// </summary>
         [DBColumnMapping("denyprivs_insert")]
-        public Boolean denyprivs_insert { get; set; }
+        public bool Insert { get; set; }
 
         /// <summary>
         /// 拒絕UPDATE權限。
         /// </summary>
         [DBColumnMapping("denyprivs_update")]
-        public Boolean denyprivs_update { get; set; }
+        public bool Update { get; set; }
 
         /// <summary>
         /// 拒絕DELETE權限。
         /// </summary>
         [DBColumnMapping("denyprivs_delete")]
-        public Boolean denyprivs_delete { get; set; }
+        public bool Delete { get; set; }
 
         /// <summary>
         /// 拒絕特殊權限。
         /// </summary>
         [DBColumnMapping("denyprivs_particular")]
-        public Boolean denyprivs_particular { get; set; }
+        public bool Particular { get; set; }
 
         /// <summary>
         /// 建檔人。
         /// </summary>
         [DBColumnMapping("denyprivs_sysuser")]
-        public string denyprivs_sysuser { get; set; }
+        public string SysUser { get; set; }
 
         /// <summary>
         /// 建檔日。
         /// </summary>
         [DBColumnMapping("denyprivs_sysdate")]
-        public DateTime denyprivs_sysdate { get; set; }
+        public DateTime SysDate { get; set; }
 
         /// <summary>
         /// 最後修改人。
         /// </summary>
         [DBColumnMapping("denyprivs_updateduser")]
-        public string denyprivs_updateduser { get; set; }
+        public string UpdatedUser { get; set; }
 
         /// <summary>
         /// 最後修改日。
         /// </summary>
         [DBColumnMapping("denyprivs_updateddate")]
-        public DateTime denyprivs_updateddate { get; set; }
+        public DateTime UpdatedDate { get; set; }
 
         /// <summary>
         /// 修改次數。
         /// </summary>
         [DBColumnMapping("denyprivs_updated")]
-        public Byte denyprivs_updated { get; set; }
+        public byte Updated { get; set; }
     }
 }

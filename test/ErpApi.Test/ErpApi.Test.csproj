@@ -80,12 +80,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HttpContext.cs" />
-    <Compile Include="GetSubCategoryContacts.feature.cs">
+    <Compile Include="GetCategoryContacts.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GetSubCategoryContacts.feature</DependentUpon>
+      <DependentUpon>GetCategoryContacts.feature</DependentUpon>
     </Compile>
-    <Compile Include="GetSubCategoryContactsSteps.cs" />
+    <Compile Include="GetCategoryContactsSteps.cs" />
     <Compile Include="GetUserAuthority.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -103,9 +103,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="GetSubCategoryContacts.feature">
+    <None Include="GetCategoryContacts.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetSubCategoryContacts.feature.cs</LastGenOutput>
+      <LastGenOutput>GetCategoryContacts.feature.cs</LastGenOutput>
     </None>
     <None Include="GetUserAuthority.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

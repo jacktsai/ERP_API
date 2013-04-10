@@ -11,9 +11,9 @@ using Monday.Environments;
 namespace ErpApi.DAL
 {
     /// <summary>
-    /// <see cref="ISubCategoryDao"/> 介面實作。
+    /// <see cref="ICatSubDao"/> 介面實作。
     /// </summary>
-    public class SubCategoryDao : ISubCategoryDao
+    public class CatSubDao : ICatSubDao
     {
         /// <summary>
         /// The database connection string.
@@ -21,9 +21,9 @@ namespace ErpApi.DAL
         private readonly string _connectionString;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubCategoryDao" /> class.
+        /// Initializes a new instance of the <see cref="CatSubDao" /> class.
         /// </summary>
-        public SubCategoryDao()
+        public CatSubDao()
         {
             this._connectionString = Setting.GetConnectionString("sale");
         }
@@ -35,7 +35,7 @@ namespace ErpApi.DAL
         /// <returns>
         /// 多筆子站資料。
         /// </returns>
-        IEnumerable<SubCategory> ISubCategoryDao.GetMany(int userId)
+        IEnumerable<CatSub> ICatSubDao.GetMany(int userId)
         {
             var commandText = @"
 SELECT
@@ -79,7 +79,7 @@ WHERE
                 CommandType.Text,
                 commandText,
                 this._connectionString,
-                dataRow => ColumnMappingHelper.MappingEntity<SubCategory>(dataRow),
+                dataRow => ColumnMappingHelper.MappingEntity<CatSub>(dataRow),
                 userIdParameter);
 
             return result;
@@ -94,7 +94,7 @@ WHERE
         /// </returns>
         /// <exception cref="System.ArgumentNullException">ids</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">ids</exception>
-        IEnumerable<SubCategory> ISubCategoryDao.GetMany(IEnumerable<int> ids)
+        IEnumerable<CatSub> ICatSubDao.GetMany(IEnumerable<int> ids)
         {
             if (ids == null)
             {
@@ -106,8 +106,8 @@ WHERE
                 throw new ArgumentOutOfRangeException("ids");
             }
 
-            var commandText = string.Format(@"
-SELECT
+            var commandText = string.Format(
+@"SELECT
 	[catsub_id],
 	[catsub_catzoneid],
 	[catsub_catlinid],
@@ -163,8 +163,8 @@ WHERE
                 this._connectionString,
                 dataRow =>
                 {
-                    var subCat = ColumnMappingHelper.MappingEntity<SubCategory>(dataRow);
-                    subCat.User = ColumnMappingHelper.MappingEntity<SubCategoryUser>(dataRow);
+                    var subCat = ColumnMappingHelper.MappingEntity<CatSub>(dataRow);
+                    subCat.User = ColumnMappingHelper.MappingEntity<CatSubUsr>(dataRow);
                     return subCat;
                 });
 

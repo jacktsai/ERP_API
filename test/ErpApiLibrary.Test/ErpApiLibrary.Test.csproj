@@ -63,12 +63,12 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\SubCategoryServiceTest.cs" />
+    <Compile Include="BLL\CategoryServiceTest.cs" />
     <Compile Include="BLL\UserServiceTest.cs" />
-    <Compile Include="DAL\DenyPrivilegeDaoTest.cs" />
+    <Compile Include="DAL\DenyPrivDaoTest.cs" />
     <Compile Include="DAL\PrivilegeDaoTest.cs" />
     <Compile Include="DAL\RoleDaoTest.cs" />
-    <Compile Include="DAL\UserDaoTest.cs" />
+    <Compile Include="DAL\PriUserDaoTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

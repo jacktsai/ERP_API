@@ -16,24 +16,24 @@ namespace ErpApi.Utilities
         {
             return new UserService()
             {
-                UserDao = new UserDao(),
-                SubCategoryDao = new SubCategoryDao(),
+                PriUserDao = new PriUserDao(),
+                CatSubDao = new CatSubDao(),
                 RoleDao = new RoleDao(),
                 PrivilegeDao = new PrivilegeDao(),
-                DenyPrivilegeDao = new DenyPrivilegeDao(),
+                DenyPrivDao = new DenyPrivDao(),
             };
         }
 
         /// <summary>
-        /// Gets the instance of <see cref="ErpApi.BLL.ISubCategoryService"/> interface.
+        /// Gets the instance of <see cref="ErpApi.BLL.ICategoryService"/> interface.
         /// </summary>
-        /// <returns>The instance of <see cref="ErpApi.BLL.ISubCategoryService"/> interface.</returns>
-        public static ISubCategoryService GetSubCategoryService()
+        /// <returns>The instance of <see cref="ErpApi.BLL.ICategoryService"/> interface.</returns>
+        public static ICategoryService GetSubCategoryService()
         {
-            return new SubCategoryService()
+            return new CategoryService()
             {
-                UserDao = new UserDao(),
-                SubCategoryDao = new SubCategoryDao(),
+                PriUserDao = new PriUserDao(),
+                CatSubDao = new CatSubDao(),
             };
         }
     }
