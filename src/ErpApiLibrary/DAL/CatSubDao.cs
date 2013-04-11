@@ -101,7 +101,7 @@ WHERE
                 throw new ArgumentNullException("ids");
             }
 
-            if (ids.Count() == 0)
+            if (!ids.Any())
             {
                 throw new ArgumentOutOfRangeException("ids");
             }

@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="BLL\CategoryServiceTest.cs" />
     <Compile Include="BLL\UserServiceTest.cs" />
+    <Compile Include="DAL\CatZoneDaoTest.cs" />
     <Compile Include="DAL\DenyPrivDaoTest.cs" />
     <Compile Include="DAL\PrivilegeDaoTest.cs" />
     <Compile Include="DAL\RoleDaoTest.cs" />

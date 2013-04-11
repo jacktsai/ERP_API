@@ -16,11 +16,12 @@ namespace ErpApi.BLL
             {
                 PriUserDao = new PriUserDao(),
                 CatSubDao = new CatSubDao(),
+                CatZoneDao = new CatZoneDao(),
             };
         }
 
         [TestMethod]
-        public void GetCategories_categoryIds_2_3_4_5()
+        public void GetCategoryContacts_categoryIds_2_3_4_5()
         {
             var subCategoryIds = new int[] { 2, 3, 4, 5 };
 
@@ -64,6 +65,35 @@ namespace ErpApi.BLL
             Assert.AreEqual("杜欣怡", subCat4.Staff.FullName);
             Assert.AreEqual("777", subCat4.Staff.ExtNo);
             Assert.AreEqual("cindytu@yahoo-inc.com", subCat4.Staff.Email);
+        }
+
+        [TestMethod]
+        public void GetCategories_categoryIds_1_2_3_4_5()
+        {
+            var actual = this._target.GetCategories(new[] { 1, 2, 3, 4, 5 });
+
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(5, actual.Count());
+
+            var model1 = actual.Single(o => o.CatSub.Id == 1);
+            Assert.AreEqual(1, model1.CatSub.Id);
+            Assert.AreEqual("筆記型電腦超過十一個字test", model1.CatSub.Name);
+
+            var model2 = actual.Single(o => o.CatSub.Id == 2);
+            Assert.AreEqual(2, model2.CatSub.Id);
+            Assert.AreEqual("數位相機1", model2.CatSub.Name);
+
+            var model3 = actual.Single(o => o.CatSub.Id == 3);
+            Assert.AreEqual(3, model3.CatSub.Id);
+            Assert.AreEqual("AV器材(暫隱形)", model3.CatSub.Name);
+
+            var model4 = actual.Single(o => o.CatSub.Id == 4);
+            Assert.AreEqual(4, model4.CatSub.Id);
+            Assert.AreEqual("流行包", model4.CatSub.Name);
+
+            var model5 = actual.Single(o => o.CatSub.Id == 5);
+            Assert.AreEqual(5, model5.CatSub.Id);
+            Assert.AreEqual("寢具、棉被、床包", model5.CatSub.Name);
         }
     }
 }

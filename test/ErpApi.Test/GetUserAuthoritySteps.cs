@@ -15,6 +15,7 @@ namespace ErpApi.Test
     public class GetUserAuthoritySteps
     {
         private readonly HttpContext _context;
+        private JObject _responseContent;
 
         public GetUserAuthoritySteps(HttpContext context)
         {
@@ -60,7 +61,7 @@ namespace ErpApi.Test
         [When(@"取得操作權限")]
         public void When取得操作權限()
         {
-            this._context.Send(HttpMethod.Post, "api/User/GetAuthority");
+            this._responseContent = this._context.Send(HttpMethod.Post, "api/User/GetAuthority");
         }
 
         [Then(@"回傳成功狀態")]
@@ -78,49 +79,49 @@ namespace ErpApi.Test
         [Then(@"回傳使用者BardyardID為 '(.*)'")]
         public void Then回傳使用者BardyardID為(string expected)
         {
-            this._context.ResponseContent.AssertAreEqual("BackyardId", expected);
+            this._responseContent.AssertAreEqual("BackyardId", expected);
         }
 
         [Then(@"回傳網址為 '(.*)'")]
         public void Then回傳網址為(string expected)
         {
-            this._context.ResponseContent.AssertAreEqual("Url", expected);
+            this._responseContent.AssertAreEqual("Url", expected);
         }
 
         [Then(@"回傳讀取權限為 (True|False)")]
         public void Then回傳讀取權限為(bool expected)
         {
-            this._context.ResponseContent.AssertAreEqual("CanAccess", expected);
+            this._responseContent.AssertAreEqual("CanAccess", expected);
         }
 
         [Then(@"回傳SELECT權限為 (True|False)")]
         public void Then回傳SELECT權限為(bool expected)
         {
-            this._context.ResponseContent.AssertAreEqual("CanSelect", expected);
+            this._responseContent.AssertAreEqual("CanSelect", expected);
         }
 
         [Then(@"回傳INSERT權限為 (True|False)")]
         public void Then回傳INSERT權限為(bool expected)
         {
-            this._context.ResponseContent.AssertAreEqual("CanInsert", expected);
+            this._responseContent.AssertAreEqual("CanInsert", expected);
         }
 
         [Then(@"回傳UPDATE權限為 (True|False)")]
         public void Then回傳UPDATE權限為(bool expected)
         {
-            this._context.ResponseContent.AssertAreEqual("CanUpdate", expected);
+            this._responseContent.AssertAreEqual("CanUpdate", expected);
         }
 
         [Then(@"回傳DELETE權限為 (True|False)")]
         public void Then回傳DELETE權限為(bool expected)
         {
-            this._context.ResponseContent.AssertAreEqual("CanDelete", expected);
+            this._responseContent.AssertAreEqual("CanDelete", expected);
         }
 
         [Then(@"回傳特殊權限為 (True|False)")]
         public void Then回傳特殊權限為(bool expected)
         {
-            this._context.ResponseContent.AssertAreEqual("CanParticular", expected);
+            this._responseContent.AssertAreEqual("CanParticular", expected);
         }
     }
 }

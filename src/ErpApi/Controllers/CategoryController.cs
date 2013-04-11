@@ -15,25 +15,64 @@ namespace ErpApi.ApiControllers
         /// <summary>
         /// The instance of <see cref="ErpApi.BLL.ICategoryService"/> interface.
         /// </summary>
-        private readonly ICategoryService _subCategoryService;
+        private readonly ICategoryService _categoryService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CategoryController" /> class.
         /// </summary>
         public CategoryController()
         {
-            this._subCategoryService = ServiceFactory.GetSubCategoryService();
+            this._categoryService = ServiceFactory.GetSubCategoryService();
         }
 
         /// <summary>
         /// 取得子站相關資訊。
         /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns></returns>
+        /// <param name="request">Request 內容。</param>
+        /// <returns>Response 內容。</returns>
         [HttpPost]
         public GetCategoriesResponse GetCategories([FromBody]GetCategoriesRequest request)
         {
-            throw new NotImplementedException();
+            var models = this._categoryService.GetCategories(request.CategoryIds);
+
+            var types = models
+                .GroupBy(
+                    model => new
+                    {
+                        model.CatZone.TypeId,
+                        model.CatZone.TypeName,
+                    }
+                ).Select(
+                    g1 => new CategoryType
+                    {
+                        Id = g1.Key.TypeId,
+                        Name = g1.Key.TypeName,
+                        Zones = models
+                            .Where(model => model.CatZone.TypeId == g1.Key.TypeId)
+                            .GroupBy(model2 => new { model2.CatZone.Id, model2.CatZone.Name, })
+                            .Select(
+                                g2 => new CategoryZone
+                                {
+                                    Id = g2.Key.Id,
+                                    Name = g2.Key.Name,
+                                    Categories = models
+                                        .Where(model => model.CatZone.TypeId == g1.Key.TypeId && model.CatZone.Id == g2.Key.Id)
+                                        .Select(
+                                            model => new Category
+                                            {
+                                                Id = model.CatSub.Id,
+                                                Name = model.CatSub.Name,
+                                            }
+                                        ).ToArray()
+                                }
+                            ).ToArray()
+                    }
+                ).ToArray();
+
+            return new GetCategoriesResponse
+            {
+                CategoryTypes = types,
+            };
         }
 
         /// <summary>
@@ -44,12 +83,12 @@ namespace ErpApi.ApiControllers
         [HttpPost]
         public GetCategoryContactsResponse GetCategoryContacts([FromBody]GetCategoryContactsRequest request)
         {
-            var subCatUsers = this._subCategoryService.GetCategoryContacts(request.CategoryIds);
-            var subCatContacts = subCatUsers.Select(o => this.CreateContact(o)).ToArray();
+            var models = this._categoryService.GetCategoryContacts(request.CategoryIds);
+            var contacts = models.Select(o => this.CreateContact(o)).ToArray();
 
             var response = new GetCategoryContactsResponse
             {
-                CategoryContacts = subCatContacts,
+                CategoryContacts = contacts,
             };
 
             return response;

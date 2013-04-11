@@ -79,6 +79,12 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetCategories.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetCategories.feature</DependentUpon>
+    </Compile>
+    <Compile Include="GetCategoriesSteps.cs" />
     <Compile Include="HttpContext.cs" />
     <Compile Include="GetCategoryContacts.feature.cs">
       <AutoGen>True</AutoGen>
@@ -102,6 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="GetCategories.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetCategories.feature.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="GetCategoryContacts.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -123,6 +133,10 @@
     <ProjectReference Include="..\..\src\ErpApiLibrary\ErpApiLibrary.csproj">
       <Project>{BBA6E9A2-480A-44A5-B30D-CD2CD22A2A91}</Project>
       <Name>ErpApiLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\ErpApi\ErpApi.csproj">
+      <Project>{1DE95254-58FC-4C55-A5A5-02ED44F038C5}</Project>
+      <Name>ErpApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

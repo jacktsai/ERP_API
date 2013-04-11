@@ -34,6 +34,7 @@ namespace ErpApi.Utilities
             {
                 PriUserDao = new PriUserDao(),
                 CatSubDao = new CatSubDao(),
+                CatZoneDao = new CatZoneDao(),
             };
         }
     }

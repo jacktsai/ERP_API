@@ -21,7 +21,7 @@ namespace ErpApi.Entities
 			SqlConnection conn = new SqlConnection(connectionString); 
 			conn.Open(); 
 			
-			var tableName = "catsub";
+			var tableName = "catzone";
 
 			//如果需要database中全部table，則使用conn.GetSchema("Tables")即可
 			string[] restrictions = new string[4];

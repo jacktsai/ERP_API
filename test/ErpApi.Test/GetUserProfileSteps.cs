@@ -14,6 +14,7 @@ namespace ErpApi.Test
     public class GetUserProfileSteps
     {
         private readonly HttpContext _context;
+        private JObject _responseContent;
 
         public GetUserProfileSteps(HttpContext context)
         {
@@ -41,7 +42,7 @@ namespace ErpApi.Test
         [When(@"取得使用者資訊")]
         public void When取得使用者資訊()
         {
-            this._context.Send(HttpMethod.Post, "api/User/GetProfile");
+            this._responseContent = this._context.Send(HttpMethod.Post, "api/User/GetProfile");
         }
 
         [Then(@"回傳成功狀態")]
@@ -59,55 +60,55 @@ namespace ErpApi.Test
         [Then(@"回傳使用者序號為 (.*)")]
         public void Then回傳使用者序號為(int id)
         {
-            this._context.ResponseContent.AssertAreEqual("Id", id);
+            this._responseContent.AssertAreEqual("Id", id);
         }
 
         [Then(@"回傳使用者帳號為 '(.*)'")]
         public void Then回傳使用者帳號為(string name)
         {
-            this._context.ResponseContent.AssertAreEqual("Name", name);
+            this._responseContent.AssertAreEqual("Name", name);
         }
 
         [Then(@"回傳使用者姓名為 '(.*)'")]
         public void Then回傳使用者姓名為(string fullName)
         {
-            this._context.ResponseContent.AssertAreEqual("FullName", fullName);
+            this._responseContent.AssertAreEqual("FullName", fullName);
         }
 
         [Then(@"回傳使用者部門為 '(.*)'")]
         public void Then回傳使用者部門為(string department)
         {
-            this._context.ResponseContent.AssertAreEqual("Department", department);
+            this._responseContent.AssertAreEqual("Department", department);
         }
 
         [Then(@"回傳使用者等級為 (.*)")]
         public void Then回傳使用者等級為(int degree)
         {
-            this._context.ResponseContent.AssertAreEqual("Degree", degree);
+            this._responseContent.AssertAreEqual("Degree", degree);
         }
 
         [Then(@"回傳使用者首頁為 '(.*)'")]
         public void Then回傳使用者首頁為(string homepage)
         {
-            this._context.ResponseContent.AssertAreEqual("Homepage", homepage);
+            this._responseContent.AssertAreEqual("Homepage", homepage);
         }
 
         [Then(@"回傳使用者分機為 '(.*)'")]
         public void Then回傳使用者分機為(string extNumber)
         {
-            this._context.ResponseContent.AssertAreEqual("ExtNumber", extNumber);
+            this._responseContent.AssertAreEqual("ExtNumber", extNumber);
         }
 
         [Then(@"回傳使用者BackyardID為 '(.*)'")]
         public void Then回傳使用者BackyardID為(string backyardId)
         {
-            this._context.ResponseContent.AssertAreEqual("BackyardId", backyardId);
+            this._responseContent.AssertAreEqual("BackyardId", backyardId);
         }
 
         [Then(@"回傳子站代碼為 '(.*)'")]
         public void Then回傳子站代碼為(string ids)
         {
-            JArray actualIds = this._context.ResponseContent.Value<JArray>("CategoryIds");
+            JArray actualIds = this._responseContent.Value<JArray>("CategoryIds");
 
             if (ids.Length == 0)
             {

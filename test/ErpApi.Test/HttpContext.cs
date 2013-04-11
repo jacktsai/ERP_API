@@ -29,8 +29,6 @@ namespace ErpApi.Test
 
         public HttpStatusCode StatusCode { get; private set; }
 
-        public JObject ResponseContent { get; private set; }
-
         public string ErrorMessage { get; private set; }
 
         /// <summary>
@@ -43,7 +41,7 @@ namespace ErpApi.Test
             this._requestContent.Add(new JProperty(propertyName, content));
         }
 
-        public void Send(HttpMethod method, string uri)
+        public TResponseContent Send<TResponseContent>(HttpMethod method, string uri)
         {
             DateTime startTime = DateTime.Now;
 
@@ -58,6 +56,8 @@ namespace ErpApi.Test
             //        clientSecuredMsg));
 
             var handler = new HttpClientHandler();
+
+            TResponseContent responseContent = default(TResponseContent);
 
             using (var httpClient = new HttpClient(handler))
             {
@@ -81,7 +81,7 @@ namespace ErpApi.Test
                     {
                         if (response.Content.Headers.ContentType.MediaType == "application/json")
                         {
-                            ResponseContent = response.Content.ReadAsAsync<JObject>().Result;
+                            responseContent = response.Content.ReadAsAsync<TResponseContent>().Result;
                         }
                         else
                         {
@@ -98,6 +98,13 @@ namespace ErpApi.Test
 
             TimeSpan duration = DateTime.Now - startTime;
             Trace.WriteLine(string.Format("Duration: {0}", duration));
+
+            return responseContent;
+        }
+
+        public JObject Send(HttpMethod method, string uri)
+        {
+            return this.Send<JObject>(method, uri);
         }
     }
 }

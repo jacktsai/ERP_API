@@ -15,6 +15,7 @@ namespace ErpApi.Test
     public class GetCategoryContactsSteps
     {
         private readonly HttpContext _context;
+        private JObject _responseContent;
 
         public GetCategoryContactsSteps(HttpContext context)
         {
@@ -43,7 +44,7 @@ namespace ErpApi.Test
         [When(@"取得聯絡人資訊")]
         public void When取得聯絡人資訊()
         {
-            this._context.Send(HttpMethod.Post, "api/Category/GetCategoryContacts");
+            this._responseContent = this._context.Send(HttpMethod.Post, "api/Category/GetCategoryContacts");
         }
 
         [Then(@"回傳成功狀態")]
@@ -60,7 +61,7 @@ namespace ErpApi.Test
 
         private JObject GetElement(int index)
         {
-            JArray array = this._context.ResponseContent.Value<JArray>("CategoryContacts");
+            JArray array = this._responseContent.Value<JArray>("CategoryContacts");
             return array[index - 1].Value<JObject>();
         }
 

@@ -53,7 +53,9 @@
   <ItemGroup>
     <Compile Include="BLL\CategoryService.cs" />
     <Compile Include="BLL\UserService.cs" />
+    <Compile Include="DAL\CatZoneDao.cs" />
     <Compile Include="DAL\DenyPrivDao.cs" />
+    <Compile Include="DAL\ICatZoneDao.cs" />
     <Compile Include="DAL\IDenyPrivDao.cs" />
     <Compile Include="DAL\IPrivilegeDao.cs" />
     <Compile Include="DAL\IRoleDao.cs" />
@@ -61,6 +63,8 @@
     <Compile Include="DAL\PrivilegeDao.cs" />
     <Compile Include="DAL\RoleDao.cs" />
     <Compile Include="DAL\CatSubDao.cs" />
+    <Compile Include="Entities\CategoryModel.cs" />
+    <Compile Include="Entities\CatZone.cs" />
     <Compile Include="Entities\DenyPriv.cs" />
     <Compile Include="Entities\Privilege.cs" />
     <Compile Include="Entities\Role.cs" />
@@ -69,11 +73,6 @@
     <Compile Include="BLL\IUserService.cs" />
     <Compile Include="Entities\Profile.cs" />
     <Compile Include="Entities\CategoryContactModel.cs" />
-    <Compile Include="T4\GenerateEntity.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GenerateEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\CatSubUsr.cs" />
     <Compile Include="Utilities\ColumnMappingHelper.cs" />
     <Compile Include="Utilities\Extensions\DictionaryExtensions.cs" />
