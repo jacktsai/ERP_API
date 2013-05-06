@@ -8,11 +8,12 @@
 <#@ import namespace="System.Data.SqlClient" #>
 <#@ import namespace="System.Data" #>
 <#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
 
 using System;
 using Monday.DataAccess.Common;
 
-namespace ErpApi.Entities 
+namespace DataExchange.Entities 
 {        
 		<#  //修改connection string
 			string connectionString = "Data Source = alpha.db.principal.sale;      Database = sale;    User ID=saleuser;         Password=12uuiaggi8"; 
@@ -20,8 +21,8 @@ namespace ErpApi.Entities
 			//string connectionString = "server=alpha.db.principal.security; user id=privilegeuser; password=12uuiaggi8"; 
 			SqlConnection conn = new SqlConnection(connectionString); 
 			conn.Open(); 
-			
-			var tableName = "catzone";
+		 
+			var tableName = "catsub";
 
 			//如果需要database中全部table，則使用conn.GetSchema("Tables")即可
 			string[] restrictions = new string[4];
@@ -71,14 +72,15 @@ namespace ErpApi.Entities
 				var tableDescription = isExistData ? ds.Tables[2].Rows[0]["table_desc"].ToString() : "";				
 			#>             						
 			/// <summary>			
-			/// <#= tableDescription #>。
-			/// mapping table name: <#= row["TABLE_NAME"].ToString() #>。
+			/// <#= tableDescription #>
+			/// mapping table name: <#= tableName #>
 			/// </summary>
-			public class <#= row["TABLE_NAME"].ToString() #>                            
+			public class <#= ToPascal(tableName) #>                            
 			{
 				<#                 										
 					foreach (DataColumn dc in ds.Tables[0].Columns)
 					{					
+                        var columnName = dc.ColumnName.Substring(tableName.Length + 1);
 						//string columnDescription = ds.Tables[1].AsEnumerable().Where(x => x["column"].ToString() == dc.ColumnName).Select(x => x["column_desc"].ToString()).FirstOrDefault();						
 						var columnDefinition = ds.Tables[1].AsEnumerable().Where(x => x["column"].ToString() == dc.ColumnName).FirstOrDefault();						
 						var columnDescription = columnDefinition["column_desc"].ToString();
@@ -86,18 +88,18 @@ namespace ErpApi.Entities
 				#>
 /// <summary>
 				<# if (string.IsNullOrEmpty(columnDescription)) { #>
-/// <#= dc.ColumnName #>。
+/// <#= dc.ColumnName #>
 				<# } else { #>
-/// <#= columnDescription #>。
+/// <#= columnDescription #>
                 <# } #>
 /// </summary>
 				[DBColumnMapping("<#= dc.ColumnName #>")]                        
-				<# if(isAllowNull && dc.DataType.Name != "string"){ #>
-public <#= dc.DataType.Name #>? <#= dc.ColumnName #>  { get; set; }                                        
+				<# if(isAllowNull && dc.DataType.Name != "String"){ #>
+public <#= dc.DataType.Name #>? <#= ToPascal(columnName) #>  { get; set; }                                        
 				<#     }                
 				else
 				{ #>
-public <#= dc.DataType.Name #> <#= dc.ColumnName #>  { get; set; }
+public <#= dc.DataType.Name #> <#= ToPascal(columnName) #>  { get; set; }
 				<#}
 				#>                            	
 				<#    }                 #>                                
@@ -107,3 +109,29 @@ public <#= dc.DataType.Name #> <#= dc.ColumnName #>  { get; set; }
 			conn.Close();			
 #>
 }
+<#+
+        private string ToPascal(string source)
+        {
+            var buffer = new StringBuilder(source.Length);
+            var firstChar = true;
+            foreach (var c in source)
+            {
+                if (c == '_')
+                {
+                    firstChar = true;
+                    continue;
+                }
+
+                if (firstChar)
+                {
+                    buffer.Append(c.ToString().ToUpper());
+                }
+                else
+                {
+                    buffer.Append(c.ToString().ToLower());
+                }
+                firstChar = false;
+            }
+            return buffer.ToString();
+        }
+#>
