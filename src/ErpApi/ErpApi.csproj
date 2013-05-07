@@ -143,6 +143,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Entities\CategoryZone.cs" />
     <Compile Include="Entities\GetCategoriesRequest.cs" />
     <Compile Include="Entities\GetCategoriesResponse.cs" />
@@ -156,6 +157,8 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\CategoryContact.cs" />
     <Compile Include="Entities\CategoryType.cs" />
+    <Compile Include="Entities\UpdateProductSizeRequest.cs" />
+    <Compile Include="Entities\UpdateProductSizeResponse.cs" />
     <Compile Include="ModelStateActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

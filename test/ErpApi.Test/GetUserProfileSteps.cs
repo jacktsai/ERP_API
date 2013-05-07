@@ -13,6 +13,9 @@ namespace ErpApi.Test
     [Scope(Feature = "GetUserProfile")]
     public class GetUserProfileSteps
     {
+        /// <summary>
+        /// The instance of HttpContext.
+        /// </summary>
         private readonly HttpContext _context;
         private JObject _responseContent;
 

@@ -13,6 +13,9 @@ namespace ErpApi.Test
     [Scope(Feature = "GetCategories")]
     public class GetCategoriesSteps
     {
+        /// <summary>
+        /// The instance of HttpContext.
+        /// </summary>
         private readonly HttpContext _context;
         private GetCategoriesResponse _response;
 

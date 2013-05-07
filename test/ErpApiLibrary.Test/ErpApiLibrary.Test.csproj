@@ -68,6 +68,7 @@
     <Compile Include="DAL\CatZoneDaoTest.cs" />
     <Compile Include="DAL\DenyPrivDaoTest.cs" />
     <Compile Include="DAL\PrivilegeDaoTest.cs" />
+    <Compile Include="DAL\ProductDaoTest.cs" />
     <Compile Include="DAL\RoleDaoTest.cs" />
     <Compile Include="DAL\PriUserDaoTest.cs" />
   </ItemGroup>

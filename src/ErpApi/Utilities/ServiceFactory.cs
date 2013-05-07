@@ -14,7 +14,7 @@ namespace ErpApi.Utilities
         /// <returns>The instance of <see cref="ErpApi.BLL.IUserService"/> interface.</returns>
         public static IUserService GetUserService()
         {
-            return new UserService()
+            return new UserService
             {
                 PriUserDao = new PriUserDao(),
                 CatSubDao = new CatSubDao(),
@@ -30,11 +30,23 @@ namespace ErpApi.Utilities
         /// <returns>The instance of <see cref="ErpApi.BLL.ICategoryService"/> interface.</returns>
         public static ICategoryService GetSubCategoryService()
         {
-            return new CategoryService()
+            return new CategoryService
             {
                 PriUserDao = new PriUserDao(),
                 CatSubDao = new CatSubDao(),
                 CatZoneDao = new CatZoneDao(),
+            };
+        }
+
+        /// <summary>
+        /// Gets the instance of <see cref="ErpApi.BLL.IProductService"/> interface.
+        /// </summary>
+        /// <returns>The instance of <see cref="ErpApi.BLL.IProductService"/> interface.</returns>
+        public static IProductService GetProductService()
+        {
+            return new ProductService
+            {
+                ProductDao = new ProductDao(),
             };
         }
     }

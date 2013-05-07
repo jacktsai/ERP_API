@@ -14,6 +14,9 @@ namespace ErpApi.Test
     [Scope(Feature = "GetCategoryContacts")]
     public class GetCategoryContactsSteps
     {
+        /// <summary>
+        /// The instance of HttpContext.
+        /// </summary>
         private readonly HttpContext _context;
         private JObject _responseContent;
 

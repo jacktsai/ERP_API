@@ -12,7 +12,10 @@
         /// <param name="dbCommand">The db command.</param>
         /// <param name="parameterName">Name of the parameter.</param>
         /// <param name="value">The value.</param>
-        /// <returns>An instance of IDataParameter.</returns>
+        /// <returns>
+        /// An instance of IDataParameter.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">dbCommand</exception>
         public static IDataParameter AddParameterWithValue<T>(this IDbCommand dbCommand, string parameterName, T value)
         {
             if (dbCommand == null)

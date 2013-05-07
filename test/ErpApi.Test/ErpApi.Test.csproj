@@ -104,7 +104,14 @@
       <DependentUpon>GetUserProfile.feature</DependentUpon>
     </Compile>
     <Compile Include="GetUserProfileSteps.cs" />
+    <Compile Include="HttpSteps.cs" />
     <Compile Include="JObjectExtensions.cs" />
+    <Compile Include="UpdateProductSize.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateProductSize.feature</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateProductSizeSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -124,6 +131,10 @@
     <None Include="GetUserProfile.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetUserProfile.feature.cs</LastGenOutput>
+    </None>
+    <None Include="UpdateProductSize.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateProductSize.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

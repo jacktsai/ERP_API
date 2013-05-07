@@ -52,21 +52,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\CategoryService.cs" />
+    <Compile Include="BLL\IProductService.cs" />
+    <Compile Include="BLL\ProductService.cs" />
     <Compile Include="BLL\UserService.cs" />
     <Compile Include="DAL\CatZoneDao.cs" />
     <Compile Include="DAL\DenyPrivDao.cs" />
     <Compile Include="DAL\ICatZoneDao.cs" />
     <Compile Include="DAL\IDenyPrivDao.cs" />
     <Compile Include="DAL\IPrivilegeDao.cs" />
+    <Compile Include="DAL\IProductDao.cs" />
     <Compile Include="DAL\IRoleDao.cs" />
     <Compile Include="DAL\ICatSubDao.cs" />
     <Compile Include="DAL\PrivilegeDao.cs" />
+    <Compile Include="DAL\ProductDao.cs" />
     <Compile Include="DAL\RoleDao.cs" />
     <Compile Include="DAL\CatSubDao.cs" />
     <Compile Include="Entities\CategoryModel.cs" />
     <Compile Include="Entities\CatZone.cs" />
     <Compile Include="Entities\DenyPriv.cs" />
     <Compile Include="Entities\Privilege.cs" />
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Authority.cs" />
     <Compile Include="BLL\ICategoryService.cs" />
